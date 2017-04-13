@@ -7,7 +7,6 @@ function routerConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.when('/', '/join#signup');
   $urlRouterProvider.when('/signup', '/join#signup');
   $urlRouterProvider.when('/login', '/join#login');
-  $urlRouterProvider.when('/message', '/message');
 
   let states = [
     {
@@ -28,7 +27,7 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       name: 'message',
       url: '/message',
       template: require('../view/message/message.html'),
-      controller: 'messageController',
+      controller: 'MessageController',
       controllerAs: 'messageCtrl'
     },
     {

@@ -8,8 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const production = process.env.NODE_ENV === 'production';
 
 dotenv.load();
-console.log('log api url', process.env.API_URL);
-console.log('process', process.env);
+
 module.exports = () => {
 
   return {

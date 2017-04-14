@@ -8,5 +8,4 @@ function LandingController($log, $location) {
   $log.debug('LandingController');
 
   let url = $location.url() === '/join#signup' || url === '/join';
-  //TODO: Landing View Controller
 }

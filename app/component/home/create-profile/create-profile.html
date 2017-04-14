@@ -1,0 +1,39 @@
+<section>
+  <form
+    name="createProfileForm"
+    ng-submit="createProfileCtrl.createProfile()">
+    <label for="displayName">tell people about yourself</label>
+    <input
+      name="displayName"
+      type="text"
+      placeholder="displayName"
+      ng-model="createProfileCtrl.profile.displayName"
+      required>
+
+    <input
+      type="text"
+      placeholder="Full Name"
+      ng-model="createProfileCtrl.profile.fullName"
+      required>
+
+    <input
+      type="text"
+      placeholder="your address"
+      ng-model="createProfileCtrl.profile.address"
+      required>
+
+    <input
+      type="text"
+      placeholder="fun facts about you"
+      ng-model="createProfileCtrl.profile.bio"
+      required>
+
+    <p
+      ngf-select
+      ng-model="createProfileCtrl.profile.photo">
+      upload a profile photo
+    </p>
+
+    <button type="submit">create your profile</button>
+  </form>
+</section>

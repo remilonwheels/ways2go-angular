@@ -1,3 +1,5 @@
+'use strict';
+
 require('./scss/main.scss');
 require('angular-material/angular-material.scss');
 

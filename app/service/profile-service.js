@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', 'authService', profileService];
+module.exports = ['$q', '$log', '$http', 'Upload', 'authService', profileService];
 
-function profileService($q, $log, $http, authService) {
+function profileService($q, $log, $http, Upload, authService) {
   $log.debug('profileService');
 
   let service = {};
@@ -14,15 +14,24 @@ function profileService($q, $log, $http, authService) {
     return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/profile` //eslint-disable-line
-      let config = {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
+      let headers = {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       };
 
-      return $http.post(url, profile, config);
+      return Upload.upload({
+        url,
+        headers,
+        method: 'POST',
+        data: {
+          displayName: profile.displayName,
+          fullName: profile.fullName,
+          address: profile.address,
+          bio: profile.bio,
+          photo: profile.photo
+        }
+      });
     })
     .then( res => {
       $log.log('profile creation success');

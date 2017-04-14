@@ -7,14 +7,13 @@ const
   camelcase = require('camelcase'),
   pascalcase = require('pascalcase'),
   uiRouter = require('angular-ui-router'),
-  ngTouch = require('angular-touch'),
   ngAnimate = require('angular-animate'),
   ngFileUpload = require('ng-file-upload'),
   ngMap = require('ngmap');
 require('angular-aria');
 require('angular-material');
 
-const ways2go = angular.module('ways2go', [ngTouch, ngAnimate, uiRouter, ngFileUpload, 'ngMaterial', ngMap]);
+const ways2go = angular.module('ways2go', [ngAnimate, uiRouter, ngFileUpload, 'ngMaterial', ngMap]);
 
 let context = require.context('./config/', true, /\.js$/);
 context.keys().forEach( key => {

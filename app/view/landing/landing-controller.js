@@ -2,11 +2,11 @@
 
 require('./_landing.scss');
 
-module.exports = ['$log', '$location', '$rootScope', 'authService', LandingController];
+module.exports = ['$log', '$location', '$rootScope', LandingController];
 
-function LandingController($log, $location, authService) {
+function LandingController($log, $location) {
   $log.debug('LandingController');
 
-  let url = $location.url();
+  let url = $location.url() === '/join#signup' || url === '/join';
   //TODO: Landing View Controller
 }

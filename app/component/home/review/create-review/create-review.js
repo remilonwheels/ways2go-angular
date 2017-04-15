@@ -23,7 +23,7 @@ function ReviewController($log, reviewService) {
       this.review.rating = null;
       this.review.comment = null;
       this.review.wayID = null;
-      this.profile.userID = null;
+      this.profile.profileID = null;
     });
   };
 }

@@ -7,8 +7,8 @@ module.exports = {
   controller: ['$log', 'reviewService', ReviewItemController],
   controllerAs: 'reviewItemCtrl',
   bindings: {
-    userid: '<',
-    revieweduserid: '<',
+    profileID: '<',
+    reviewedprofileID: '<',
     way: '<'
   }
 };

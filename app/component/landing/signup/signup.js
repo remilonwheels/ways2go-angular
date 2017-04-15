@@ -15,7 +15,7 @@ function SignupController($log, $location, $window, authService) {
       $location.url('/home');
     });
   }
-  
+
   this.signup = function(user) {
     $log.debug('SignupController.signup');
 

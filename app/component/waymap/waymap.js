@@ -4,11 +4,11 @@ require('./_waymap.scss');
 
 module.exports = {
   template: require('./waymap.html'),
-  controller: ['$log', 'galleryService', WayMapController],
+  controller: ['$log', WayMapController],
   controllerAs: 'wayMapCtrl'
 };
 
-function WayMapController($log, galleryService) {
+function WayMapController($log) {
   $log.debug('WayMapController');
 
   this.ways = [];

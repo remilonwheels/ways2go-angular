@@ -36,6 +36,33 @@ function wayService($q, $log, $http, authService) {
     });
   };
 
+  service.fetchWays = function(way) {
+    $log.debug('wayService.createWay');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/way` //eslint-disable-line
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      return $http.get(url, config);
+    })
+    .then( res => {
+      $log.log('ways fetched');
+      service.ways = res.data;
+      return service.ways;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
 
   return service;
 }

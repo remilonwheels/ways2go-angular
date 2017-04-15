@@ -14,8 +14,10 @@ const
   ngMap = require('ngmap');
 require('angular-aria');
 require('angular-material');
+require('angular-material-icons');
 
-const ways2go = angular.module('ways2go', [ngAnimate, uiRouter, ngFileUpload, 'ngMaterial', ngMap]);
+
+const ways2go = angular.module('ways2go', [ngAnimate, uiRouter, ngFileUpload, 'ngMaterial', 'ngMdIcons', ngMap]);
 
 let context = require.context('./config/', true, /\.js$/);
 context.keys().forEach( key => {

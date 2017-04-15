@@ -36,7 +36,7 @@ function profileService($q, $log, $http, Upload, authService) {
     .then( res => {
       $log.log('profile creation success');
       service.profile = res.data;
-      return res.data;
+      return service.profile;
     })
     .catch( err => {
       $log.error(err.message);
@@ -73,7 +73,58 @@ function profileService($q, $log, $http, Upload, authService) {
     .then( res => {
       $log.log('profile updated successfully');
       service.profile = res.data;
-      return res.data;
+      return service.profile;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.fetchProfile = function() {
+    $log.debug('profileService.updateProfile');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/profile`; //eslint-disable-line
+
+      let headers = {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      };
+
+      return $http.get(url, headers);
+    })
+    .then( res => {
+      $log.log('profile retrieved');
+      service.profile = res.data;
+      return service.profile;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.deleteProfile = function() {
+    $log.debug('profileService.deleteProfile');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/profile`; //eslint-disable-line
+
+      let headers = {
+        Authorization: `Bearer ${token}`
+      };
+
+      return $http.delete(url, headers);
+    })
+    .then( res => {
+      $log.log(res.status);
+      for (var key of service.profile) {
+        delete service.profile[key];
+      }
     })
     .catch( err => {
       $log.error(err.message);

@@ -15,27 +15,18 @@ function reviewService($q, $log, $http, Upload, profileService, authService) {
     return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/wayerz/${profile.profileID}/review` //eslint-disable-line
-      let headers = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      };
-      return $http.post({
-        url,
-        headers,
-        method: 'POST',
-        data: {
-          rating: review.rating,
-          comment: review.comment,
-          wayID: review.wayID,
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         }
-      });
+      };
+      return $http.post(url, profile, way, review, config);
     })
-
     .then( res => {
       $log.log('review creation success');
       service.profile = res.data;
-      console.log(res.data, '****************************************');
       return res.data;
     })
     .catch( err => {

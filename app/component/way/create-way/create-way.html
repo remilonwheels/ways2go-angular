@@ -1,0 +1,55 @@
+<md-dialog>
+  <md-dialog-content>
+
+    <md-input-container>
+      <label>name</label>
+      <input ng-model="createWayCtrl.way.name">
+    </md-input-container>
+
+    <md-input-container>
+      <label>startLocation</label>
+      <input ng-model="createWayCtrl.way.startLocation">
+    </md-input-container>
+
+    <md-input-container>
+      <label>endLocation</label>
+      <input ng-model="createWayCtrl.way.endLocation">
+    </md-input-container>
+
+    <md-input-container>
+      <label>recurringDayOfWeek</label>
+      <input ng-model="createWayCtrl.way.recurringDayOfWeek">
+    </md-input-container>
+
+    <md-input-container>
+      <label>startTime:hour</label>
+      <input ng-model="createWayCtrl.way.hour">
+    </md-input-container>
+
+    <md-input-container>
+      <label>startTime:minutes</label>
+      <input ng-model="createWayCtrl.way.minutes">
+    </md-input-container>
+
+    <md-input-container>
+      <label>startTime:timeWindow</label>
+      <input ng-model="createWayCtrl.way.timeWindow">
+    </md-input-container>
+
+    <md-input-container>
+      <label>oneTimeDate</label>
+      <input ng-model="createWayCtrl.way.oneTimeDate">
+    </md-input-container>
+
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button ng-click="createWayCtrl.closeDialog()" class="md-primary md-raised">
+      Close Dialog
+    </md-button>
+
+    <md-button ng-click="createWayCtrl.createWaySubmit()" class="md-primary md-raised">
+      Make A Way
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

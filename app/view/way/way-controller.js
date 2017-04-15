@@ -2,10 +2,25 @@
 
 require('./_way.scss');
 
-module.exports = ['$log', /* other dependcies */ WayController];
+const createWayComponent = require('../../component/way/create-way/create-way.js');
 
-function WayController($log) {
+module.exports = ['$log', '$mdDialog', WayController];
+
+function WayController($log, $mdDialog) {
   $log.debug('WayController');
 
-  //TODO: Message View Controller
+  this.createWay = createWay;
+  function createWay($event) {
+    var parentEl = angular.element(document.body);
+    $mdDialog.show({
+      parent: parentEl,
+      targetEvent: $event,
+      template: createWayComponent.template,
+      locals: {
+        items: this.items
+      },
+      controller: createWayComponent.controller,
+      controllerAs: createWayComponent.controllerAs
+   });
+  }
 }

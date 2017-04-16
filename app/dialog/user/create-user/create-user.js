@@ -12,6 +12,7 @@ function SignupController($log, $window, $location, $mdDialog, authService, item
   $log.debug('SignupController');
 
   this.isLoading = false;
+  this.isAuthorized = false;
   this.user = {};
   this.items = items;
   $log.log(this.items);
@@ -30,6 +31,7 @@ function SignupController($log, $window, $location, $mdDialog, authService, item
     authService.signup(this.user)
     .then( () => {
       this.isLoading = false;
+      this.isAuthorized = true;
       // $location.url('/home');
     })
     .catch( err => {

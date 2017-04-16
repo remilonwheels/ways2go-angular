@@ -12,10 +12,10 @@
     </md-toolbar>
 
     <md-dialog-content layout-padding layout-margin>
-      <md-input-containter class="md-icon-float md-block">
+      <md-input-container class="md-icon-float md-block">
         <md-icon ng-md-icon icon="person"></md-icon>
         <input type="text" ng-model="signupCtrl.user.username" placeholder="username" required>
-      </md-input-containter>
+      </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
         <md-icon ng-md-icon icon="dialpad"></md-icon>
@@ -28,7 +28,7 @@
       </md-input-container>
     </md-dialog-content>
 
-    <md-dialog-actions>
+    <md-dialog-actions ng-if="!signupCtrl.isAuthorized">
       <md-button ng-click="signupCtrl.createUser()"
       class="md-primary md-raised" layout layout-align="center center">
         <span ng-show="!signupCtrl.isLoading">create account</span>

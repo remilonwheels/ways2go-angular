@@ -13,9 +13,9 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.currentWay = null;
 
   this.createWay = function ($event) {
-    const parent = angular.element(document.body);
+    // const parent = angular.element(document.body);
     $mdDialog.show({
-      parent,
+      // parent,
       targetEvent: $event,
       template: createWayComponent.template,
       // same as BINDINGS for components //
@@ -25,21 +25,22 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
       ////////////////////////////////////
       controller: createWayComponent.controller,
       controllerAs: createWayComponent.controllerAs
-   });
-  }
+    });
+  };
 
   this.fetchWays = function() {
     wayService.fetchWays()
     .then( ways => {
       this.ways = ways;
-      // this.ways.forEach( way => {
-      //   this.drawWays(way.startLocation, way.endLocation);
-      // });
     })
-    //TODO: decide to set currentWay
+    .catch( err => {
+      $log.error(err);
+    });
   };
 
   this.fetchWays();
+
+  
 
   // this.drawWays = function(latLngArray) {
   //   let bounds = new LatLngBounds();
@@ -202,7 +203,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   //   });
   // };
 
- $rootScope.$on('$locationChangeSuccess', () => {
-   this.fetchWays();
- });
+  $rootScope.$on('$locationChangeSuccess', () => {
+    this.fetchWays();
+  });
 }

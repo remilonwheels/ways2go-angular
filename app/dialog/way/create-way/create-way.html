@@ -9,14 +9,15 @@
         </md-button>
       </div>
     </md-toolbar>
-    <!-- <div layout-padding layout-margin> -->
-      <md-dialog-content layout-padding layout-margin>
-        <md-input-container class="md-icon-float md-block">
-          <label>name</label>
-          <md-icon ng-md-icon icon="send"></md-icon>
-          <input type="text" ng-model="createWayCtrl.way.name">
-        </md-input-container>
 
+    <md-dialog-content layout-padding layout-margin>
+      <md-input-container class="md-icon-float md-block">
+        <label>name</label>
+        <md-icon ng-md-icon icon="send"></md-icon>
+        <input type="text" ng-model="createWayCtrl.way.name">
+      </md-input-container>
+
+      <div layout="row">
         <md-input-container class="md-icon-float">
           <label>startLocation</label>
           <input ng-model="createWayCtrl.way.startLocation" required>
@@ -27,28 +28,54 @@
           <input ng-model="createWayCtrl.way.endLocation" required>
         </md-input-container>
 
-        <md-input-container>
-          <label>recurringDayOfWeek</label>
-          <input ng-model="createWayCtrl.way.recurringDayOfWeek">
-        </md-input-container>
+      </div>
 
-        <md-input-container>
-          <label>startTime:hour</label>
-          <input ng-model="createWayCtrl.way.hour">
-        </md-input-container>
 
-        <md-input-container>
-          <label>startTime:minutes</label>
-          <input ng-model="createWayCtrl.way.minutes">
-        </md-input-container>
+      <!-- <md-input-container>
+        <label>recurringDayOfWeek</label>
+        <input ng-model="createWayCtrl.way.recurringDayOfWeek">
+      </md-input-container> -->
+      <div layout layout-align="center center">
 
-        <md-input-container>
-          <label>startTime:timeWindow</label>
-          <input ng-model="createWayCtrl.way.timeWindow">
-        </md-input-container>
+        <md-datepicker ng-model="createWayCtrl.way.oneTimeDate" md-placeholder="One Time Way" class="md-block"></md-datepicker>
+      </div>
 
-        <md-datepicker ng-model="createWayCtrl.way.oneTimeDate" md-placeholder="Pick a Date"></md-datepicker>
-      <!-- </div> -->
+      <fieldset class="standard" >
+       <legend>Scheduled Day</legend>
+       <div layout="row" layout-wrap flex>
+         <div flex ng-repeat="day in createWayCtrl.daysOfWeek">
+           <md-checkbox ng-checked="createWayCtrl.exists(day, createWayCtrl.way.recurringDayOfWeek)" ng-click="createWayCtrl.toggle(day, createWayCtrl.way.recurringDayOfWeek)">
+             {{ day }} <span ng-if="exists(day, createWayCtrl.way.recurringDayOfWeek)">selected</span>
+           </md-checkbox>
+         </div>
+       </div>
+     </fieldset>
+
+
+    <md-content layout="row" layout-padding layout-align="center center">
+      <md-slider-container flex>
+        <md-input-container>
+          <input flex type="number" ng-model="vol" aria-label="hour" aria-controls="hour-slider">
+      </md-input-container>
+      <md-slider ng-model="vol" min="1" max="12" aria-label="hour" id="hour-slider" class="md-accent" md-vertical md-range></md-slider>
+      <h5>Hour</h5>
+    </md-slider-container>
+    <md-slider-container flex>
+      <md-input-container>
+        <input flex type="number" ng-model="minute" aria-label="minute" aria-controls="minute-slider">
+      </md-input-container>
+      <md-slider md-discrete ng-model="minute" min="0" max="60" step="5" aria-label="minute" class="md-primary"
+                 md-vertical></md-slider>
+      </md-slider>
+      <h5>Minutes</h5>
+    </md-slider-container>
+    <md-switch ng-model="data.cb1" aria-label="AM/PM"  flex>
+    {{ data.cb1 }}
+    </md-switch>
+    </md-content>
+
+    {{createWayCtrl.daysOfWeek}}
+
 
     </md-dialog-content>
 

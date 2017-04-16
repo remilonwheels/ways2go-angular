@@ -4,23 +4,20 @@ require('./_way.scss');
 
 const createWayComponent = require('../../dialog/way/create-way/create-way.js');
 
-module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', '$mdMedia', WayController];
+module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', '$mdMedia', '$scope', WayController];
 
-function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia) {
+function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia, $scope) {
   $log.debug('WayController');
 
   this.ways = [];
   this.currentWay = null;
 
 
-  this.createWay = function ($event) {
-    // const parent = angular.element(document.body);
+  this.createWay = function ($event, bindFlag) {
     const dialogConfig = {
-      locals: {
-        items: this.items
-      },
       fullscreen: !$mdMedia('gt-sm'),
-      targetEvent: $event
+      targetEvent: $event,
+      scope: $scope.$new(bindFlag)
     };
     $mdDialog.show(Object.assign(createWayComponent, dialogConfig));
   };

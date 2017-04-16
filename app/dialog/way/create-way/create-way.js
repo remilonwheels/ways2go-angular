@@ -4,11 +4,11 @@ require('./_create-way.scss');
 
 module.exports = {
   template: require('./create-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'items',  CreateWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', CreateWayController],
   controllerAs: 'createWayCtrl'
 };
 
-function CreateWayController($log, $mdDialog, $mdToast, wayService, items) {
+function CreateWayController($log, $mdDialog, $mdToast, wayService) {
   $log.debug('CreateWayController');
 
   this.way = {};
@@ -37,8 +37,6 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService, items) {
 
     $log.log(this.way);
   };
-
-  this.items = items;
 
   this.closeDialog = function() {
     $mdDialog.hide();

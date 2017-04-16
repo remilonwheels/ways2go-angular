@@ -50,7 +50,7 @@ function wayService($q, $log, $http, authService) {
         }
       };
 
-      return $http.get(url, config);
+      return $http.get(url, way, config);
     })
     .then( res => {
       $log.log('ways fetched');
@@ -62,7 +62,6 @@ function wayService($q, $log, $http, authService) {
       return $q.reject(err);
     });
   };
-
 
   return service;
 }

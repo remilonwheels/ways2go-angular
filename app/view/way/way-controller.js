@@ -40,7 +40,7 @@ function WayController($log, $rootScope, $mdDialog, wayService) {
   this.fetchWays();
 
   function makeMarkers() {
-    
+
   }
 
 

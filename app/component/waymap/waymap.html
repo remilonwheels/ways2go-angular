@@ -1,4 +1,12 @@
-<div class="cpt-waymap" layout-fill>
-  <ng-map center="[47.618217, -122.351832]" layout-fill></ng-map>
+<div class="cpt-waymap" layout-fill ways="wayCtrl.ways">
+  <md-input-container>
+    <input places-auto-complete size=80
+      ng-model="wayMapCtrl.address"
+      component-restrictions="{country:'us'}"
+      type="{{wayMapCtrl.type}}"
+      on-place-changed="wayMapCtrl.placeChanged()" />
+  </md-input-container>
+
+  <ng-map></ng-map>
 
 </div>

@@ -12,7 +12,6 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.ways = [];
   this.currentWay = null;
 
-
   this.createWay = function ($event, bindFlag) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),

@@ -24,14 +24,14 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
     this.isLoading = true;
     console.log(this.way);
     wayService.createWay(this.way)
-    .then( way => {
+    .then( () => {
       $mdToast.showSimple('Made a Way was successful');
-      $log.log(way);
       this.isLoading = false;
+      this.way = {};
+      this.way.recurringDayOfWeek = [];
     })
     .catch( err => {
       $mdToast.showSimple(err.data);
-      console.log('err caught:', err);
       this.isLoading = false;
     });
 

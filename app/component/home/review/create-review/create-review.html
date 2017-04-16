@@ -1,4 +1,5 @@
 <md-dialog>
+  
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h2>Leave a Review</h2>
@@ -10,11 +11,21 @@
         </md-button>
     </div>
   </md-toolbar>
+
   <div layout-padding layout-margin>
+
     <md-dialog-content>
-      <md-input-container>
-        
+      <md-input-container class="md-icon-float md-block">
+        <label>rating</label>
+        <input type="text" ng-model="reviewCtrl.review.rating">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float">
+        <label>comment</label>
+        <input type="text" ng-model="reviewCtrl.review.comment">
       </md-input-container>
     </md-dialog-content>
+
   </div>
+
 </md-dialog>

@@ -26,9 +26,20 @@
         <md-icon ng-md-icon icon="mail"></md-icon>
         <input type="email" ng-model="signupCtrl.user.email" placeholder="email" required>
       </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox name="tos" ng-model="signupCtrl.tos" required>
+          I accept the terms of service.
+        </md-checkbox>
+        <div ng-messages="signupCtrl.tos.$error" multiple md-auto-hide="false">
+          <div ng-message="required">
+            You must accept the terms of service before you can proceed.
+          </div>
+        </div>
+      </md-input-container>
     </md-dialog-content>
 
-    <md-dialog-actions ng-if="!signupCtrl.isAuthorized">
+    <md-dialog-actions ng-show="!signupCtrl.isAuthorized">
       <md-button ng-click="signupCtrl.createUser()"
       class="md-primary md-raised" layout layout-align="center center">
         <span ng-show="!signupCtrl.isLoading">create account</span>

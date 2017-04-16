@@ -5,6 +5,7 @@
         <h2>tell people about yourself</h2>
         <span flex></span>
         <md-button class="md-icon-button"
+        aria-label="Close Create Profile Dialog"
         ng-click="createProfileCtrl.closeDialog()">
           <md-icon ng-md-icon icon="highlight_off"></md-icon>
         </md-button>
@@ -63,6 +64,6 @@
       <md-progress-circular md-mode="indeterminate" ng-show="createProfileCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
       </md-button>
     </md-dialog-actions>
-    
+
   </form>
 </md-dialog>

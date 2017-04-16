@@ -1,0 +1,68 @@
+<md-dialog aria-label="Create a Profile">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>tell people about yourself</h2>
+        <span flex></span>
+        <md-button class="md-icon-button"
+        ng-click="createProfileCtrl.closeDialog()">
+          <md-icon ng-md-icon icon="highlight_off"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content layout-padding layout-margin>
+      <md-input-container class="md-icon-float md-block">
+        <md-icon ng-md-icon icon="sentiment_satisfied"></md-icon>
+        <input
+          type="text"
+          placeholder="displayName"
+          ng-model="createProfileCtrl.profile.displayName"
+          required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <md-icon ng-md-icon icon="person"></md-icon>
+        <input
+          type="text"
+          placeholder="Full Name"
+          ng-model="createProfileCtrl.profile.fullName"
+          required>
+      </md-input-container>
+
+      <md-input-container>
+        <md-icon ng-md-icon icon="my_location"></md-icon>
+        <input
+          type="text"
+          placeholder="your address"
+          ng-model="createProfileCtrl.profile.address"
+          required>
+      </md-input-container>
+
+      <md-input-container>
+        <md-icon ng-md-icon icon="fingerprint"></md-icon>
+        <input
+          type="text"
+          placeholder="fun facts about you"
+          ng-model="createProfileCtrl.profile.bio"
+          required>
+      </md-input-container>
+
+      <md-input-container>
+        <md-icon ng-md-icon icon="portrait"></md-icon>
+        <input
+          ngf-select
+          ng-model="createProfileCtrl.profile.photo">
+      </md-input-container>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+      <md-button ng-click="createProfileCtrl.createProfile()"
+      class="md-primary md-raised" layout layout-align="center center">
+      <span ng-show="!createProfileCtrl.isLoading">home</span>
+      <md-progress-circular md-mode="indeterminate" ng-show="createProfileCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
+      </md-button>
+    </md-dialog-actions>
+    
+  </form>
+</md-dialog>

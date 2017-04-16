@@ -4,28 +4,25 @@ require('./_way.scss');
 
 const createWayComponent = require('../../dialog/way/create-way/create-way.js');
 
-module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', WayController];
+module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', '$mdMedia', WayController];
 
-function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap) {
+function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia) {
   $log.debug('WayController');
 
   this.ways = [];
   this.currentWay = null;
 
+
   this.createWay = function ($event) {
     // const parent = angular.element(document.body);
-    $mdDialog.show({
-      // parent,
-      targetEvent: $event,
-      template: createWayComponent.template,
-      // same as BINDINGS for components //
+    const dialogConfig = {
       locals: {
         items: this.items
       },
-      ////////////////////////////////////
-      controller: createWayComponent.controller,
-      controllerAs: createWayComponent.controllerAs
-    });
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event
+    };
+    $mdDialog.show(Object.assign(createWayComponent, dialogConfig));
   };
 
   this.fetchWays = function() {
@@ -40,7 +37,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
   this.fetchWays();
 
-  
+
 
   // this.drawWays = function(latLngArray) {
   //   let bounds = new LatLngBounds();

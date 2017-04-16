@@ -4,11 +4,11 @@ require('./_create-way.scss');
 
 module.exports = {
   template: require('./create-way.html'),
-  controller: ['$log', '$mdDialog', 'wayService', 'items',  CreateWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'items',  CreateWayController],
   controllerAs: 'createWayCtrl'
 };
 
-function CreateWayController($log, $mdDialog, wayService, items) {
+function CreateWayController($log, $mdDialog, $mdToast, wayService, items) {
   $log.debug('CreateWayController');
 
   this.way = {};
@@ -16,15 +16,7 @@ function CreateWayController($log, $mdDialog, wayService, items) {
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
   this.isPM = true;
-  const dayMap = {
-    M: 0,
-    T: 1,
-    W: 2,
-    R: 3,
-    F: 4,
-    Sa: 5,
-    Su: 6
-  };
+  const dayMap = { M: 0, T: 1, W: 2, R: 3, F: 4, Sa: 5, Su: 6 };
 
   this.isLoading = false;
 
@@ -33,11 +25,14 @@ function CreateWayController($log, $mdDialog, wayService, items) {
     console.log(this.way);
     wayService.createWay(this.way)
     .then( way => {
+      $mdToast.showSimple('Made a Way was successful');
       $log.log(way);
       this.isLoading = false;
     })
     .catch( err => {
+      $mdToast.showSimple(err.data);
       console.log('err caught:', err);
+      this.isLoading = false;
     });
 
     $log.log(this.way);

@@ -11,12 +11,15 @@ module.exports = {
 function WayMapController($log, $http, $interval, NgMap) {
   $log.debug('WayMapController');
 
-  console.log('should not', this.map);
-
   NgMap.getMap().then( map => {
     this.map = map;
     console.log(this.map);
   });
 
-  console.log('should not show again', this.map);
+  // function searchBar() {
+  //   this.map.apply(
+  //     var input = document.getElementById('pac-input');
+  //       var searchBox = new google.maps.places.SearchBox(input);
+  // }
+
 }

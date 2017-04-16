@@ -4,18 +4,16 @@ require('./_create-user.scss');
 
 module.exports = {
   template: require('./create-user.html'),
-  controller: ['$log', '$window', '$location', '$mdDialog','$mdToast', 'authService', 'items', SignupController],
+  controller: ['$log', '$window', '$location', '$mdDialog','$mdToast', 'authService', SignupController],
   controllerAs: 'signupCtrl'
 };
 
-function SignupController($log, $window, $location, $mdDialog, $mdToast, authService, items) {
+function SignupController($log, $window, $location, $mdDialog, $mdToast, authService) {
   $log.debug('SignupController');
 
   this.isLoading = false;
   this.isAuthorized = false;
   this.user = {};
-  this.items = items;
-  $log.log(this.items);
 
   if ($window.token) {
     authService.getToken()
@@ -33,13 +31,17 @@ function SignupController($log, $window, $location, $mdDialog, $mdToast, authSer
       $mdToast.showSimple('Welcome to ways2go! Please create a profile...');
       this.isLoading = false;
       this.isAuthorized = true;
-      // $location.url('/home');
     })
     .catch( err => {
       $mdToast.showSimple(err.data);
       this.isLoading = false;
     });
   };
+
+  this.goHome = function() {
+    $location.url('/home');
+  };
+
   this.closeDialog = function() {
     $mdDialog.hide();
   };

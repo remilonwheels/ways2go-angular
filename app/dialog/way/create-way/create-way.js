@@ -20,7 +20,11 @@ function CreateWayController($log, $mdDialog, wayService, items) {
     .then( way => {
       $log.log(way);
       this.isLoading = false;
+    })
+    .catch( err => {
+      console.log('err caught:', err);
     });
+
     $log.log(this.way);
   };
 

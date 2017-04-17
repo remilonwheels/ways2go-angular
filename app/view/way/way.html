@@ -1,10 +1,11 @@
 <section class="view-way" layout-fill>
   <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-primary waymap-btn-createway">Create Way</md-button>
 
-  <md-button ng-click="wayCtrl.editWay($event, true, way)" ng-repeat="way in wayCtrl.ways" >{{ way._id }}</md-button>
+  <way-thumbnail ways="wayCtrl.ways"></way-thumbnail>
+
 
   <h2>wayview: {{ wayCtrl.ways.length }} </h2>
 
-  <waymap layout-fill ways="wayCtrl.ways"></waymap>
+  <!-- <waymap layout-fill ways="wayCtrl.ways"></waymap> -->
 
 </section>

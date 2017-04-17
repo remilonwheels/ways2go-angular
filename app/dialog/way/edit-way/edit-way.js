@@ -4,15 +4,14 @@ require('./_edit-way.scss');
 
 module.exports = {
   template: require('./edit-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', EditWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', EditWayController],
   controllerAs: 'editWayCtrl'
 };
 
-function EditWayController($log, $mdDialog, $mdToast, wayService) {
-  $log.debug('EditWayController');
-
-  this.way = {};
-  this.way.recurringDayOfWeek = [];
+function EditWayController($log, $mdDialog, $mdToast, wayService, way) {
+  this.way = way;
+  this.way.startLocation = way.startLocation.fullAddress;
+  this.way.endLocation = way.endLocation.fullAddress;
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
   this.isPM = true;

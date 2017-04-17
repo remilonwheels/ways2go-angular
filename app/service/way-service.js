@@ -63,6 +63,10 @@ function wayService($q, $log, $http, authService) {
     });
   };
 
+  service.getStateOfWays = function() {
+    return this.ways;
+  };
+
 
   return service;
 }

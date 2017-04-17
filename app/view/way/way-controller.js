@@ -31,6 +31,8 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     });
   };
 
+  
+
   this.fetchWays();
 
 

@@ -22,12 +22,16 @@ function wayService($q, $log, $http, authService) {
         }
       };
 
+      console.log('service ways before post', service.ways.length);
+
       return $http.post(url, way, config);
     })
     .then( res => {
+      console.log('service after post', service.ways.length);
       $log.log('way created');
       let way = res.data;
       service.ways.unshift(way);
+      console.log('service after unshift', service.ways.length);
       return way;
     })
     .catch( err => {
@@ -36,8 +40,8 @@ function wayService($q, $log, $http, authService) {
     });
   };
 
-  service.fetchWays = function(way) {
-    $log.debug('wayService.createWay');
+  service.fetchWays = function() {
+    $log.debug('wayService.fetchWays');
 
     return authService.getToken()
     .then( token => {
@@ -54,7 +58,11 @@ function wayService($q, $log, $http, authService) {
     })
     .then( res => {
       $log.log('ways fetched');
-      service.ways = res.data;
+
+      angular.copy(res.data, service.ways); //eslint-disable-line
+      // service.ways = res.data;
+
+      console.log('service.ways after angular copy', service.ways);
       return service.ways;
     })
     .catch( err => {
@@ -63,6 +71,10 @@ function wayService($q, $log, $http, authService) {
     });
   };
 
+  service.getWays = function() {
+    $log.log('wayService.getWays');
+    return service.ways;
+  };
 
   return service;
 }

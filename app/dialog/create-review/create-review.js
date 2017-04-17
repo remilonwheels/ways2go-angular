@@ -4,15 +4,11 @@ require('./_create-review.scss');
 
 module.exports = {
   template: require('./create-review.html'),
-  controller: ['$log', '$mdDialog', 'reviewService', 'items', ReviewController],
+  controller: ['$log', '$mdDialog', '$mdToast', 'reviewService', 'items', ReviewController],
   controllerAs: 'reviewCtrl',
-  // bindings: {
-  //   profile: '<',
-  //   way: '<'
-  // }
 };
 
-function ReviewController($log, reviewService) {
+function ReviewController($log, $mdDialog, $mdToast, reviewService) {
   $log.debug('ReviewController');
 
   this.review = {};
@@ -22,17 +18,23 @@ function ReviewController($log, reviewService) {
   this.createReview = function() {
     this.isLoading = true;
     reviewService.createReview(this.profile, this.way, this.review)
-    .then( () => {
+    .then( (review) => {
+      $mdToast.showSimple('Created a Review successfully');
+      $log.log(review);
       this.isLoading = false;
 
       this.review.rating = null;
       this.review.comment = null;
       this.review.wayID = null;
       this.profile.profileID = null;
+    })
+    .catch( err => {
+      $mdToast.showSimple(err.data);
+      this.isLoading = false;
     });
+    $log.log(this.review);
   };
 
-  this.items = items;
   this.closeDialog = function() {
     $mdDialog.hide();
   };

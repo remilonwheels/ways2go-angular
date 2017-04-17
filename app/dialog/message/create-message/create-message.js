@@ -4,11 +4,11 @@ require('./_create-message.scss');
 
 module.exports = {
   template: require('./create-message.html'),
-  controller: ['$log', '$mdDialog', 'messageService', 'items',  CreatemessageController],
+  controller: ['$log', '$mdDialog', 'messageService',  CreatemessageController],
   controllerAs: 'createmessageCtrl'
 }
 
-function CreatemessageController($log, $mdDialog, messageService, items) {
+function CreatemessageController($log, $mdDialog, messageService) {
   $log.debug('CreatemessageController');
 
   this.message = {};
@@ -28,7 +28,6 @@ function CreatemessageController($log, $mdDialog, messageService, items) {
     $log.log(this.message);
   }
 
-  this.items = items;
   this.closeDialog = function() {
     $mdDialog.hide();
   }

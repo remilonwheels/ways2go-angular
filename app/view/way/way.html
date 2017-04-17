@@ -1,10 +1,9 @@
 <section class="view-way" layout-fill>
   <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-primary waymap-btn-createway">Create Way</md-button>
 
+  <h2>wayview: {{ wayCtrl.ways }} </h2>
 
-  <h2>wayview: {{ waysCtrl.test }} </h2>
-
-  <waymap layout-fill ways="waysCtrl.ways"></waymap>
+  <waymap layout-fill ways="wayCtrl.ways"></waymap>
   <md-button ng-click="wayCtrl.test()" class="md-raised md-primary">test</md-button>
 
 </section>

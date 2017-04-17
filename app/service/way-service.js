@@ -18,7 +18,7 @@ function wayService($q, $log, $http, authService) {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Beare;r ${token}`
         }
       };
 
@@ -29,7 +29,7 @@ function wayService($q, $log, $http, authService) {
     .then( res => {
       console.log('service after post', service.ways.length);
       $log.log('way created');
-      let way = res.data;
+      let way = res.data;;
       service.ways.unshift(way);
       console.log('service after unshift', service.ways.length);
       return way;
@@ -78,3 +78,4 @@ function wayService($q, $log, $http, authService) {
 
   return service;
 }
+

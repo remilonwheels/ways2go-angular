@@ -3,6 +3,7 @@
 require('./_way.scss');
 
 const createWayComponent = require('../../dialog/way/create-way/create-way.js');
+const editWayComponent = require('../../dialog/way/edit-way/edit-way.js');
 
 module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', '$mdMedia', '$scope', WayController];
 
@@ -27,6 +28,15 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
       scope: $scope.$new(bindFlag)
     };
     $mdDialog.show(Object.assign(createWayComponent, dialogConfig));
+  };
+
+  this.editWay = function ($event, bindFlag) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      scope: $scope.$new(bindFlag)
+    };
+    $mdDialog.show(Object.assign(editWayComponent, dialogConfig));
   };
 
   this.fetchWays = function() {

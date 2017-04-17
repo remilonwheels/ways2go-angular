@@ -31,6 +31,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService) {
   };
 
   this.placeChanged = function() {
+    // "this" inside function references the location entered in from the search bar
     setPlaceChange(this.getPlace());
   };
 

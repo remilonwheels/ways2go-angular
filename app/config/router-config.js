@@ -36,6 +36,13 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       template: require('../view/way/way.html'),
       controller: 'WayController',
       controllerAs: 'wayCtrl'
+    },
+    {
+      name: 'test',
+      url: '/test',
+      template: require('../view/test/test.html'),
+      controller: 'TestController',
+      controllerAs: 'testCtrl'
     }
   ];
 

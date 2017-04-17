@@ -41,7 +41,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService) {
 
   this.makeMarkers = function() {
     console.log('makeMarkers');
-    wayService.getStateOfWays()
+    wayService.getWays()
       .forEach( way => {
         this.startMarkers.push([way.startLocation.lat, way.startLocation.lng]);
         this.endMarkers.push([way.endLocation.lat, way.endLocation.lng]);

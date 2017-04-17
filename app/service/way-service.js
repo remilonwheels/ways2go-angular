@@ -71,8 +71,8 @@ function wayService($q, $log, $http, authService) {
     });
   };
 
-  service.getStateOfWays = function() {
-    $log.log('wayService.getStateOfWays');
+  service.getWays = function() {
+    $log.log('wayService.getWays');
     return service.ways;
   };
 

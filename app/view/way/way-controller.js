@@ -9,7 +9,10 @@ module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$in
 function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia, $scope) {
   $log.debug('WayController');
 
-  this.ways = [];
+  //FIX for real-time update of service
+  this.ways = wayService.getWays();
+  //OLD: this.ways = [];
+
   this.currentWay = null;
 
   this.test = function() {
@@ -30,7 +33,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     wayService.fetchWays()
     .then( ways => {
       //changed this assignment for binding issue
-      angular.copy(ways, this.ways) //eslint-disable-line
+      // angular.copy(ways, this.ways) //eslint-disable-line
       //old
       // this.ways = ways;
 

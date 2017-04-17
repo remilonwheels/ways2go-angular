@@ -1,4 +1,4 @@
-<div class="cpt-waymap" layout-fill ways="wayCtrl.ways">
+<div class="cpt-waymap" layout-fill>
   <md-input-container>
     <input places-auto-complete
       ng-model="wayMapCtrl.address"
@@ -15,5 +15,6 @@
     <marker ng-repeat="loc in wayMapCtrl.endMarkers" position="{{loc}}"></marker>
 
   </ng-map>
+  <h2>waymap: {{wayMapCtrl.ways.length}}</h2>
 
 </div>

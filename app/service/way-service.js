@@ -22,12 +22,16 @@ function wayService($q, $log, $http, authService) {
         }
       };
 
+      console.log('service ways before post', service.ways.length);
+
       return $http.post(url, way, config);
     })
     .then( res => {
+      console.log('service after post', service.ways.length);
       $log.log('way created');
       let way = res.data;
       service.ways.unshift(way);
+      console.log('service after unshift', service.ways.length);
       return way;
     })
     .catch( err => {

@@ -19,14 +19,14 @@ function WayMapController($log, $http, $interval, NgMap, wayService) {
   this.centerOnLoad = [ 47.618217, -122.351832 ];
 
   //map data
-  this.startMarkers = [];
-  this.endMarkers = [];
 
   const mapInit = () => {
     NgMap.getMap().then( map => {
       this.map = map;
-      this.makeMarkers();
 
+      this.startMarkers = this.ways.map( way => [way.startLocation.lat, way.startLocation.lng]);
+
+      this.endMarkers = this.ways.map( way => [way.endLocation.lat, way.endLocation.lng]);
     });
   };
 
@@ -39,14 +39,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService) {
     this.map.setCenter(this.place.geometry.location);
   };
 
-  this.makeMarkers = function() {
-    console.log('makeMarkers');
-    wayService.getWays()
-      .forEach( way => {
-        this.startMarkers.push([way.startLocation.lat, way.startLocation.lng]);
-        this.endMarkers.push([way.endLocation.lat, way.endLocation.lng]);
-      });
-  };
 
   mapInit();
 }

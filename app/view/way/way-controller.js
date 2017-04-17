@@ -24,7 +24,12 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.fetchWays = function() {
     wayService.fetchWays()
     .then( ways => {
-      this.ways = ways;
+      //changed this assignment for binding issue
+      angular.copy(ways, this.ways) //eslint-disable-line
+      //old
+      // this.ways = ways;
+
+      console.log('this.ways in way controller fetchways:', this.ways);
     })
     .catch( err => {
       $log.error(err);
@@ -32,8 +37,6 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   };
 
   this.fetchWays();
-
-
 
   // this.drawWays = function(latLngArray) {
   //   let bounds = new LatLngBounds();

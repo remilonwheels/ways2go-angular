@@ -40,8 +40,8 @@ function wayService($q, $log, $http, authService) {
     });
   };
 
-  service.fetchWays = function(way) {
-    $log.debug('wayService.createWay');
+  service.fetchWays = function() {
+    $log.debug('wayService.fetchWays');
 
     return authService.getToken()
     .then( token => {
@@ -58,7 +58,11 @@ function wayService($q, $log, $http, authService) {
     })
     .then( res => {
       $log.log('ways fetched');
-      service.ways = res.data;
+
+      angular.copy(res.data, service.ways); //eslint-disable-line
+      // service.ways = res.data;
+
+      console.log('service.ways after angular copy', service.ways);
       return service.ways;
     })
     .catch( err => {
@@ -68,9 +72,9 @@ function wayService($q, $log, $http, authService) {
   };
 
   service.getStateOfWays = function() {
-    return this.ways;
+    $log.log('wayService.getStateOfWays');
+    return service.ways;
   };
-
 
   return service;
 }

@@ -2,10 +2,24 @@
 
 require('./_landing.scss');
 
-module.exports = ['$log', '$location', '$rootScope', LandingController];
+const createUserComponent = require('../../dialog/user/create-user/create-user.js');
 
-function LandingController($log, $location) {
+module.exports = ['$log', '$rootScope', '$mdDialog', '$location', '$mdMedia', '$scope', LandingController];
+
+function LandingController($log, $rootScope, $mdDialog, $location, $mdMedia, $scope) {
   $log.debug('LandingController');
 
-  let url = $location.url() === '/join#signup' || url === '/join';
+  // let url = $location.url() === '/join#signup' || url === '/join';
+  this.signup = function($event, bindFlag) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      scope: $scope.$new(bindFlag)
+    };
+    $mdDialog.show(Object.assign(createUserComponent, dialogConfig));
+  };
+
+  // $rootScope.$on('$locationChangeSuccess', () => {
+  //
+  // });
 }

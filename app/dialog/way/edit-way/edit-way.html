@@ -1,10 +1,10 @@
-<md-dialog aria-label="Make a Way">
+<md-dialog aria-label="Edit a Way">
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Make a Way</h2>
+        <h2>Edit a Way</h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="createWayCtrl.closeDialog()">
+        <md-button class="md-icon-button" ng-click="editWayCtrl.closeDialog()">
           <md-icon ng-md-icon icon="highlight_off"></md-icon>
         </md-button>
       </div>
@@ -14,29 +14,29 @@
       <md-input-container class="md-icon-float md-block">
         <label>name</label>
         <md-icon ng-md-icon icon="send"></md-icon>
-        <input type="text" ng-model="createWayCtrl.way.name">
+        <input type="text" ng-model="editWayCtrl.way.name">
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
         <label>startLocation</label>
-        <input ng-model="createWayCtrl.way.startLocation" required>
+        <input ng-model="editWayCtrl.way.startLocation" required>
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
         <label>endLocation</label>
-        <input ng-model="createWayCtrl.way.endLocation" required>
+        <input ng-model="editWayCtrl.way.endLocation" required>
       </md-input-container>
 
       <div layout>
         <div layout="row" layout-wrap flex="50">
-          <div flex="33" ng-repeat="day in createWayCtrl.daysOfWeek">
-            <md-checkbox ng-checked="createWayCtrl.exists(day, createWayCtrl.way.recurringDayOfWeek)" ng-click="createWayCtrl.toggle(day, createWayCtrl.way.recurringDayOfWeek)">
-              {{ day }} <span ng-if="exists(day, createWayCtrl.way.recurringDayOfWeek)">selected</span>
+          <div flex="33" ng-repeat="day in editWayCtrl.daysOfWeek">
+            <md-checkbox ng-checked="editWayCtrl.exists(day, editWayCtrl.way.recurringDayOfWeek)" ng-click="editWayCtrl.toggle(day, editWayCtrl.way.recurringDayOfWeek)">
+              {{ day }} <span ng-if="exists(day, editWayCtrl.way.recurringDayOfWeek)">selected</span>
             </md-checkbox>
           </div>
         </div>
 
-        <md-datepicker ng-model="createWayCtrl.way.oneTimeDate" md-placeholder="One Time Way" class="md-block" flex="50"></md-datepicker>
+        <md-datepicker ng-model="editWayCtrl.way.oneTimeDate" md-placeholder="One Time Way" class="md-block" flex="50"></md-datepicker>
       </div>
 
       <div layout="row" layout-padding layout-align="center center">
@@ -67,9 +67,9 @@
     </md-dialog-content>
 
     <md-dialog-actions>
-      <md-button ng-click="createWayCtrl.createWaySubmit()" class="md-primary md-raised" layout layout-align="center center">
-        <span ng-show="!createWayCtrl.isLoading">Go</span>
-        <md-progress-circular md-mode="indeterminate" ng-show="createWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
+      <md-button ng-click="editWayCtrl.editWaySubmit()" class="md-primary md-raised" layout layout-align="center center">
+        <span ng-show="!editWayCtrl.isLoading">Go</span>
+        <md-progress-circular md-mode="indeterminate" ng-show="editWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
       </md-button>
     </md-dialog-actions>
 

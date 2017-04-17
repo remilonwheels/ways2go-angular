@@ -1,15 +1,15 @@
 'use strict';
 
-require('./_create-way.scss');
+require('./_edit-way.scss');
 
 module.exports = {
-  template: require('./create-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', CreateWayController],
-  controllerAs: 'createWayCtrl'
+  template: require('./edit-way.html'),
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', EditWayController],
+  controllerAs: 'editWayCtrl'
 };
 
-function CreateWayController($log, $mdDialog, $mdToast, wayService) {
-  $log.debug('CreateWayController');
+function EditWayController($log, $mdDialog, $mdToast, wayService) {
+  $log.debug('EditWayController');
 
   this.way = {};
   this.way.recurringDayOfWeek = [];
@@ -20,19 +20,21 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
 
   this.isLoading = false;
 
-  this.createWaySubmit = function() {
+  this.editWaySubmit = function() {
     this.isLoading = true;
-    wayService.createWay(this.way)
-    .then( () => {
-      $mdToast.showSimple('Made a Way was successful');
-      this.isLoading = false;
-      this.way = {};
-      this.way.recurringDayOfWeek = [];
-    })
-    .catch( err => {
-      $mdToast.showSimple(err.data);
-      this.isLoading = false;
-    });
+
+
+    // wayService.editWay(this.way)
+    // .then( () => {
+    //   $mdToast.showSimple('Changed Way Successfully');
+    //   this.isLoading = false;
+    //   this.way = {};
+    //   this.way.recurringDayOfWeek = [];
+    // })
+    // .catch( err => {
+    //   $mdToast.showSimple(err.data);
+    //   this.isLoading = false;
+    // });
 
     $log.log(this.way);
   };

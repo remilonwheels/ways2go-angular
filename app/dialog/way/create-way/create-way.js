@@ -22,7 +22,6 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
 
   this.createWaySubmit = function() {
     this.isLoading = true;
-    console.log(this.way);
     wayService.createWay(this.way)
     .then( () => {
       $mdToast.showSimple('Made a Way was successful');

@@ -25,6 +25,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,
+
       scope: $scope.$new(bindFlag)
     };
     $mdDialog.show(Object.assign(createWayComponent, dialogConfig));

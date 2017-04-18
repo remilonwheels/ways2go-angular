@@ -1,32 +1,10 @@
 <section class="view-way" layout-fill>
+  <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-primary waymap-btn-createway">Create Way</md-button>
 
-  <div class="map-action">
-    <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-primary">Create Way</md-button>
-    <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>
-  </div>
-  <!-- <h2>wayview: {{ wayCtrl.ways.length }} </h2> -->
+  <md-button ng-click="wayCtrl.editWay($event, true, way)" ng-repeat="way in wayCtrl.ways" >{{ way._id }}</md-button>
 
-  <way-thumbnail ways="wayCtrl.ways" ng-show="!wayCtrl.mapView"></way-thumbnail>
+  <h2>wayview: {{ wayCtrl.ways.length }} </h2>
 
-  <waymap layout-fill ways="wayCtrl.ways" ng-show="wayCtrl.mapView"></waymap>
+  <waymap layout-fill ways="wayCtrl.ways"></waymap>
 
-  <!-- <md-fab-toolbar md-direction="left">
-    <md-fab-trigger>
-      <md-button aria-label="Add...">
-        <md-icon ng-md-icon icon="directions_car"></md-icon>
-      </md-button>
-    </md-fab-trigger>
-
-    <md-toolbar>
-     <md-fab-actions>
-       <md-button aria-label="Add User">
-         <md-icon ng-md-icon icon="directions_car"></md-icon>
-       </md-button>
-
-       <md-button aria-label="Add Group">
-         <md-icon ng-md-icon icon="directions_car"></md-icon>
-s       </md-button>
-     </md-fab-actions>
-    </md-toolbar>
-  </md-fab-toolbar> -->
 </section>

@@ -4,14 +4,17 @@ require('./_edit-way.scss');
 
 module.exports = {
   template: require('./edit-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', EditWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', EditWayController],
   controllerAs: 'editWayCtrl'
 };
 
-function EditWayController($log, $mdDialog, $mdToast, wayService, way) {
-  this.way = way;
-  this.way.startLocation = way.startLocation.fullAddress;
-  this.way.endLocation = way.endLocation.fullAddress;
+function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
+  this.way = wayService.getOneWay(way._id);
+  this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
+  this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
+
+  // this.way.endLocation = way.endLocation.fullAddress;
+
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
   this.isPM = true;
@@ -21,19 +24,27 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way) {
 
   this.editWaySubmit = function() {
     this.isLoading = true;
+    wayService.editWay(this.way)
+    .then( res => {
+      console.log(res);
+      $mdToast.showSimple('Changed Way Successfully');
+      this.isLoading = false;
+
+      $mdDialog.hide();
+      // $scope.apply();
 
 
-    // wayService.editWay(this.way)
-    // .then( () => {
-    //   $mdToast.showSimple('Changed Way Successfully');
-    //   this.isLoading = false;
-    //   this.way = {};
-    //   this.way.recurringDayOfWeek = [];
-    // })
-    // .catch( err => {
-    //   $mdToast.showSimple(err.data);
-    //   this.isLoading = false;
-    // });
+      // this.way = updatedWay;
+      // this.way.startLocation = updatedWay.startLocation.fullAddress;
+      // this.way.endLocation = updatedWay.endLocation.fullAddress;
+      // .then( updatedWay => {
+      //   // $scope.$apply();
+      // });
+    })
+    .catch( err => {
+      $mdToast.showSimple(err.data);
+      this.isLoading = false;
+    });
 
     $log.log(this.way);
   };

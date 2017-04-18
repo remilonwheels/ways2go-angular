@@ -2,8 +2,9 @@
 
   .google-search {
     position: fixed;
-    bottom: 10%;
-    // z-index: 1;
+    top: 0;
+    z-index: 1;
+    width: 100%;
   }
 
   ng-map {

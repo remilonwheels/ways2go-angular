@@ -13,8 +13,10 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
   this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
   this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
 
-  this.hour12 = this.way.startTime.hour % 12;
-  if ( this.hour12 > 12 ) this.ampm === 'pm';
+  if (this.way.startTime) {
+    this.hour12 = this.way.startTime.hour % 12;
+    if ( this.way.startTime.hour > 12 ) this.ampm === 'pm';
+  }
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
   this.isPM = true;
@@ -24,6 +26,16 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
 
   this.editWaySubmit = function() {
     this.isLoading = true;
+
+    if (this.hour12) {
+      this.way.startTime.hour = this.hour12;
+      if (this.ampm === 'pm') {
+        this.way.startTime.hour += 12;
+      }
+    };
+
+    console.log('this.way before api call', this.way);
+
     wayService.editWay(this.way)
     .then( res => {
       console.log(res);

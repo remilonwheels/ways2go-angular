@@ -47,6 +47,10 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     });
   };
 
+  this.toggleView = function() {
+    this.mapView = !this.mapView;
+  };
+
   this.fetchWays();
 
   $rootScope.$on('$locationChangeSuccess', () => {

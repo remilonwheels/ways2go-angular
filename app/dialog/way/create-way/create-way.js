@@ -29,6 +29,7 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
       if (this.way.startTime) this.way.startTime.hour += 12;
     }
 
+    console.log('this.way before create', this.way);
     wayService.createWay(this.way)
     .then( () => {
       $mdToast.showSimple('Made a Way was successful');

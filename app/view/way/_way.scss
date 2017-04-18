@@ -1,13 +1,15 @@
 .view-way {
 
-  .waymap-btn-createway {
+
+  .map-action {
     position: fixed;
     z-index: 10;
     right: 0;
+    bottom: 0%;
   }
   .waymap-searchbar {
     position: fixed;
     z-index: 10;
-    bottom: 5%;
+    bottom: 0%;
   }
 }

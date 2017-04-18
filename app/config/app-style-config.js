@@ -22,5 +22,9 @@ function appStyleConfig($mdThemingProvider) {
     .backgroundPalette(themes[theme].backgroundPalette);
   }
 
-  $mdThemingProvider.setDefaultTheme('blueGreyPrmCyanAcc');
+
+  $mdThemingProvider.theme('default')
+    .dark();
+
+  $mdThemingProvider.setDefaultTheme('default');
 }

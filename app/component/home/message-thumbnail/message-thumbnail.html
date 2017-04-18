@@ -3,12 +3,24 @@
   <md-card>
     <md-subheader class="md-no-sticky">My Messages</md-subheader>
     <md-list-item class="secondary-button-padding" layout-margin layout-padding>
+    <!-- ng-repeat="item in messages | limitTo: 3"  -->
+      <span class="md-title">{{ messagethumbnailCtrl.title }}</span>
+      <span class="md-subhead">{{ messagethumbnailCtrl.text }}</span>
+      <span class="md-subhead">{{ messagethumbnailCtrl.timestamp }}</span>
 
-      <span class="md-title">{{ messagethumbnailCtrl.title}}</span>
-      <span class="md-subhead"></span>
-      <span class="md-subhead">10:05am</span>
+      <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Read</md-button>
+    </md-list-item>
+    <md-divider></md-divider>
 
-      <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Read More</md-button>
+
+    <!-- this is just for testing having multiple items -->
+    <md-list-item class="secondary-button-padding" layout-margin layout-padding>
+    <!-- ng-repeat="item in messages | limitTo: 3"  -->
+      <span class="md-title">{{ messagethumbnailCtrl.title }}</span>
+      <span class="md-subhead">{{ messagethumbnailCtrl.text }}</span>
+      <span class="md-subhead">{{ messagethumbnailCtrl.timestamp }}</span>
+
+      <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Read</md-button>
     </md-list-item>
   </md-card>
 </section>

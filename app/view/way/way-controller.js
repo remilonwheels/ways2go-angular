@@ -10,9 +10,16 @@ module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$in
 function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia, $scope) {
   $log.debug('WayController');
 
+  //FIX for real-time update of service
   this.ways = wayService.getWays();
+  //OLD: this.ways = [];
+
   this.currentWay = null;
-  this.mapView = true;
+
+  this.test = function() {
+    $log.log(this.ways);
+  };
+
 
   this.createWay = function ($event, bindFlag) {
     const dialogConfig = {
@@ -48,16 +55,8 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     });
   };
 
-  this.toggleView = function() {
-    this.mapView = !this.mapView;
-  };
-
   this.fetchWays();
 
-  $rootScope.$on('$locationChangeSuccess', () => {
-    this.fetchWays();
-  });
-  // Function to draw way arcs
   // this.drawWays = function(latLngArray) {
   //   let bounds = new LatLngBounds();
   //
@@ -218,4 +217,8 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   //     });
   //   });
   // };
+
+  $rootScope.$on('$locationChangeSuccess', () => {
+    this.fetchWays();
+  });
 }

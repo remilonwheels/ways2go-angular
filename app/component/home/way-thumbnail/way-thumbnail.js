@@ -10,4 +10,6 @@ module.exports = {
 
 function WayThumbnailController($log, wayService) { // eslint-line-disable
   $log.debug('WayThumbnailController');
+
+  this.testString = 'cool way';
 }

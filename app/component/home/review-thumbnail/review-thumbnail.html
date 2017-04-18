@@ -2,7 +2,9 @@
   <md-card>
     <md-subheader class="md-no-sticky">My Reviews</md-subheader>
     <md-list-item class="secondary-button-padding">
-      <p>Review 1</p>
+      <p ng-src={{ rating }}>rating</p>
+      <p ng-src={{ comment }}>comment</p>
+
       <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Read More</md-button>
     </md-list-item>
   </md-card>

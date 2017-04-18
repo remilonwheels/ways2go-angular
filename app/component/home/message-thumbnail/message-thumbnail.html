@@ -1,0 +1,75 @@
+<section>
+
+  <md-card>
+    <md-subheader class="md-no-sticky">Messages</md-subheader>
+    <div ng-cloak="" class="navBardemoBasicUsage" ng-app="MyApp">
+      <md-content class="md-padding">
+        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+          <md-nav-item md-nav-click="goto('page1')" name="page1">
+            Inbox
+          </md-nav-item>
+          <md-nav-item md-nav-click="goto('page2')" name="page2">
+            Outbox
+          </md-nav-item>
+          <!-- these require actual routing with ui-router or ng-route, so they
+          won't work in the demo
+          <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
+          <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
+          You can also add options for the <code>ui-sref-opts</code> attribute.
+          <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
+          Page Six
+        </md-nav-item>
+      -->
+    </md-nav-bar>
+    <div class="ext-content">
+      <!-- External content for `<span>{{currentNavItem}}</span>`. -->
+    </div>
+
+  </md-content>
+  </md-card>
+</div>
+</section>
+
+
+<!-- <section>
+  <md-card>
+
+    <md-card-content layout="row" layout-align="space-between">
+
+      <md-card-title layout="column" flex="10" flex-order="-1">
+        <md-card-title-text>
+          <span class="md-headline">Name</span>
+          <img alt="person name" ng-src="http://www.placecage.com/100/60" class="md-avatar" >
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-list-item layout-align="end" layout-margin  flex="25" flex-order="2">
+        <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
+        <md-icon ng-md-icon icon="chat_bubble_outline" class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat"></md-icon>
+        <md-icon ng-md-icon icon="mail_outline" ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3"></md-icon>
+      </md-list-item>
+
+    </md-card-content>
+  </md-card>
+</section> -->
+
+
+
+
+
+
+
+
+<!-- <section>
+  <md-card>
+    <md-subheader class="md-no-sticky">My Messages</md-subheader>
+    <md-list-item class="secondary-button-padding">
+      <p>Message 1</p>
+      <md-button class="md-secondary" ng-click="">Read</md-button>
+    </md-list-item>
+    <md-list-item class="secondary-button-padding" ng-click="doPrimaryAction($event)">
+      <p>Message 2</p>
+      <md-button class="md-secondary" ng-click="">Read</md-button>
+    </md-list-item>
+  </md-card>
+</section> -->

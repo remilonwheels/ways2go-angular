@@ -1,0 +1,32 @@
+<section>
+  <md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch="">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">My Profile</span>
+            <span class="md-subhead"></span>
+          </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content layout="row" layout-align="space-between" layout-margin layout-padding layout-align="center center">
+          <div class="md-media-medium card-media"></div>
+
+          <img ng-src="http://www.placecage.com/120/120" layout-fill alt="cage" class="md-user-avatar" layout-align="start" flex="25" flex-order="-1">
+
+          <p flex="70" flex-order="-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <md-icon ng-md-icon icon="mode_edit"></md-icon>
+          <md-card-actions layout="column">
+            <md-button class="md-icon-button" aria-label="Favorite">
+              <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Settings">
+              <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Share">
+              <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
+            </md-button>
+          </md-card-actions>
+
+        </md-card-content>
+      </md-card>
+</section>

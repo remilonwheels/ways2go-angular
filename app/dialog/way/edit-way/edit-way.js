@@ -13,8 +13,8 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
   this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
   this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
 
-  // this.way.endLocation = way.endLocation.fullAddress;
-
+  this.hour12 = this.way.startTime.hour % 12;
+  if ( this.hour12 > 12 ) this.ampm === 'pm';
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
   this.isPM = true;

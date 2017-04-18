@@ -13,6 +13,7 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
 
   this.way = {};
   this.way.recurringDayOfWeek = [];
+  // this.ampm ='am';
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
   this.isPM = true;
@@ -22,10 +23,10 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
 
   this.createWaySubmit = function() {
     this.isLoading = true;
-    this.way.startTime.hour = this.hour12;
+    if (this.way.startTime) this.way.startTime.hour = this.hour12;
 
     if (this.ampm === 'pm') {
-      this.way.startTime.hour += 12;
+      if (this.way.startTime) this.way.startTime.hour += 12;
     }
 
     wayService.createWay(this.way)

@@ -1,20 +1,28 @@
+
 <div class="cpt-waymap" layout-fill>
-  <md-input-container>
+  <md-input-container
+    class="google-search"
+    md-colors="{background: 'default-warn-600-.8'}"
+    class="md-block">
     <input places-auto-complete
       ng-model="wayMapCtrl.address"
       component-restrictions="{country:'us'}"
       type="{{wayMapCtrl.type}}"
-      on-place-changed="wayMapCtrl.placeChanged()"/>
+      on-place-changed="wayMapCtrl.placeChanged()"
+      md-colors="{color:'primary-900'}"/>
   </md-input-container>
 
   <ng-map
+    layout-fill
     center="current-location"
-    geo-fallback-center="47.618217,-122.351832">
+    geo-fallback-center="47.618217,-122.351832"
+    class="map"
+    map-type-control-options="{style:'HORIZONTAL_BAR', position:'BOTTOM_CENTER'}">
 
     <marker ng-repeat="loc in wayMapCtrl.startMarkers" position="{{loc}}"></marker>
     <marker ng-repeat="loc in wayMapCtrl.endMarkers" position="{{loc}}"></marker>
 
   </ng-map>
-  <h2>waymap: {{ wayMapCtrl.ways.length }}</h2>
+  <!-- <h2>waymap: {{ wayMapCtrl.ways.length }}</h2> -->
 
 </div>

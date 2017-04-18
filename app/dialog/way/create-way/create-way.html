@@ -39,28 +39,46 @@
         <md-datepicker ng-model="createWayCtrl.way.oneTimeDate" md-placeholder="One Time Way" class="md-block" flex="50"></md-datepicker>
       </div>
 
-      <div layout="row" layout-padding layout-align="center center">
+      <div layout layout-margin layout-padding>
+        <md-input-container>
+          <input flex type="number" ng-model="createWayCtrl.hour12" aria-label="hour" aria-controls="hour-slider">
+        </md-input-container>
+        <md-input-container>
+          <input flex type="number" ng-model="createWayCtrl.way.startTime.minutes" aria-label="hour" aria-controls="hour-slider">
+        </md-input-container>
+        <md-input-container>
+          <input flex  ng-model="createWayCtrl.ampm" aria-label="hour" aria-controls="hour-slider">
+        </md-input-container>
+
+      </div>
+
+      <div layout="row" layout-padding layout-align="center stretch">
         <md-slider-container flex>
-          <md-input-container>
-            <input flex type="number" ng-model="vol" aria-label="hour" aria-controls="hour-slider">
-          </md-input-container>
-          <md-slider ng-model="vol" min="1" max="12" aria-label="hour" id="hour-slider" class="md-accent" md-vertical md-range></md-slider>
+          <!-- <md-input-container>
+            <input flex type="number" ng-model="createWayCtrl.hour12" aria-label="hour" aria-controls="hour-slider">
+          </md-input-container> -->
+          <md-slider ng-model="createWayCtrl.hour12" min="1" max="12" aria-label="hour" id="hour-slider" class="md-accent" md-vertical md-range></md-slider>
           <h5>Hour</h5>
         </md-slider-container>
 
         <md-slider-container flex>
-          <md-input-container>
-            <input flex type="number" ng-model="minute" aria-label="minute" aria-controls="minute-slider">
-          </md-input-container>
-          <md-slider md-discrete ng-model="minute" min="0" max="60" step="5" aria-label="minute" class="md-primary"
+          <!-- <md-input-container>
+            <input flex type="number" ng-model="createWayCtrl.way.startTime.minutes" aria-label="minute" aria-controls="minute-slider">
+          </md-input-container> -->
+            <md-slider md-discrete ng-model="createWayCtrl.way.startTime.minutes" min="0" max="60" step="5" aria-label="minute" class="md-primary"
           md-vertical></md-slider>
-        </md-slider>
         <h5>Minutes</h5>
       </md-slider-container>
 
-      <md-switch ng-model="data.cb1" aria-label="AM/PM"  flex>
-        {{ data.cb1 }}
-      </md-switch>
+      <div flex layout="column">
+        <!-- <md-input-container layout layout-align="center start" flex="20" layout-padding>
+          <input flex="45" ng-model="createWayCtrl.ampm" aria-label="minute" aria-controls="minute-slider">
+        </md-input-container> -->
+        <md-radio-group ng-model="createWayCtrl.ampm" flex layout="column" layout-align="start center">
+          <md-radio-button value="am">am</md-radio-button>
+          <md-radio-button value="pm">pm</md-radio-button>
+        </md-radio-group>
+      </div>
     </div>
 
 

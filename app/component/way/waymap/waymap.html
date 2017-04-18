@@ -10,7 +10,8 @@
   <ng-map
     layout-fill
     center="current-location"
-    geo-fallback-center="47.618217,-122.351832">
+    geo-fallback-center="47.618217,-122.351832"
+    class="map">
 
     <marker ng-repeat="loc in wayMapCtrl.startMarkers" position="{{loc}}"></marker>
     <marker ng-repeat="loc in wayMapCtrl.endMarkers" position="{{loc}}"></marker>

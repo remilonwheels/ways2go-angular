@@ -5,7 +5,7 @@ module.exports = ['$mdThemingProvider', appStyleConfig];
 function appStyleConfig($mdThemingProvider) {
   let themes = {
     blueGreyPrmCyanAcc: {
-      themeName: 'greyBluePrmCyanAcc',
+      themeName: 'blueGreyPrmCyanAcc',
       primaryPalette: 'blue-grey',
       accentPalette: 'cyan',
       warnPalette: 'red',
@@ -21,6 +21,7 @@ function appStyleConfig($mdThemingProvider) {
     .warnPalette(themes[theme].warnPalette)
     .backgroundPalette(themes[theme].backgroundPalette);
   }
+
 
   $mdThemingProvider.theme('default')
     .dark();

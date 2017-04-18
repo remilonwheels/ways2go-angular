@@ -1,0 +1,62 @@
+<md-dialog>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Make a Way</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="createWayCtrl.closeDialog()">
+        <md-icon ng-md-icon icon="highlight_off"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <div layout-padding layout-margin>
+    <md-dialog-content>
+      <md-input-container class=" md-block">
+        <label>name</label>
+        <md-icon ng-md-icon icon="send"></md-icon>
+        <input type="text" ng-model="createWayCtrl.way.name">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float">
+        <label>startLocation</label>
+        <input ng-model="createWayCtrl.way.startLocation" required>
+      </md-input-container>
+
+      <md-input-container>
+        <label>endLocation</label>
+        <input ng-model="createWayCtrl.way.endLocation" required>
+      </md-input-container>
+
+      <md-input-container>
+        <label>recurringDayOfWeek</label>
+        <input ng-model="createWayCtrl.way.recurringDayOfWeek">
+      </md-input-container>
+
+      <md-input-container>
+        <label>startTime:hour</label>
+        <input ng-model="createWayCtrl.way.hour">
+      </md-input-container>
+
+      <md-input-container>
+        <label>startTime:minutes</label>
+        <input ng-model="createWayCtrl.way.minutes">
+      </md-input-container>
+
+      <md-input-container>
+        <label>startTime:timeWindow</label>
+        <input ng-model="createWayCtrl.way.timeWindow">
+      </md-input-container>
+
+      <md-datepicker ng-model="createWayCtrl.way.oneTimeDate" md-placeholder="Pick a Date"></md-datepicker>
+    </div>
+
+  </md-dialog-content>
+
+  <div layout layout-align="center center">
+  <!-- <md-dialog-actions> -->
+    <md-button ng-click="createWayCtrl.createWaySubmit()" class="md-primary md-raised" layout layout-align="center center">
+      <span ng-show="!createWayCtrl.isLoading">Go</span>
+      <md-progress-circular md-mode="indeterminate" ng-show="createWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
+    </md-button>
+  <!-- </md-dialog-actions> -->
+  </div>
+</md-dialog>

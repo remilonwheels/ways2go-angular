@@ -4,7 +4,7 @@ require('./_create-review.scss');
 
 module.exports = {
   template: require('./create-review.html'),
-  controller: ['$log', '$mdDialog', '$mdToast', 'reviewService', 'items', ReviewController],
+  controller: ['$log', '$mdDialog', '$mdToast', 'reviewService', ReviewController],
   controllerAs: 'reviewCtrl',
 };
 

@@ -1,9 +1,9 @@
 'use strict';
 
-require('./_review-item.scss');
+require('./_review-thumbnail.scss');
 
 module.exports = {
-  template: require('./review-item.html'),
+  template: require('./review-thumbnail.html'),
   controller: ['$log', 'reviewService', ReviewItemController],
   controllerAs: 'reviewItemCtrl',
 };

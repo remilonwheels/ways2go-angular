@@ -70,14 +70,9 @@ function wayService($q, $log, $http, authService) {
       return $q.reject(err);
     });
   };
-
-<<<<<<< HEAD
   service.getWays = function() {
     $log.log('wayService.getWays');
     return service.ways;
   };
-
-=======
->>>>>>> anna_sunday
   return service;
 }

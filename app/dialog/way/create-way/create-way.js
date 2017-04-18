@@ -22,12 +22,19 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
 
   this.createWaySubmit = function() {
     this.isLoading = true;
+    this.way.startTime.hour = this.hour12;
+
+    if (this.ampm === 'pm') {
+      this.way.startTime.hour += 12;
+    }
+
     wayService.createWay(this.way)
     .then( () => {
       $mdToast.showSimple('Made a Way was successful');
       this.isLoading = false;
-      this.way = {};
-      this.way.recurringDayOfWeek = [];
+      // this.way = {};
+      // this.way.recurringDayOfWeek = [];
+      $mdDialog.hide();
     })
     .catch( err => {
       $mdToast.showSimple(err.data);

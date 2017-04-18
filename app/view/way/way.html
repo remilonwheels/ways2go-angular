@@ -1,10 +1,13 @@
 <section class="view-way" layout-fill>
-  <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-primary waymap-btn-createway">Create Way</md-button>
 
-  <md-button ng-click="wayCtrl.editWay($event, true, way)" ng-repeat="way in wayCtrl.ways" >{{ way._id }}</md-button>
+  <div class="map-action">
+    <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-primary">Create Way</md-button>
+    <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>
+  </div>
+  <!-- <h2>wayview: {{ wayCtrl.ways.length }} </h2> -->
 
-  <h2>wayview: {{ wayCtrl.ways.length }} </h2>
+  <way-detail ways="wayCtrl.ways" ng-show="!wayCtrl.mapView"></way-detail>
 
-  <waymap layout-fill ways="wayCtrl.ways"></waymap>
+  <waymap layout-fill ways="wayCtrl.ways" ng-show="wayCtrl.mapView"></waymap>
 
 </section>

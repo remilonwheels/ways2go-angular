@@ -10,4 +10,6 @@ module.exports = {
 
 function MessageThumbnailController($log, messageService) { // eslint-line-disable
   $log.debug('MessageThumbnailController');
+
+  this.title = 'Message Title'
 }

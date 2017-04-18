@@ -2,10 +2,12 @@
 <section>
   <md-card>
     <md-subheader class="md-no-sticky">My Messages</md-subheader>
-    <md-list-item class="secondary-button-padding">
-      <span ng-src={{fromProfileID}}>Message 1</span>
-      <span ng-src={{subject}}>subject// limit 50 characters</span>
-      <span ng-src={{timestamp}}>10:05am</span>
+    <md-list-item class="secondary-button-padding" layout-margin layout-padding>
+
+      <span class="md-title">{{ messagethumbnailCtrl.title}}</span>
+      <span class="md-subhead"></span>
+      <span class="md-subhead">10:05am</span>
+
       <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Read More</md-button>
     </md-list-item>
   </md-card>

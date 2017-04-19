@@ -1,17 +1,18 @@
 'use strict';
 
 require('./_message-thumbnail.scss');
+const readMessageDialog = require('../../../dialog/message/read-message/read-message.js');
 
 module.exports = {
   template: require('./message-thumbnail.html'),
-  controller: ['$q', '$log', 'profileService', 'messageService', MessageThumbnailController],
+  controller: ['$log', '$http', '$interval', '$mdMedia', '$scope', '$mdDialog', 'profileService', 'messageService', MessageThumbnailController],
   controllerAs: 'messagethumbnailCtrl',
   bindings: {
     incoming: '='
   }
 };
 
-function MessageThumbnailController($q, $log, profileService, messageService) { // eslint-line-disable
+function MessageThumbnailController($log, $http, $interval, $mdMedia, $scope, $mdDialog, profileService, messageService) { // eslint-line-disable
   $log.debug('MessageThumbnailController');
 
   this.messages = [];
@@ -27,9 +28,9 @@ function MessageThumbnailController($q, $log, profileService, messageService) { 
   .then((messages) => {
     this.messages = messages;
     this.messages.push({title:'Hi!', text: 'TEST Incoming: Are you there?', timestamp: '3:22am',
-             toProfileId: this.profile._id, fromProfileId: 'foo'});
+      toProfileId: this.profile._id, fromProfileId: 'foo'});
     this.messages.push({title:'Hi!', text: 'TEST Outgoing: Are you there?', timestamp: '3:22am',
-             fromProfileId: this.profile._id, toProfileId: 'foo'});
+      fromProfileId: this.profile._id, toProfileId: 'foo'});
 
     if (this.incoming) {
       this.messages = this.messages.filter((msg) => (msg.toProfileId == this.profile._id));
@@ -41,4 +42,18 @@ function MessageThumbnailController($q, $log, profileService, messageService) { 
     $log.error(err.message);
     return $q.reject(err);
   });
+
+  this.readMessage = function ($event, bindFlag, message) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      scope: $scope.$new(bindFlag),
+      resolve: {
+        way: function() {
+          return message;
+        }
+      },
+    };
+    $mdDialog.show(Object.assign(readMessageDialog, dialogConfig));
+  };
 }

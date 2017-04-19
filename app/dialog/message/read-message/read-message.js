@@ -1,19 +1,21 @@
 'use strict';
 
-require('./_create-message.scss');
+require('./_read-message.scss');
+// require('./_message-thumbnail.scss');
 
 module.exports = {
-  template: require('./create-message.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','messageService', '$timeout', CreateMessageController],
-  controllerAs: 'createMessageCtrl'
+  template: require('./read-message.html'),
+  controller: ['$log', '$mdDialog', '$mdToast','messageService', '$timeout', ReadMessageController],
+  controllerAs: 'readMessageCtrl',
+  bindings: {
+    
+  }
 };
 
-function CreateMessageController($log, $mdDialog, $mdToast,  messageService, $timeout) {
-  $log.debug('CreateMessageController');
+function ReadMessageController($log, $mdDialog, $mdToast,  messageService, $timeout) {
+  $log.debug('ReadMessageController');
 
-  
-
-  this.createMessageSubmit = function() {
+  this.readMessageSubmit = function() {
     this.isLoading = true;
     $timeout(2000, () => {
       //2 sec delay to simulate async(call to api)

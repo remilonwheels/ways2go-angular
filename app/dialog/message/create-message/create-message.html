@@ -11,6 +11,13 @@
       </div>
     </md-toolbar>
     <!-- END OF HEADER -->
+    <md-dialog-actions layout-margin>
+      <!-- EXAMPLE LOADING BUTTON -->
+      <md-button ng-click="createMessageCtrl.createMessageSubmit()" class="md-accent md-raised" layout-align="center center">
+        <span ng-show="!createMessageCtrl.isLoading">SEND</span>
+        <md-progress-circular md-mode="indeterminate" ng-show="createMessageCtrl.isLoading" md-diameter="20" class="md-primary md-hue-1 float-left"></md-progress-circular>
+      </md-button>
+    </md-dialog-actions>
 
     <md-dialog-content layout-margin layout-padding>
 
@@ -31,19 +38,12 @@
 
       <md-input-container class="md-icon-float md-block">
         <label></label>
-        <textarea type="text" ng-model="messageCtrl.message.text">
+        <textarea type="text" rows="3" ng-model="messageCtrl.message.text">
       </md-input-container>
 
     </md-dialog-content>
 
     <!-- INSERT ACTIONS/OR WHATEVER YOU WANT AS A FOOTER BELOW -->
-    <md-dialog-actions>
-      <!-- EXAMPLE LOADING BUTTON -->
-      <md-button ng-click="createMessageCtrl.createMessageSubmit()" class="md-accent md-raised" layout layout-align="center center">
-        <span ng-show="!createMessageCtrl.isLoading">SEND</span>
-        <md-progress-circular md-mode="indeterminate" ng-show="createMessageCtrl.isLoading" md-diameter="20" class="md-primary md-hue-1 float-left"></md-progress-circular>
-      </md-button>
-    </md-dialog-actions>
 
   </form>
 </md-dialog>

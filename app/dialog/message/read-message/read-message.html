@@ -1,0 +1,30 @@
+<md-dialog aria-label="Read Message">
+  <form ng-cloak>
+    <!-- HEADER -->
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="readMessageCtrl.closeDialog()">
+          <md-icon ng-md-icon icon="highlight_off"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <!-- END OF HEADER -->
+
+    <md-dialog-content layout-margin layout-padding>
+
+    </md-dialog-content>
+
+    <!-- INSERT ACTIONS/OR WHATEVER YOU WANT AS A FOOTER BELOW -->
+    <md-dialog-actions>
+      <!-- EXAMPLE LOADING BUTTON -->
+      <!-- <md-button ng-click="readMessageCtrl.readMessageSubmit()" class="md-accent md-raised" layout layout-align="center center"> -->
+
+
+      <md-progress-circular md-mode="indeterminate" ng-show="readMessageCtrl.isLoading" md-diameter="20" class="md-primary md-hue-1 float-left"></md-progress-circular>
+    </md-button>
+  </md-dialog-actions>
+
+  </form>
+</md-dialog>

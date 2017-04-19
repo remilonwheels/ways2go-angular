@@ -7,15 +7,12 @@
     <title>Document</title>
   </head>
   <body layout="column">
-    <header flex="none">
-      <mobile-header></mobile-header>
-    </header>
+    <mobile-header flex="none"></mobile-header>
 
-    <ui-view layout="column" flex></ui-view>
-
-    <!-- <div class="">
-      <md-button class="md-raised md-primary">Text</md-button>
-    </div> -->
+    <md-content flex>
+      <ui-view flex></ui-view>
+    </md-content>
+    
     <footer flex="none"></footer>
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyBEnlGCbHlpu7lTSbltrXiauRyVBrcIxyY&libraries=places"></script>
   </body>

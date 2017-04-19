@@ -25,10 +25,21 @@ function WayMapController($log, $http, $interval, NgMap, wayService) {
       console.log('ng map init success', map);
       this.map = map;
 
-      this.startMarkers = this.ways.map( way => [way.startLocation.lat, way.startLocation.lng]);
+      this.startMarkers = [];
+      this.endMarkers = [];
+      this.paths = [];
 
-      this.endMarkers = this.ways.map( way => [way.endLocation.lat, way.endLocation.lng]);
+      this.ways.forEach( way => {
+        this.startMarkers.push([way.startLocation.lat, way.startLocation.lng]);
 
+        this.endMarkers.push([way.endLocation.lat, way.endLocation.lng]);
+
+        this.paths.push([[way.startLocation.lat, way.startLocation.lng],[way.endLocation.lat, way.endLocation.lng]]);
+      });
+
+      // this.startMarkers = this.ways.map( way => [way.startLocation.lat, way.startLocation.lng]);
+      //
+      // this.endMarkers = this.ways.map( way => [way.endLocation.lat, way.endLocation.lng]);
 
     });
   };

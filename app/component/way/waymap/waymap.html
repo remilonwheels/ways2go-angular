@@ -20,7 +20,17 @@
     map-type-control-options="{style:'HORIZONTAL_BAR', position:'BOTTOM_CENTER'}">
 
     <marker ng-repeat="loc in wayMapCtrl.startMarkers" position="{{loc}}"></marker>
+
     <marker ng-repeat="loc in wayMapCtrl.endMarkers" position="{{loc}}"></marker>
+
+    <shape
+      name="polyline"
+      ng-repeat="path in wayMapCtrl.paths"
+      path="{{path}}"
+      stroke-color="#FF0000"
+      stroke-opacity="1.0"
+      stroke-weight="3">
+    </shape>
 
   </ng-map>
 </div>

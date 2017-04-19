@@ -45,12 +45,13 @@ module.exports = () => {
           }),
         },
         { //:::: fonts ::::
-          test: /\.(ttf|eot|svg|woff|woff2)(\?.+)?$/,
+          test: /\.(ttf|eot|woff|woff2)(\?.+)?$/,
+          // test: /\.(ttf|eot|svg|woff|woff2)(\?.+)?$/,
           use: 'file-loader',
         },
         { //:::: png ::::
-          test: /\.png$/,
-          use: 'url-loader',
+          test: /\.(png|svg)$/,
+          use: 'file-loader?name=/assets/[path][name].[ext]',
         },
       ],
     },

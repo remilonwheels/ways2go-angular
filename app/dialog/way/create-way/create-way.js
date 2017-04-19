@@ -15,13 +15,20 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
   this.way.recurringDayOfWeek = [];
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
-  this.isPM = true;
+  this.ampm = '';
   const dayMap = { M: 0, T: 1, W: 2, R: 3, F: 4, Sa: 5, Su: 6 };
 
   this.isLoading = false;
 
   this.createWaySubmit = function() {
+    console.log('this.way in post before', this.way);
     this.isLoading = true;
+
+    if (this.ampm) {
+      if (this.ampm === 'pm') this.way.hour += 12;
+    }
+
+
     wayService.createWay(this.way)
     .then( () => {
       $mdToast.showSimple('Made a Way was successful');

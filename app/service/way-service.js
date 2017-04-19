@@ -22,16 +22,16 @@ function wayService($q, $log, $http, authService) {
         }
       };
 
-      console.log('service ways before post', service.ways.length);
+      console.log('service ways before post', service.ways);
 
       return $http.post(url, way, config);
     })
     .then( res => {
-      console.log('service after post', service.ways.length);
+      console.log('service after post', service.ways);
       $log.log('way created');
       let way = res.data;
       service.ways.unshift(way);
-      console.log('service after unshift', service.ways.length);
+      console.log('service after unshift', service.ways);
       return res.data;
     })
     .catch( err => {
@@ -95,6 +95,36 @@ function wayService($q, $log, $http, authService) {
 
       console.log('service.ways after angular copy', service.ways);
       return service.ways;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.deleteWay = function(wayID) {
+    $log.debug('wayService.deleteWay');
+
+    console.log('way before delete', wayID);
+    console.log('length before delete', service.ways.length);
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/way/${wayID}` //eslint-disable-line
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      return $http.delete(url, config);
+    })
+    .then( res => {
+      $log.log('way deleted');
+      service.ways.splice(service.ways.map( way => way._id).indexOf(wayID),1);
+      console.log('length after delete', service.ways.length);
     })
     .catch( err => {
       $log.error(err.message);

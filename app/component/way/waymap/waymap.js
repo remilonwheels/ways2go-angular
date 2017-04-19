@@ -28,6 +28,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService) {
       this.startMarkers = this.ways.map( way => [way.startLocation.lat, way.startLocation.lng]);
 
       this.endMarkers = this.ways.map( way => [way.endLocation.lat, way.endLocation.lng]);
+
+
     });
   };
 

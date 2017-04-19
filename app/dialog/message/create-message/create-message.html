@@ -13,7 +13,27 @@
     <!-- END OF HEADER -->
 
     <md-dialog-content layout-margin layout-padding>
-    <!-- INSERT CONTENT HERE -->
+
+      <md-input-container class="md-icon-float md-block">
+        <label>to:</label>
+        <input type="text" ng-model="messageCtrl.message.toProfileId">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>from: {{ messageCtrl.message.fromProfileId }}</label>
+        <input type="text" ng-model="messageCtrl.message.fromProfileId">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>subject:</label>
+        <input type="text" ng-model="messageCtrl.message.subject">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label></label>
+        <textarea type="text" ng-model="messageCtrl.message.text">
+      </md-input-container>
+
     </md-dialog-content>
 
     <!-- INSERT ACTIONS/OR WHATEVER YOU WANT AS A FOOTER BELOW -->

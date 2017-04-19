@@ -1,15 +1,15 @@
 'use strict';
 
-require('./_create-user.scss');
+require('./_signin.scss');
 
 module.exports = {
-  template: require('./create-user.html'),
-  controller: ['$log', '$window', '$location', '$mdDialog','$mdToast', 'authService', SignupController],
-  controllerAs: 'signupCtrl'
+  template: require('./signin.html'),
+  controller: ['$log', '$window', '$location', '$mdDialog', '$mdToast', 'authService', SigninController],
+  controllerAs: 'signinCtrl'
 };
 
-function SignupController($log, $window, $location, $mdDialog, $mdToast, authService) {
-  $log.debug('SignupController');
+function SigninController($log, $window, $location, $mdDialog, $mdToast, authService) {
+  $log.debug('SigninController');
 
   this.isLoading = false;
   this.isAuthorized = false;
@@ -22,13 +22,13 @@ function SignupController($log, $window, $location, $mdDialog, $mdToast, authSer
     });
   }
 
-  this.createUser = function() {
-    $log.debug('SignupController.createUser');
+  this.signinUser = function() {
+    $log.debug('SigninController.singin');
 
     this.isLoading = true;
-    authService.signup(this.user)
+    authService.login(this.user)
     .then( () => {
-      $mdToast.showSimple('Welcome to ways2go! Please create a profile...');
+      $mdToast.showSimple(`Welcome back ${this.user.username}`);
       this.isLoading = false;
       this.isAuthorized = true;
     })

@@ -7,6 +7,7 @@ function authService($q, $log, $http, $window) {
 
   let service = {};
   let token = null;
+  this.token = token;
 
   function setToken(_token) {
     $log.debug('authService.setToken');
@@ -58,7 +59,7 @@ function authService($q, $log, $http, $window) {
   service.login = function(user) {
     $log.debug('authService.login');
 
-    let url = `${__API_URL__}/api/login` //eslint-disable-line
+    let url = `${__API_URL__}/api/signin` //eslint-disable-line
     let base64 = $window.btoa(`${user.username}:${user.password}`);
     let config = {
       headers: {

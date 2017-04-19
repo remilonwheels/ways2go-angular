@@ -28,6 +28,7 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
       this.isLoading = false;
       this.way = {};
       this.way.recurringDayOfWeek = [];
+      $mdDialog.hide();
     })
     .catch( err => {
       $mdToast.showSimple(err.data);

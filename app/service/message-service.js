@@ -8,16 +8,16 @@ function messageService($q, $log, $http, Upload, authService) {
     $log.debug('messageService.createMessage');
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profileID/message` 
+      let url = `${__API_URL__}/api/profileID/message`; // eslint-disable-line
       let config = {
         headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         }
       };
 
-    return $http.post(url, message,config);
+      return $http.post(url, message,config);
     })
     .then( res => {
       $log.log('message sending success');
@@ -28,8 +28,9 @@ function messageService($q, $log, $http, Upload, authService) {
       return $q.reject(err);
     });
   };
+
   service.fetchMessages = function(message) {
-      $log.debug('messageService.createMessage');
+      $log.debug('messageService.fetchMesages');
     return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/profileID/message`

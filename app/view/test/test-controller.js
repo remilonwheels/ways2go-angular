@@ -5,7 +5,6 @@ require('./_test.scss');
 //BRING IN YOUR COMPONENt HERE
 const testDialogComponent = require('../../dialog/test/test-dialog/test-dialog.js');
 const createReviewDialog = require('../../dialog/test/create-review/create-review.js');
-const seeReviewDialog = require('../../dialog/test/see-review/see-review.js');
 
 //Message Dialog CRUD componenets
 const createMessageComponent = require('../../dialog/message/create-message/create-message.js');

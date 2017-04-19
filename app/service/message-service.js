@@ -1,5 +1,7 @@
 'use strict';
+
 module.exports = ['$q', '$log', '$http', 'Upload', 'authService', messageService];
+
 function messageService($q, $log, $http, Upload, authService) {
   $log.debug('messageService');
   let service = {};
@@ -8,7 +10,7 @@ function messageService($q, $log, $http, Upload, authService) {
     $log.debug('messageService.createMessage');
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profileID/message`; // eslint-disable-line
+      let url = `${__API_URL__}/api/profileID/message`
       let config = {
         headers: {
           Accept: 'application/json',
@@ -28,29 +30,29 @@ function messageService($q, $log, $http, Upload, authService) {
       return $q.reject(err);
     });
   };
+  service.fetchMessages = function() {
+    $log.debug('messageService.createMessage');
 
-  service.fetchMessages = function(message) {
-      $log.debug('messageService.fetchMesages');
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profileID/message`
+      let url = `${__API_URL__}/api/message`
       let config = {
         headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         }
       };
-    return $http.get(url, config);
+      return $http.get(url, config);
     })
     .then( res => {
-        $log.log('message fetched');
-        service.messages = res.data;
-        return service.messages;
+      $log.log('message fetched');
+      service.messages = res.data;
+      return service.messages;
     })
     .catch( err => {
-        $log.error(err.message);
-        return $q.reject(err);
+      $log.error(err.message);
+      return $q.reject(err);
     });
   };
   return service;

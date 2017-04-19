@@ -2,10 +2,8 @@
 
 require('./_message.scss');
 
-module.exports = ['$log', '$rootScope', '$mdDialog', 'messageService', '$http', '$interval', 'NgMap', '$mdMedia', '$scope', MessageController];
+module.exports = ['$log', 'messageService', MessageController];
 
-function MessageController($log, $rootScope, $mdDialog, messageService, $http, $interval, NgMap, $mdMedia, $scope) {
+function MessageController($log, messageService) { // eslint-line-disable
   $log.debug('MessageController');
-
-
 }

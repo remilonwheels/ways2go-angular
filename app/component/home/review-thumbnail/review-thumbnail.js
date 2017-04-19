@@ -11,6 +11,9 @@ module.exports = {
 function Reviewthumbnailontroller($log) {
   $log.debug('Reviewthumbnailontroller');
 
-  this.rating = '4.5';
-  this.comment = 'Bob is great to ride with, he has the best music, but he chews loudly.';
+  this.review = {
+    rating: '4.5',
+    comment: 'Bob is great to ride with, he has the best music, but he chews loudly.'
+  };
+
 }

@@ -2,10 +2,9 @@
 
 require('./_message.scss');
 
-module.exports = ['$log', /* other dependcies */ MessageController];
+module.exports = ['$log', 'messageService', MessageController];
 
-function MessageController($log) {
+function MessageController($log, messageService) { // eslint-line-disable
   $log.debug('MessageController');
 
-  //TODO: Message View Controller
 }

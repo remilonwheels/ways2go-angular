@@ -1,29 +1,14 @@
 
-<section>
-  <md-card>
-    <md-subheader class="md-no-sticky">My Messages</md-subheader>
-    <md-list-item class="secondary-button-padding" layout-margin layout-padding>
-    <!-- ng-repeat="item in messages | limitTo: 3"  -->
-      <span class="md-title">{{ messagethumbnailCtrl.title }}</span>
-      <span class="md-subhead">{{ messagethumbnailCtrl.text }}</span>
-      <span class="md-subhead">{{ messagethumbnailCtrl.timestamp }}</span>
+<md-list-item class="secondary-button-padding" layout-margin layout-padding
+ng-repeat="message in messagethumbnailCtrl.messages | limitTo: 3">
+  <span class="md-title">{{ message.title }}</span>
+  <span class="md-subhead">{{ message.text }}</span>
+  <span class="md-subhead">{{ message.timestamp }}</span>
 
-      <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Read</md-button>
-    </md-list-item>
-    <md-divider></md-divider>
+  <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Read</md-button>
+</md-list-item>
+<md-divider></md-divider>
 
-
-    <!-- this is just for testing having multiple items -->
-    <md-list-item class="secondary-button-padding" layout-margin layout-padding>
-    <!-- ng-repeat="item in messages | limitTo: 3"  -->
-      <span class="md-title">{{ messagethumbnailCtrl.title }}</span>
-      <span class="md-subhead">{{ messagethumbnailCtrl.text }}</span>
-      <span class="md-subhead">{{ messagethumbnailCtrl.timestamp }}</span>
-
-      <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Read</md-button>
-    </md-list-item>
-  </md-card>
-</section>
 
 
 <!-- <section>
@@ -38,7 +23,7 @@
             Outbox
           </md-nav-item> -->
           <!-- these require actual routing with ui-router or ng-route, so they
-          won't work in the demo
+          won't work in the dem
           <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
           <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
           You can also add options for the <code>ui-sref-opts</code> attribute.

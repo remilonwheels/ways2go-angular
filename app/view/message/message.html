@@ -1,1 +1,14 @@
-<h1>Message</h1>
+<md-tabs class="md-background" md-selected="data.selectedIndex" md-stretch-tabs="auto" layput-padding layout-margin>
+  <md-tab id="tab1">
+    <md-tab-label>Inbox</md-tab-label>
+    <md-tab-body class="md-display-2" layput-padding layout-margin>
+      <message-thumbnail incoming='true'></message-thumbnail>
+    </md-tab-body>
+  </md-tab>
+  <md-tab id="tab2">
+    <md-tab-label>Outbox</md-tab-label>
+    <md-tab-body style="transition: none">
+      <message-thumbnail incoming='false'></message-thumbnail>
+    </md-tab-body>
+  </md-tab>
+</md-tabs>

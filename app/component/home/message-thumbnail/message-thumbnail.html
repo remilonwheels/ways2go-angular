@@ -1,16 +1,42 @@
+
 <section>
+  <md-card>
+    <md-subheader class="md-no-sticky">My Messages</md-subheader>
+    <md-list-item class="secondary-button-padding" layout-margin layout-padding>
+    <!-- ng-repeat="item in messages | limitTo: 3"  -->
+      <span class="md-title">{{ messagethumbnailCtrl.title }}</span>
+      <span class="md-subhead">{{ messagethumbnailCtrl.text }}</span>
+      <span class="md-subhead">{{ messagethumbnailCtrl.timestamp }}</span>
+
+      <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Read</md-button>
+    </md-list-item>
+    <md-divider></md-divider>
+
+
+    <!-- this is just for testing having multiple items -->
+    <md-list-item class="secondary-button-padding" layout-margin layout-padding>
+    <!-- ng-repeat="item in messages | limitTo: 3"  -->
+      <span class="md-title">{{ messagethumbnailCtrl.title }}</span>
+      <span class="md-subhead">{{ messagethumbnailCtrl.text }}</span>
+      <span class="md-subhead">{{ messagethumbnailCtrl.timestamp }}</span>
+
+      <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Read</md-button>
+    </md-list-item>
+  </md-card>
+</section>
+
+
+<!-- <section>
 
   <md-card>
     <md-subheader class="md-no-sticky">Messages</md-subheader>
     <div ng-cloak="" class="navBardemoBasicUsage" ng-app="MyApp">
       <md-content class="md-padding">
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-          <md-nav-item md-nav-click="goto('page1')" name="page1">
-            Inbox
-          </md-nav-item>
+          <md-nav-ite!em>
           <md-nav-item md-nav-click="goto('page2')" name="page2">
             Outbox
-          </md-nav-item>
+          </md-nav-item> -->
           <!-- these require actual routing with ui-router or ng-route, so they
           won't work in the demo
           <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
@@ -20,15 +46,15 @@
           Page Six
         </md-nav-item>
       -->
-    </md-nav-bar>
-    <div class="ext-content">
+    <!-- </md-nav-bar>
+    <div class="ext-content"> -->
       <!-- External content for `<span>{{currentNavItem}}</span>`. -->
-    </div>
+    <!-- </div>
 
   </md-content>
   </md-card>
 </div>
-</section>
+</section> -->
 
 
 <!-- <section>

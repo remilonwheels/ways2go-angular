@@ -1,17 +1,23 @@
 <md-toolbar>
   <div class="md-toolbar-tools">
     <md-button aria-label="Go Back">
-      Go Back
+      LOGO
     </md-button>
 
-    <md-truncate style="position: absolute; left: 90px; right: 170px; top: 13px; bottom: 13px;">Toolbar with Standard Buttons</md-truncate>
+    <md-truncate style="position: absolute; left: 90px; right: 170px; top: 13px; bottom: 13px;">ways2go</md-truncate>
 
     <span flex></span>
-    <md-button class="md-raised" aria-label="Learn More">
-      Learn More
+    <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoHome()">
+      <md-icon ng-md-icon icon="home" ></md-icon>
     </md-button>
-    <md-button class="md-fab md-mini" aria-label="Favorite">
-      <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+    <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoWay()">
+      <md-icon ng-md-icon icon="directions_car"></md-icon>
+    </md-button>
+    <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoMessage()">
+      <md-icon ng-md-icon icon="message"></md-icon>
+    </md-button>
+    <md-button class="md-raised" aria-label="Sign out">
+      Sign out
     </md-button>
   </div>
 </md-toolbar>

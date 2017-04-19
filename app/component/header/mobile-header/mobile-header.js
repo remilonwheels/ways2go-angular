@@ -2,18 +2,25 @@
 
 require('./_mobile-header.scss');
 
-// const editWayComponent = require('../../../dialog/way/edit-way/edit-way.js');
-// const viewWayComponent = require('../../../dialog/way/view-way/view-way.js');
 
 module.exports = {
   template: require('./mobile-header.html'),
-  controller: ['$log', '$http', '$interval', 'NgMap', 'wayService', '$mdMedia', '$scope', '$mdDialog', MobileHeaderController],
+  controller: ['$log', '$http', '$location', MobileHeaderController],
   controllerAs: 'mobileHeaderCtrl',
   bindings: {
     ways: '<'
   }
 };
 
-function MobileHeaderController($log, $http, $interval, NgMap, wayService, $mdMedia, $scope, $mdDialog) {
+function MobileHeaderController($log, $http, $location) {
 
+  this.gotoWay = function() {
+    $location.url('/way');
+  };
+  this.gotoHome = function() {
+    $location.url('/test');
+  };
+  this.gotoMessage = function() {
+    $location.url('/message');
+  };
 }

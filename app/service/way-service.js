@@ -102,6 +102,31 @@ function wayService($q, $log, $http, authService) {
     });
   };
 
+  service.deleteWay = function(way) {
+    $log.debug('wayService.deleteWay');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/way/${way._id}` //eslint-disable-line
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      return $http.delete(url, config);
+    })
+    .then( res => {
+      $log.log('way deleted');
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
   service.getWays = function() {
     $log.log('wayService.getWays');
     return service.ways;

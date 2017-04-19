@@ -32,6 +32,7 @@ function messageService($q, $log, $http, Upload, authService) {
   };
   service.fetchMessages = function() {
     $log.debug('messageService.createMessage');
+
     return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/message`

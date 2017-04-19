@@ -1,10 +1,10 @@
-<md-dialog aria-label="Edit a Way">
+<md-dialog aria-label="View Way">
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Way</h2>
+        <h2>{{ viewWayCtrl.title }}</h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="editWayCtrl.closeDialog()">
+        <md-button class="md-icon-button" ng-click="viewWayCtrl.closeDialog()">
           <md-icon ng-md-icon icon="highlight_off"></md-icon>
         </md-button>
       </div>
@@ -14,30 +14,38 @@
       <!-- <md-input-container class="md-icon-float md-block">
         <label>name</label>
         <md-icon ng-md-icon icon="send"></md-icon>
-        <input type="text" ng-model="editWayCtrl.way.name">
+        <input type="text" ng-model="viewWayCtrl.way.name">
       </md-input-container> -->
       <span class="md-title">Ayo</span>
+      <div layout="column">
+        <div>
+          <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+        </div>
+        <div layout="row">
+
+        </div>
+      </div>
 
       <md-input-container class="md-icon-float md-block">
         <label>startLocation</label>
-        <input ng-model="editWayCtrl.way.startLocation" required>
+        <input ng-model="viewWayCtrl.way.startLocation" required>
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
         <label>endLocation</label>
-        <input ng-model="editWayCtrl.way.endLocation" required>
+        <input ng-model="viewWayCtrl.way.endLocation" required>
       </md-input-container>
 
       <div layout>
         <div layout="row" layout-wrap flex="50">
-          <div flex="33" ng-repeat="day in editWayCtrl.daysOfWeek">
-            <md-checkbox ng-checked="editWayCtrl.exists(day, editWayCtrl.way.recurringDayOfWeek)" ng-click="editWayCtrl.toggle(day, editWayCtrl.way.recurringDayOfWeek)">
-              {{ day }} <span ng-if="exists(day, editWayCtrl.way.recurringDayOfWeek)">selected</span>
+          <div flex="33" ng-repeat="day in viewWayCtrl.daysOfWeek">
+            <md-checkbox ng-checked="viewWayCtrl.exists(day, viewWayCtrl.way.recurringDayOfWeek)" ng-click="viewWayCtrl.toggle(day, viewWayCtrl.way.recurringDayOfWeek)">
+              {{ day }} <span ng-if="exists(day, viewWayCtrl.way.recurringDayOfWeek)">selected</span>
             </md-checkbox>
           </div>
         </div>
 
-        <md-datepicker ng-model="editWayCtrl.way.oneTimeDate" md-placeholder="One Time Way" class="md-block" flex="50"></md-datepicker>
+        <md-datepicker ng-model="viewWayCtrl.way.oneTimeDate" md-placeholder="One Time Way" class="md-block" flex="50"></md-datepicker>
       </div>
 
       <!-- <div layout="row" layout-padding layout-align="center center">
@@ -66,13 +74,13 @@
 
     <div layout layout-margin layout-padding>
       <md-input-container>
-        <input flex type="number" ng-model="editWayCtrl.hour12" aria-label="hour" aria-controls="hour-slider">
+        <input flex type="number" ng-model="viewWayCtrl.hour12" aria-label="hour" aria-controls="hour-slider">
       </md-input-container>
       <md-input-container>
-        <input flex type="number" ng-model="editWayCtrl.way.startTime.minutes" aria-label="hour" aria-controls="hour-slider">
+        <input flex type="number" ng-model="viewWayCtrl.way.startTime.minutes" aria-label="hour" aria-controls="hour-slider">
       </md-input-container>
       <md-input-container>
-        <input flex  ng-model="editWayCtrl.ampm" aria-label="hour" aria-controls="hour-slider">
+        <input flex  ng-model="viewWayCtrl.ampm" aria-label="hour" aria-controls="hour-slider">
       </md-input-container>
 
     </div>
@@ -80,26 +88,26 @@
     <div layout="row" layout-padding layout-align="center stretch">
       <md-slider-container flex>
         <!-- <md-input-container>
-          <input flex type="number" ng-model="editWayCtrl.hour12" aria-label="hour" aria-controls="hour-slider">
+          <input flex type="number" ng-model="viewWayCtrl.hour12" aria-label="hour" aria-controls="hour-slider">
         </md-input-container> -->
-        <md-slider ng-model="editWayCtrl.hour12" min="1" max="12" aria-label="hour" id="hour-slider" class="md-accent" md-vertical md-range></md-slider>
+        <md-slider ng-model="viewWayCtrl.hour12" min="1" max="12" aria-label="hour" id="hour-slider" class="md-accent" md-vertical md-range></md-slider>
         <h5>Hour</h5>
       </md-slider-container>
 
       <md-slider-container flex>
         <!-- <md-input-container>
-          <input flex type="number" ng-model="editWayCtrl.way.startTime.minutes" aria-label="minute" aria-controls="minute-slider">
+          <input flex type="number" ng-model="viewWayCtrl.way.startTime.minutes" aria-label="minute" aria-controls="minute-slider">
         </md-input-container> -->
-          <md-slider md-discrete ng-model="editWayCtrl.way.startTime.minutes" min="0" max="60" step="5" aria-label="minute" class="md-primary"
+          <md-slider md-discrete ng-model="viewWayCtrl.way.startTime.minutes" min="0" max="60" step="5" aria-label="minute" class="md-primary"
         md-vertical></md-slider>
       <h5>Minutes</h5>
     </md-slider-container>
 
     <div flex layout="column">
       <!-- <md-input-container layout layout-align="center start" flex="20" layout-padding>
-        <input flex="45" ng-model="editWayCtrl.ampm" aria-label="minute" aria-controls="minute-slider">
+        <input flex="45" ng-model="viewWayCtrl.ampm" aria-label="minute" aria-controls="minute-slider">
       </md-input-container> -->
-      <md-radio-group ng-model="editWayCtrl.ampm" flex layout="column" layout-align="start center">
+      <md-radio-group ng-model="viewWayCtrl.ampm" flex layout="column" layout-align="start center">
         <md-radio-button value="am">am</md-radio-button>
         <md-radio-button value="pm">pm</md-radio-button>
       </md-radio-group>
@@ -110,9 +118,9 @@
     </md-dialog-content>
 
     <md-dialog-actions>
-      <md-button ng-click="editWayCtrl.editWaySubmit()" class="md-primary md-raised" layout layout-align="center center">
-        <span ng-show="!editWayCtrl.isLoading">Go</span>
-        <md-progress-circular md-mode="indeterminate" ng-show="editWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
+      <md-button ng-click="viewWayCtrl.viewWaySubmit()" class="md-primary md-raised" layout layout-align="center center">
+        <span ng-show="!viewWayCtrl.isLoading">Go</span>
+        <md-progress-circular md-mode="indeterminate" ng-show="viewWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
       </md-button>
     </md-dialog-actions>
 

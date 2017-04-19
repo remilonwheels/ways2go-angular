@@ -1,17 +1,17 @@
 'use strict';
 
-require('./_test-dialog.scss');
+require('./_create-message.scss');
 
 module.exports = {
-  template: require('./test-dialog.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', '$timeout', TestDialogController],
-  controllerAs: 'testDialogCtrl'
+  template: require('./create-message.html'),
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', '$timeout', CreateMessageController],
+  controllerAs: 'createMessageCtrl'
 };
 
-function TestDialogController($log, $mdDialog, $mdToast,  wayService, $timeout) {
-  $log.debug('TestDialogController');
+function CreateMessageController($log, $mdDialog, $mdToast,  messageService, $timeout) {
+  $log.debug('CreateMessageController');
 
-  this.testDialogSubmit = function() {
+  this.createMessageSubmit = function() {
     this.isLoading = true;
     $timeout(2000, () => {
       //2 sec delay to simulate async(call to api)

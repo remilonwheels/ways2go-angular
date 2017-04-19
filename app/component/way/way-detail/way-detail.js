@@ -4,7 +4,7 @@
 require('./_way-detail.scss');
 
 const editWayComponent = require('../../../dialog/way/edit-way/edit-way.js');
-const createWayComponent = require('../../../dialog/way/create-way/create-way.js');
+const viewWayComponent = require('../../../dialog/way/view-way/view-way.js');
 
 module.exports = {
   template: require('./way-detail.html'),
@@ -32,7 +32,7 @@ function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia
     $mdDialog.show(Object.assign(editWayComponent, dialogConfig));
   };
 
-  this.createWay = function ($event, bindFlag, way) {
+  this.viewWay = function ($event, bindFlag, way) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,
@@ -43,9 +43,7 @@ function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia
         }
       },
     };
-    $mdDialog.show(Object.assign(createWayComponent, dialogConfig));
+    $mdDialog.show(Object.assign(viewWayComponent, dialogConfig));
   };
 
-  //vars
-  // this.way = {}; //binded???
 }

@@ -1,14 +1,14 @@
 'use strict';
 
-require('./_edit-way.scss');
+require('./_view-way.scss');
 
 module.exports = {
-  template: require('./edit-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', EditWayController],
-  controllerAs: 'editWayCtrl'
+  template: require('./view-way.html'),
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', ViewWayController],
+  controllerAs: 'viewWayCtrl'
 };
 
-function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
+function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
   this.way = wayService.getOneWay(way._id);
   console.log('edit way', this.way);
   this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;

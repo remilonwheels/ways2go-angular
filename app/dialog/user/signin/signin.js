@@ -2,13 +2,15 @@
 
 require('./_signin.scss');
 
+const updateUserComponent = require('../edit-user/edit-user.js');
+
 module.exports = {
   template: require('./signin.html'),
-  controller: ['$log', '$window', '$location', '$mdDialog', '$mdToast', 'authService', SigninController],
+  controller: ['$log', '$window', '$location', '$mdDialog', '$mdToast', '$scope', '$mdMedia', 'authService', SigninController],
   controllerAs: 'signinCtrl'
 };
 
-function SigninController($log, $window, $location, $mdDialog, $mdToast, authService) {
+function SigninController($log, $window, $location, $mdDialog, $mdToast, $scope, $mdMedia, authService) {
   $log.debug('SigninController');
 
   this.isLoading = false;
@@ -36,6 +38,15 @@ function SigninController($log, $window, $location, $mdDialog, $mdToast, authSer
       $mdToast.showSimple(err.data);
       this.isLoading = false;
     });
+  };
+
+  this.updateUser = function($event, bindFlag) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      scope: $scope.$new(bindFlag)
+    };
+    $mdDialog.show(Object.assign(updateUserComponent, dialogConfig));
   };
 
   this.goHome = function() {

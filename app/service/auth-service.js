@@ -79,6 +79,32 @@ function authService($q, $log, $http, $window) {
     });
   };
 
+  service.updateUser = function(user) {
+    $log.debug('authService.updateUser');
+
+    return service.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/user` //eslint-disable-line
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      return $http.put(url, user, config);
+    })
+    .then( res => {
+      $log.log('account updated');
+      return res.data;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
   service.logout = function() {
     $log.debug('authService.logout');
 

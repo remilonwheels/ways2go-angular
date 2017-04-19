@@ -1,6 +1,7 @@
 'use strict';
 
 require('./_review-thumbnail.scss');
+require('component');
 
 module.exports = {
   template: require('./review-thumbnail.html'),

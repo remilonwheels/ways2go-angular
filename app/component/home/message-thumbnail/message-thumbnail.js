@@ -5,14 +5,14 @@ const readMessageDialog = require('../../../dialog/message/read-message/read-mes
 
 module.exports = {
   template: require('./message-thumbnail.html'),
-  controller: ['$log', '$http', '$interval', '$mdMedia', '$scope', '$mdDialog', 'profileService', 'messageService', MessageThumbnailController],
+  controller: ['$q','$log', '$http', '$interval', '$mdMedia', '$scope', '$mdDialog', 'profileService', 'messageService', MessageThumbnailController],
   controllerAs: 'messagethumbnailCtrl',
   bindings: {
     incoming: '='
   }
 };
 
-function MessageThumbnailController($log, $http, $interval, $mdMedia, $scope, $mdDialog, profileService, messageService) { // eslint-line-disable
+function MessageThumbnailController($q, $log, $http, $interval, $mdMedia, $scope, $mdDialog, profileService, messageService) { // eslint-line-disable
   $log.debug('MessageThumbnailController');
 
   this.messages = [];
@@ -22,15 +22,15 @@ function MessageThumbnailController($log, $http, $interval, $mdMedia, $scope, $m
     return messageService.fetchMessages();
   })
   .catch(() => {
-    this.profile = {_id: '123'};
+    // this.profile = {_id: '123'};
     return messageService.fetchMessages();
   })
   .then((messages) => {
     this.messages = messages;
-    this.messages.push({title:'Hi!', text: 'TEST Incoming: Are you there?', timestamp: '3:22am',
-      toProfileId: this.profile._id, fromProfileId: 'foo'});
-    this.messages.push({title:'Hi!', text: 'TEST Outgoing: Are you there?', timestamp: '3:22am',
-      fromProfileId: this.profile._id, toProfileId: 'foo'});
+    // this.messages.push({title:'Hi!', text: 'TEST Incoming: Are you there?', timestamp: '3:22am',
+    //   toProfileId: this.profile._id, fromProfileId: 'foo'});
+    // this.messages.push({title:'Hi!', text: 'TEST Outgoing: Are you there?', timestamp: '3:22am',
+    //   fromProfileId: this.profile._id, toProfileId: 'foo'});
 
     if (this.incoming) {
       this.messages = this.messages.filter((msg) => (msg.toProfileId == this.profile._id));

@@ -23,22 +23,22 @@
 
       <md-input-container class="md-icon-float md-block">
         <label>to:</label>
-        <input type="text" ng-model="messageCtrl.message.toProfileId">
+        <input type="text" ng-model="createMessageCtrl.message.toProfileID">
       </md-input-container>
 
-      <md-input-container class="md-icon-float md-block">
-        <label>from: {{ messageCtrl.message.fromProfileId }}</label>
-        <input type="text" ng-model="messageCtrl.message.fromProfileId">
-      </md-input-container>
+      <!-- <md-input-container class="md-icon-float md-block">
+        <label>from: {{ createMessageCtrl.message.fromProfileID}}</label>
+        <input type="text" ng-model="createMessageCtrl.message.fromProfileID">
+      </md-input-container> -->
 
       <md-input-container class="md-icon-float md-block">
         <label>subject:</label>
-        <input type="text" ng-model="messageCtrl.message.subject">
+        <input type="text" ng-model="createMessageCtrl.message.subject">
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
         <label></label>
-        <textarea type="text" rows="3" ng-model="messageCtrl.message.text">
+        <textarea type="text" rows="3" ng-model="createMessageCtrl.message.text">
       </md-input-container>
 
     </md-dialog-content>

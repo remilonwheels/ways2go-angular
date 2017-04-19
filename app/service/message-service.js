@@ -10,7 +10,7 @@ function messageService($q, $log, $http, Upload, authService) {
     $log.debug('messageService.createMessage');
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profileID/message`
+      let url = `${__API_URL__}/api/profile/${message.toProfileID}/message`
       let config = {
         headers: {
           Accept: 'application/json',

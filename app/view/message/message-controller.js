@@ -2,10 +2,10 @@
 
 require('./_message.scss');
 
-module.exports = ['$log', /* other dependcies */ MessageController];
+module.exports = ['$log', '$rootScope', '$mdDialog', 'messageService', '$http', '$interval', 'NgMap', '$mdMedia', '$scope', MessageController];
 
-function MessageController($log) {
+function MessageController($log, $rootScope, $mdDialog, messageService, $http, $interval, NgMap, $mdMedia, $scope) {
   $log.debug('MessageController');
 
-  //TODO: Message View Controller
+
 }

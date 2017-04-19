@@ -2,7 +2,7 @@
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Way</h2>
+        <h2>{{ viewWayCtrl.title }}</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="viewWayCtrl.closeDialog()">
           <md-icon ng-md-icon icon="highlight_off"></md-icon>
@@ -17,6 +17,14 @@
         <input type="text" ng-model="viewWayCtrl.way.name">
       </md-input-container> -->
       <span class="md-title">Ayo</span>
+      <div layout="column">
+        <div>
+          <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+        </div>
+        <div layout="row">
+
+        </div>
+      </div>
 
       <md-input-container class="md-icon-float md-block">
         <label>startLocation</label>

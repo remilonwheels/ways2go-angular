@@ -7,6 +7,10 @@ const testDialogComponent = require('../../dialog/test/test-dialog/test-dialog.j
 const createReviewDialog = require('../../dialog/test/create-review/create-review.js');
 const seeReviewDialog = require('../../dialog/test/see-review/see-review.js');
 
+//Message Dialog CRUD componenets
+const createMessageComponent = require('../../dialog/message/create-message/create-message.js');
+
+
 module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', '$mdMedia', '$scope', TestController];
 // INSERT SERVICES IN DEPENDENCIES HERE, ex: wayService
 
@@ -67,5 +71,14 @@ function TestController($log, $rootScope, $mdDialog, wayService, $http, $interva
 
     //DIALOG MAGIC!
     $mdDialog.show(Object.assign(testDialogComponent, dialogConfig));
+  };
+
+  this.createMessage = function ($event, bindFlag) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      scope: $scope.$new(bindFlag)
+    };
+    $mdDialog.show(Object.assign(createMessageComponent, dialogConfig));
   };
 }

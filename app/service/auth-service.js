@@ -7,6 +7,7 @@ function authService($q, $log, $http, $window) {
 
   let service = {};
   let token = null;
+  this.token = token;
 
   function setToken(_token) {
     $log.debug('authService.setToken');
@@ -58,7 +59,7 @@ function authService($q, $log, $http, $window) {
   service.login = function(user) {
     $log.debug('authService.login');
 
-    let url = `${__API_URL__}/api/login` //eslint-disable-line
+    let url = `${__API_URL__}/api/signin` //eslint-disable-line
     let base64 = $window.btoa(`${user.username}:${user.password}`);
     let config = {
       headers: {
@@ -71,6 +72,32 @@ function authService($q, $log, $http, $window) {
     .then( res => {
       $log.log('success:', res.data);
       return setToken(res.data);
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.updateUser = function(user) {
+    $log.debug('authService.updateUser');
+
+    return service.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/user` //eslint-disable-line
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      return $http.put(url, user, config);
+    })
+    .then( res => {
+      $log.log('account updated');
+      return res.data;
     })
     .catch( err => {
       $log.error(err.message);

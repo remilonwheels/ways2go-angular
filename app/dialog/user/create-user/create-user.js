@@ -23,7 +23,7 @@ function SignupController($log, $window, $location, $mdDialog, $mdToast, authSer
   }
 
   this.createUser = function() {
-    $log.debug('SignupController.signup');
+    $log.debug('SignupController.createUser');
 
     this.isLoading = true;
     authService.signup(this.user)

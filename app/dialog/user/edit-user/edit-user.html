@@ -1,0 +1,53 @@
+<md-dialog aria-label="Edit User Details">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>join ways2go</h2>
+        <span flex></span>
+        <md-button class="md-icon-button"
+        aria-label="Close User Sign Up Dialog"
+        ng-click="editUserCtrl.closeDialog()">
+          <md-icon ng-md-icon icon="highlight_off"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content layout-padding layout-margin>
+      <md-input-container class="md-icon-float md-block">
+        <md-icon ng-md-icon icon="person"></md-icon>
+        <input type="text" ng-model="editUserCtrl.user.username" placeholder="username" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <md-icon ng-md-icon icon="dialpad"></md-icon>
+        <input type="password" ng-model="editUserCtrl.user.password" placeholder="password" required>
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <md-icon ng-md-icon icon="mail"></md-icon>
+        <input type="email" ng-model="editUserCtrl.user.email" placeholder="email" required>
+      </md-input-container>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+      <md-button
+        ng-show="!editUserCtrl.isAuthorized"
+        ng-click="editUserCtrl.editUser()"
+        class="md-primary md-raised" layout layout-align="center center">
+        <span ng-show="!editUserCtrl.isLoading">edit account</span>
+        <md-progress-circular md-mode="indeterminate"
+          ng-show="editUserCtrl.isLoading"
+          md-diameter="20"
+          class="md-accent md-hue-1 float-left">
+        </md-progress-circular>
+      </md-button>
+      <md-button
+        ng-show="editUserCtrl.isAuthorized"
+        ng-click="editUserCtrl.goHome()"
+        class="md-primary md-raised" layout layout-align="center center">
+        <span>take me to my homepage</span>
+      </md-button>
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>

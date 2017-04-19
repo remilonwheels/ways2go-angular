@@ -22,6 +22,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService) {
 
   const mapInit = () => {
     NgMap.getMap().then( map => {
+      console.log('ng map init success', map);
       this.map = map;
 
       this.startMarkers = this.ways.map( way => [way.startLocation.lat, way.startLocation.lng]);

@@ -47,6 +47,18 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     });
   };
 
+  this.deleteWay = function(way) {
+    console.log('before delete', this.ways.length);
+    wayService.deleteWay(way)
+    .then( () => {
+      console.log('after delete', this.ways.length);
+      console.log('delete successful');
+    })
+    .catch( err => {
+      $log.error(err);
+    });
+  };
+
   this.toggleView = function() {
     this.mapView = !this.mapView;
   };

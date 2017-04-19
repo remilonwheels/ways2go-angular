@@ -14,12 +14,10 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
   this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
   this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
 
-  if (this.way.startTime) {
-    this.hour12 = this.way['startTime.hour'] % 12;
-    if ( this.way['startTime.hour'] > 12 ) this.ampm = 'pm';
+  if (this.way.hour) {
+    this.way.hour = this.way.hour % 12;
+    if ( this.way.hour > 12 ) this.ampm = 'pm';
     else this.ampm = 'am';
-
-    this.way.startTime.minutes = this.way['startTime.minutes'];
   }
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
@@ -29,22 +27,31 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
   console.log('this in edit load', this);
 
   this.isLoading = false;
+  this.isLoadingDelete = false;
+
+  this.deleteWaySubmit = function() {
+    this.isLoadingDelete = true;
+
+    wayService.deleteWay(this.way._id)
+    .then( res => {
+      console.log(res);
+      $mdToast.showSimple('Deleted Way Successfully');
+      this.isLoading = false;
+
+      $mdDialog.hide();
+    })
+    .catch( err => {
+      $mdToast.showSimple(err.data);
+      this.isLoading = false;
+    });;
+  };
 
   this.editWaySubmit = function() {
     this.isLoading = true;
 
-    if (this.hour12) {
-      this.way['startTime.hour'] = this.hour12;
-      if (this.ampm === 'pm') {
-        this.way['startTime.hour'] += 12;
-      }
+    if (this.ampm) {
+      if (this.ampm === 'pm') this.way.hour += 12;
     }
-
-    if (this.way.startTime.minutes) {
-      this.way['startTime.minutes'] = this.way.startTime.minutes;
-    }
-
-    delete this.way.startTime;
 
     console.log('this.way before api call', this.way);
 
@@ -55,15 +62,6 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
       this.isLoading = false;
 
       $mdDialog.hide();
-      // $scope.apply();
-
-
-      // this.way = updatedWay;
-      // this.way.startLocation = updatedWay.startLocation.fullAddress;
-      // this.way.endLocation = updatedWay.endLocation.fullAddress;
-      // .then( updatedWay => {
-      //   // $scope.$apply();
-      // });
     })
     .catch( err => {
       $mdToast.showSimple(err.data);

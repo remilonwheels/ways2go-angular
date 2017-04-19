@@ -1,5 +1,4 @@
 'use strict';
-'use strict';
 
 require('./_way-detail.scss');
 

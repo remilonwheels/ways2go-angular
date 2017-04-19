@@ -48,6 +48,12 @@
         class="md-primary md-raised" layout layout-align="center center">
         <span>update user details</span>
       </md-button>
+      <md-button
+        ng-show="signinCtrl.isAuthorized"
+        ng-click="signinCtrl.deleteUser()"
+        class="md-primary md-raised" layout layout-align="center center">
+        <span>delete account</span>
+      </md-button>
     </md-dialog-actions>
 
   </form>

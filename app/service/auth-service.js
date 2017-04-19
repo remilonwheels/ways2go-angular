@@ -100,7 +100,31 @@ function authService($q, $log, $http, $window) {
       return res.data;
     })
     .catch( err => {
-      $log.error(err.message);
+      $log.error(err.data);
+      return $q.reject(err);
+    });
+  };
+
+  service.deleteUser = function() {
+    $log.debug('authService.deleteUser');
+
+    return service.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/user`; //eslint-disable-line
+      let config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      return $http.delete(url, config);
+    })
+    .then( res => {
+      $log.log('account removed');
+      return res.data;
+    })
+    .catch( err => {
+      $log.error(err.data);
       return $q.reject(err);
     });
   };

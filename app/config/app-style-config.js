@@ -24,4 +24,5 @@ function appStyleConfig($mdThemingProvider) {
 
   $mdThemingProvider.setDefaultTheme('default');
   // $mdThemingProvider.setDefaultTheme('blueGreyPrmCyanAcc');
+
 }

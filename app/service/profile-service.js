@@ -97,7 +97,34 @@ function profileService($q, $log, $http, Upload, authService) {
         }
       };
 
-      return $http.get(url, config);
+      return $http.get(url, {headers: headers});
+    })
+    .then( res => {
+      $log.log('profile retrieved');
+      service.profile = res.data;
+      return service.profile;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.fetchProfileByID = function(profileID) {
+    $log.debug('profileService.updateProfile');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/profile/${profileID}`; //eslint-disable-line
+
+      let headers = {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      };
+
+      return $http.get(url, {headers: headers});
+
     })
     .then( res => {
       $log.log('profile retrieved');

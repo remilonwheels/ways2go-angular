@@ -11,19 +11,39 @@
       </div>
     </md-toolbar>
     <!-- END OF HEADER -->
-
-    <md-dialog-content layout-margin layout-padding>
-    <!-- INSERT CONTENT HERE -->
-    </md-dialog-content>
-
-    <!-- INSERT ACTIONS/OR WHATEVER YOU WANT AS A FOOTER BELOW -->
-    <md-dialog-actions>
+    <md-dialog-actions layout-margin>
       <!-- EXAMPLE LOADING BUTTON -->
-      <md-button ng-click="createMessageCtrl.createMessageSubmit()" class="md-accent md-raised" layout layout-align="center center">
+      <md-button ng-click="createMessageCtrl.createMessageSubmit()" class="md-accent md-raised" layout-align="center center">
         <span ng-show="!createMessageCtrl.isLoading">SEND</span>
         <md-progress-circular md-mode="indeterminate" ng-show="createMessageCtrl.isLoading" md-diameter="20" class="md-primary md-hue-1 float-left"></md-progress-circular>
       </md-button>
     </md-dialog-actions>
+
+    <md-dialog-content layout-margin layout-padding>
+
+      <md-input-container class="md-icon-float md-block">
+        <label>to:</label>
+        <input type="text" ng-model="createMessageCtrl.message.toProfileID">
+      </md-input-container>
+
+      <!-- <md-input-container class="md-icon-float md-block">
+        <label>from: {{ createMessageCtrl.message.fromProfileID}}</label>
+        <input type="text" ng-model="createMessageCtrl.message.fromProfileID">
+      </md-input-container> -->
+
+      <md-input-container class="md-icon-float md-block">
+        <label>subject:</label>
+        <input type="text" ng-model="createMessageCtrl.message.subject">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">
+        <label></label>
+        <textarea type="text" rows="3" ng-model="createMessageCtrl.message.text">
+      </md-input-container>
+
+    </md-dialog-content>
+
+    <!-- INSERT ACTIONS/OR WHATEVER YOU WANT AS A FOOTER BELOW -->
 
   </form>
 </md-dialog>

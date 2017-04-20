@@ -4,11 +4,11 @@ require('./_view-way.scss');
 
 module.exports = {
   template: require('./view-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', ViewWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', ViewWayController],
   controllerAs: 'viewWayCtrl'
 };
 
-function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
+function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService) {
 
   this.way = wayService.getOneWay(way._id);
 
@@ -47,22 +47,12 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
 
   this.isLoading = false;
 
-  this.editWaySubmit = function() {
+  this.joinSubmit = function() {
     this.isLoading = true;
 
-    if (this.hour12) {
-      this.way['startTime.hour'] = this.hour12;
-      if (this.ampm === 'pm') {
-        this.way['startTime.hour'] += 12;
-      }
-    }
 
-    this.way['startTime.minutes'] = this.way.startTime.minutes;
-    delete this.way.startTime;
 
-    console.log('this.way before api call', this.way);
-
-    wayService.editWay(this.way)
+    messageService.createMessage(this.way)
     .then( res => {
       console.log(res);
       $mdToast.showSimple('Changed Way Successfully');

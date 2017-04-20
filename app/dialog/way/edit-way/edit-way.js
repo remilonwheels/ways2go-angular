@@ -10,7 +10,6 @@ module.exports = {
 
 function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
   this.way = wayService.getOneWay(way._id);
-  console.log('edit way', this.way);
   this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
   this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
 

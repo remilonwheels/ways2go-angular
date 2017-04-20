@@ -21,7 +21,6 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
   this.isLoading = false;
 
   this.createWaySubmit = function() {
-    console.log('this.way in post before', this.way);
     this.isLoading = true;
 
     if (this.ampm) {

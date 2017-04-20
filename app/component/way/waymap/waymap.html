@@ -17,10 +17,9 @@
     center="current-location"
     geo-fallback-center="47.618217,-122.351832"
     class="map"
-    map-type-control-options="{style:'HORIZONTAL_BAR', position:'BOTTOM_CENTER'}">
-
-    <marker ng-repeat="loc in wayMapCtrl.startMarkers" position="{{loc}}"></marker>
-    <marker ng-repeat="loc in wayMapCtrl.endMarkers" position="{{loc}}"></marker>
-
+    map-type-control-options="{style:'HORIZONTAL_BAR', position:'TOP_LEFT'}"
+    street-view-control-options="{position:'RIGHT_TOP'}"
+    zoom-control-options="{style:'LARGE', position:'RIGHT_TOP'}"
+    map-initialized="wayMapCtrl.mapInit()">
   </ng-map>
 </div>

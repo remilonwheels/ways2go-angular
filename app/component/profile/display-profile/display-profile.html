@@ -1,5 +1,5 @@
-<!-- <section layout="column">
- -->  <section layout="row" layout-fill flex>
+<section layout="column">
+  <section layout="row" layout-fill flex>
     <md-sidenav
         class="md-sidenav-left"
         md-component-id="left"
@@ -27,7 +27,7 @@
         </p>
       </md-content>
       <md-card>
-        <img src="{{ displayProfileCtrl.profile.photo }}"
+        <img ng-src="{{ displayProfileCtrl.profile.photo }}"
         alt="photo of {{displayProfileCtrl.profile.displayName}}"
         class="md-media-xl card-media">
         <md-card-title>
@@ -65,4 +65,4 @@
       </md-fab-speed-dial>
     </md-sidenav>
   </section>
-<!-- </section> -->
+</section>

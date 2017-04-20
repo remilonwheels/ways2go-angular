@@ -5,14 +5,15 @@ require('./_display-profile.scss');
 module.exports = {
   template: require('./display-profile.html'),
   controller: ['$log', '$mdToast', '$mdSidenav', '$window', DisplayProfileController],
-  controllerAs: 'displayProfileCtrl'
+  controllerAs: 'displayProfileCtrl',
+  bindings: {
+    profile: '<'
+  }
 };
 
-function DisplayProfileController($log, $mdToast, $mdSidenav, $window) {
+function DisplayProfileController($log, $mdToast, $mdSidenav) {
   $log.debug('DisplayProfileController');
 
-  // if (!$window.token) return $mdToast.showSimple('unauthorized request');
-  
   this.closeProfile = function() {
     $mdSidenav('left').close();
   };

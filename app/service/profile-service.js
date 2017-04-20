@@ -166,5 +166,44 @@ function profileService($q, $log, $http, Upload, authService) {
     });
   };
 
+  // profileRouter.get('/api/profile', bearerAuth, function(req, res, next) {
+  // debug('GET: /api/profile');
+  //
+  // Profile.find({})
+  // .then( profiles => {
+  //   if (!profiles) return next(createError(404, 'no profiles available'));
+  //   res.json(profiles);
+  // })
+  // .catch(next);
+  // });
+
+  service.fetchAllProfiles = function(){
+    $log.debug('profileService.fetchAllProfiles');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/profile`; //eslint-disable-line
+
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      return $http.get(url, config);
+    })
+    .then( res => {
+      $log.log('all profiles retrieved');
+      service.allProfiles = res.data;
+      return service.allProfiles;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
   return service;
 }

@@ -4,14 +4,14 @@ require('./_mobile-header.scss');
 
 module.exports = {
   template: require('./mobile-header.html'),
-  controller: ['$log', '$http', '$location', '$mdToast', '$rootScope', '$state', 'authService', MobileHeaderController],
+  controller: ['$log', '$http', '$location', '$mdToast', '$rootScope', 'authService', MobileHeaderController],
   controllerAs: 'mobileHeaderCtrl',
   bindings: {
     ways: '<'
   }
 };
 
-function MobileHeaderController($log, $http, $location, $mdToast, $rootScope, $state, authService) {
+function MobileHeaderController($log, $http, $location, $mdToast, $rootScope, authService) {
 
   this.currentUrl = $location.url();
 

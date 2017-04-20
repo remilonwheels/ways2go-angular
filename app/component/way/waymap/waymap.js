@@ -19,6 +19,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   //map config
   this.type = 'geocode';
   this.centerOnLoad = [ 47.618217, -122.351832 ];
+  // this.isMapInitialized = false;
 
   const drawWays = () => {
     NgMap.getMap().then( map => {
@@ -90,8 +91,9 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   };
 
   //map data
-  const mapInit = () => {
+  this.mapInit = () => {
     NgMap.getMap().then( map => {
+      this.isMapInitialized = true;
       this.map = map;
       drawWays();
 
@@ -129,11 +131,18 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
     $mdDialog.show(Object.assign(viewWayComponent, dialogConfig));
   };
 
+  // function isMapInitialized() {
+  //   console.log('in isMapInitialized()', this.isMapInitialized);
+  //   return this.isMapInitialized;
+  // }
+
   $scope.$on('wayChange', function() {
     console.log('waychange broadcast');
     console.log();
+
+    // if (isMapInitialized()) drawWays();
     drawWays();
   });
 
-  mapInit();
+  // mapInit();
 }

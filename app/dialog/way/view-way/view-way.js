@@ -13,6 +13,10 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
   this.way = wayService.getOneWay(way._id);
   this.title = this.way.name || 'Way';
 
+  this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
+  this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
+
+
   console.log('wayer 0', this.way.wayerz[0]);
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];

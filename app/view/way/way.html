@@ -4,7 +4,6 @@
     <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
     <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>
   </div>
-  <!-- <h2>wayview: {{ wayCtrl.ways.length }} </h2> -->
 
   <way-detail ways="wayCtrl.ways" ng-show="!wayCtrl.mapView"></way-detail>
 

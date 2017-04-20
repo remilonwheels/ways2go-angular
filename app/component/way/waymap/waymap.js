@@ -127,6 +127,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   const setPlaceChange = (place) => {
     this.place = place;
     this.map.setCenter(this.place.geometry.location);
+    $log.debug('wapmap searchbar address', this.address);
   };
 
   const viewWay = function ($event, bindFlag, way) {

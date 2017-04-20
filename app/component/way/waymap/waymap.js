@@ -21,11 +21,22 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   this.centerOnLoad = [ 47.618217, -122.351832 ];
   // this.isMapInitialized = false;
 
+  this.startMarkers = [];
+  this.endMarkers = [];
+  this.googlePaths = [];
+
   const drawWays = () => {
     NgMap.getMap().then( map => {
-      const startMarkers = [];
-      const endMarkers = [];
-      const googlePaths = [];
+      // const startMarkers = [];
+      // const endMarkers = [];
+      // const googlePaths = [];
+
+      this.startMarkers.forEach( marker => marker.setMap(null));
+      this.endMarkers.forEach( marker => marker.setMap(null));
+      this.googlePaths.forEach( path => path.setMap(null));
+      this.startMarkers = [];
+      this.endMarkers = [];
+      this.googlePaths = [];
 
       this.ways.forEach( way => {
 
@@ -79,9 +90,12 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           }],
         });
 
-        startMarkers.push(startMarker);
-        endMarkers.push(endMarker);
-        googlePaths.push(googlePath);
+        this.startMarkers.push(startMarker);
+        this.endMarkers.push(endMarker);
+        this.googlePaths.push(googlePath);
+        // startMarkers.push(startMarker);
+        // endMarkers.push(endMarker);
+        // googlePaths.push(googlePath);
 
         google.maps.event.addListener(startMarker, 'click', function() {
           let _way = wayService.getOneWay(this.wayID);

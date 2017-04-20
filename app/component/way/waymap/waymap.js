@@ -121,12 +121,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
     this.map.setCenter(this.place.geometry.location);
   };
 
-
-  this.wayClick = function(event) {
-    console.log('event in wayclick', event);
-    console.log('this in wayclick', this);
-  };
-
   const viewWay = function ($event, bindFlag, way) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),
@@ -141,18 +135,10 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
     $mdDialog.show(Object.assign(viewWayComponent, dialogConfig));
   };
 
-  // function isMapInitialized() {
-  //   console.log('in isMapInitialized()', this.isMapInitialized);
-  //   return this.isMapInitialized;
-  // }
 
   $scope.$on('wayChange', function() {
     console.log('waychange broadcast');
-    console.log();
 
-    // if (isMapInitialized()) drawWays();
     drawWays();
   });
-
-  // mapInit();
 }

@@ -3,7 +3,7 @@
     <!-- HEADER -->
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2></h2>
+        <h2>{{ readMessageCtrl.message.subject }}</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="readMessageCtrl.closeDialog()">
           <md-icon ng-md-icon icon="highlight_off"></md-icon>
@@ -13,7 +13,7 @@
     <!-- END OF HEADER -->
 
     <md-dialog-content layout-margin layout-padding>
-
+      <p>{{ readMessageCtrl.message.text }}</p>
     </md-dialog-content>
 
     <!-- INSERT ACTIONS/OR WHATEVER YOU WANT AS A FOOTER BELOW -->

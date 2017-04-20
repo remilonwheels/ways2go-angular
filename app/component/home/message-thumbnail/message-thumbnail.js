@@ -21,8 +21,9 @@ function MessageThumbnailController($q, $log, $http, $interval, $mdMedia, $scope
     this.profile = profile;
     return messageService.fetchMessages();
   })
-  .catch(() => {
-    // this.profile = {_id: '123'};
+  .catch((e) => {
+    console.error("Failed to fetch profile: ", e);
+    this.profile = {_id: '58f7e2802a70f40011b1ad16'};
     return messageService.fetchMessages();
   })
   .then((messages) => {
@@ -33,9 +34,9 @@ function MessageThumbnailController($q, $log, $http, $interval, $mdMedia, $scope
     //   fromProfileId: this.profile._id, toProfileId: 'foo'});
 
     if (this.incoming) {
-      this.messages = this.messages.filter((msg) => (msg.toProfileId == this.profile._id));
+      this.messages = this.messages.filter((msg) => (msg.toProfileID == this.profile._id));
     } else {
-      this.messages = this.messages.filter((msg) => (msg.fromProfileId == this.profile._id));
+      this.messages = this.messages.filter((msg) => (msg.fromProfileID == this.profile._id));
     }
   })
   .catch((err) => {
@@ -49,7 +50,7 @@ function MessageThumbnailController($q, $log, $http, $interval, $mdMedia, $scope
       targetEvent: $event,
       scope: $scope.$new(bindFlag),
       resolve: {
-        way: function() {
+        message: function() {
           return message;
         }
       },

@@ -5,15 +5,14 @@ require('./_read-message.scss');
 
 module.exports = {
   template: require('./read-message.html'),
-  controller: ['$q', '$log', '$mdDialog', '$mdToast','messageService', '$timeout', ReadMessageController],
-  controllerAs: 'readMessageCtrl',
-  bindings: {
-
-  }
+  controller: ['$q', '$log', '$mdDialog', '$mdToast','messageService', '$timeout', 'message', ReadMessageController],
+  controllerAs: 'readMessageCtrl'
 };
 
-function ReadMessageController($q, $log, $mdDialog, $mdToast,  messageService, $timeout) {
+function ReadMessageController($q, $log, $mdDialog, $mdToast,  messageService, $timeout, message) {
   $log.debug('ReadMessageController');
+
+  this.message = message;
 
   this.readMessageSubmit = function() {
     this.isLoading = true;

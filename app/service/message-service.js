@@ -55,5 +55,21 @@ function messageService($q, $log, $http, Upload, authService) {
       return $q.reject(err);
     });
   };
+
+  service.getMessages = function() {
+    $log.log('messageService.getMessages');
+    return service.messages;
+  };
+  service.getOneMessage = function(messageID) {
+    $log.log('messageService.getOneMessage');
+
+    for (let m in service.messages) {
+      if (service.messages[m]._id === messageID) {
+        return service.messages[m];
+      }
+    }
+    return null;
+  };
+
   return service;
 }

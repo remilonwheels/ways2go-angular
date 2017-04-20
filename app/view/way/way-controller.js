@@ -35,12 +35,6 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.fetchWays = function() {
     wayService.fetchWays()
     .then( ways => {
-      //changed this assignment for binding issue
-      // angular.copy(ways, this.ways) //eslint-disable-line
-      //old
-      // this.ways = ways;
-
-      console.log('this.ways in way controller fetchways:', this.ways);
     })
     .catch( err => {
       $log.error(err);
@@ -48,11 +42,8 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   };
 
   this.deleteWay = function(way) {
-    console.log('before delete', this.ways.length);
     wayService.deleteWay(way)
     .then( () => {
-      console.log('after delete', this.ways.length);
-      console.log('delete successful');
     })
     .catch( err => {
       $log.error(err);

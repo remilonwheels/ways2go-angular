@@ -31,24 +31,26 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
       this.googlePaths = [];
 
       this.ways.forEach( way => {
+
+        let startPos = new google.maps.LatLng(way.startLocation.lat, way.startLocation.lng);
+        let endPos = new google.maps.LatLng(way.endLocation.lat, way.endLocation.lng);
+
+        let bounds = new google.maps.LatLngBounds();
+        bounds.extend(startPos);
+        bounds.extend(endPos);
+        this.map.fitBounds(bounds);
+
         let startMarker = new google.maps.Marker({
           map: this.map,
-          position: new google.maps.LatLng(way.startLocation.lat, way.startLocation.lng),
+          position: startPos,
           wayID: way._id
         });
 
         let endMarker = new google.maps.Marker({
           map: this.map,
-          position: new google.maps.LatLng(way.endLocation.lat, way.endLocation.lng),
+          position: endPos,
           wayID: way._id
         });
-
-        var flightPlanCoordinates = [
-          {lat: 37.772, lng: -122.214},
-          {lat: 21.291, lng: -157.821},
-          {lat: -18.142, lng: 178.431},
-          {lat: -27.467, lng: 153.027}
-        ];
 
         let waypath = [
           {
@@ -69,7 +71,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           strokeOpacity: 1.0,
           strokeWeight: 2
         });
-        // flightPath.setMap(map);
 
         this.startMarkers.push(startMarker);
         this.endMarkers.push(endMarker);
@@ -89,21 +90,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           viewWay(event, true, way);
         });
       });
-
-      // METHOD THAT SHOWS MARKERS USING NG-REPEAT
-      // this.startMarkers = [];
-      // this.endMarkers = [];
-      // this.paths = [];
-      //
-      // this.ways.forEach( way => {
-      //   this.startMarkers.push([way.startLocation.lat, way.startLocation.lng]);
-      //
-      //   this.endMarkers.push([way.endLocation.lat, way.endLocation.lng]);
-      //
-      //   this.paths.push([[way.startLocation.lat, way.startLocation.lng],[way.endLocation.lat, way.endLocation.lng]]);
-      // });
-
-      console.log('map markers', map.markers);
     });
   };
 

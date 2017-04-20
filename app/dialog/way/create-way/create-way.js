@@ -23,8 +23,9 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
   this.createWaySubmit = function() {
     this.isLoading = true;
 
-    if (this.ampm) {
-      if (this.ampm === 'pm') this.way.hour += 12;
+    if (this.hour12) {
+      if (this.ampm === 'pm') this.way.hour = 12 + this.hour12;
+      else this.way.hour = this.hour12;
     }
 
 

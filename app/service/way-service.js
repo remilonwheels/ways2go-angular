@@ -122,6 +122,7 @@ function wayService($q, $log, $http, authService) {
 
   service.getWays = function() {
     $log.log('wayService.getWays');
+    console.log(service.ways);
     return service.ways;
   };
 

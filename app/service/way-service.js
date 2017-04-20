@@ -137,5 +137,40 @@ function wayService($q, $log, $http, authService) {
     return;
   };
 
+
+//wayRouter.post('/api/way/:wayID/wayerz/:wayerID
+  service.addWayer = function(wayID, wayerID) {
+    $log.debug('wayService.addWayer');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/way/${wayID}/wayerz/${wayerID}`; //eslint-disable-line
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+
+      return $http.post(url, null, config);
+    })
+    .then( res => {
+      $log.log('wayer created');
+      let wayer = res.data;
+
+      service.getOneWay(wayer._id)
+
+      // service.ways.unshift(way);
+      return res.data;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+
   return service;
 }

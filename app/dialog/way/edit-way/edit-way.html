@@ -36,9 +36,9 @@
           </md-select>
           <p class="md-caption">Add {{ editWayCtrl.wayerToAdd ? editWayCtrl.wayerToAdd.displayName : 'No one yet' }} to the Way</p>
         </div>
-        <md-button ng-click="editWayCtrl.editWaySubmit()" class="md-primary md-raised" layout layout-align="center center">
-          <span ng-show="!editWayCtrl.isLoading">Add</span>
-          <md-progress-circular md-mode="indeterminate" ng-show="editWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
+        <md-button ng-click="editWayCtrl.addWayerSubmit()" class="md-primary md-raised" layout layout-align="center center">
+          <span ng-show="!editWayCtrl.isLoadingWayer">Add</span>
+          <md-progress-circular md-mode="indeterminate" ng-show="editWayCtrl.isLoadingWayer" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
         </md-button>
       </div>
     <!-- //////////////////////////////////////////////////////////// -->

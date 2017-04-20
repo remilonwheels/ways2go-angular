@@ -4,21 +4,22 @@ require('./_create-message.scss');
 
 module.exports = {
   template: require('./create-message.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', '$timeout', CreateMessageController],
+  controller: ['$log', '$mdDialog', '$mdToast','messageService', '$timeout', CreateMessageController],
   controllerAs: 'createMessageCtrl'
 };
 
 function CreateMessageController($log, $mdDialog, $mdToast,  messageService, $timeout) {
   $log.debug('CreateMessageController');
 
+
+
   this.createMessageSubmit = function() {
+    console.log('create message this.message',this.message);
     this.isLoading = true;
-    $timeout(2000, () => {
-      //2 sec delay to simulate async(call to api)
-      return;
-    })
-    .then( () => {
-      $mdToast.showSimple('Success!');
+
+    messageService.createMessage(this.message)
+    .then( message => {
+      $mdToast.showSimple('Message Sent');
       this.isLoading = false;
       $mdDialog.hide();
     })

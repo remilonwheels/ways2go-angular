@@ -19,9 +19,16 @@
     class="map"
     map-type-control-options="{style:'HORIZONTAL_BAR', position:'BOTTOM_CENTER'}">
 
-    <marker ng-repeat="loc in wayMapCtrl.startMarkers" position="{{loc}}"></marker>
+    <!-- <marker
+      ng-repeat="loc in wayMapCtrl.startMarkers" position="{{loc}}"
+      on-click="wayMapCtrl.wayClick()">
+    </marker>
 
-    <marker ng-repeat="loc in wayMapCtrl.endMarkers" position="{{loc}}"></marker>
+    <marker
+      ng-repeat="loc in wayMapCtrl.endMarkers"
+      position="{{loc}}"
+      on-click="wayMapCtrl.wayClick()">
+    </marker>
 
     <shape
       name="polyline"
@@ -30,7 +37,7 @@
       stroke-color="#FF0000"
       stroke-opacity="1.0"
       stroke-weight="3">
-    </shape>
+    </shape> -->
 
   </ng-map>
 </div>

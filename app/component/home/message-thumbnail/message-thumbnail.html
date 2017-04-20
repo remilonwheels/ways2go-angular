@@ -1,7 +1,9 @@
 
 <md-list-item class="secondary-button-padding" layout-margin layout-padding
   ng-repeat="message in messagethumbnailCtrl.messages | limitTo: 3">
-  <span flex="none">from: {{ message.displayName }}</span>
+  <span ng-if="!incoming">to:</span>
+  <span ng-if="incoming">from:</span>
+  <span flex="none">{{ message.displayName }}</span>
   <span class="md-title">{{ message.subject}}</span>
   <span class="md-subhead">{{ message.text | limitTo: 30}}</span>
   <span class="md-subhead" flex="none">{{ message.timestamp | limitTo: 10}}</span>

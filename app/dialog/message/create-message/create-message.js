@@ -4,18 +4,28 @@ require('./_create-message.scss');
 
 module.exports = {
   template: require('./create-message.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','messageService', '$timeout', CreateMessageController],
+  controller: ['$log', '$mdDialog', '$mdToast','messageService', '$timeout', 'profileService',  CreateMessageController],
   controllerAs: 'createMessageCtrl'
 };
 
-function CreateMessageController($log, $mdDialog, $mdToast,  messageService, $timeout) {
+function CreateMessageController($log, $mdDialog, $mdToast,  messageService,  $timeout, profileService) {
   $log.debug('CreateMessageController');
 
 
+  this.profileToAdd = null;
+  this.allProfiles = null;
+  this.loadAllProfiles = function() {
+    profileService.fetchAllProfiles()
+    .then( profiles => {
+      this.allProfiles = profiles;
+    })
+    .catch( err => $log.debug(err));
+  };
 
   this.createMessageSubmit = function() {
-    console.log('create message this.message',this.message);
     this.isLoading = true;
+
+    this.message.toProfileID = this.profileToAdd.profileID;
 
     messageService.createMessage(this.message)
     .then( message => {

@@ -23,8 +23,20 @@
 
       <md-input-container class="md-icon-float md-block">
         <label>to:</label>
-        <input type="text" ng-model="createMessageCtrl.message.toProfileID">
-      </md-input-container>
+        <md-select ng-model="createMessageCtrl.profileToAdd" md-on-open="createMessageCtrl.loadAllProfiles()">
+          <md-option ng-value="profileToAdd" ng-repeat="profileToAdd in createMessageCtrl.allProfiles">{{profileToAdd.displayName}}</md-option>
+        </md-select>
+        </md-input-container>
+
+
+<!-- class="md-icon-float md-block" -->
+
+      <!-- <div layout="column" layout-align="center center">
+        <md-select placeholder="Add a Wayer" ng-model="editWayCtrl.wayerToAdd" md-on-open="editWayCtrl.loadAllProfiles()" style="min-width: 200px;">
+          <md-option ng-value="wayerToAdd" ng-repeat="wayerToAdd in editWayCtrl.allProfiles">{{wayerToAdd.displayName}}</md-option>
+        </md-select>
+        <p class="md-caption">Add {{ editWayCtrl.wayerToAdd ? editWayCtrl.wayerToAdd.displayName : 'No one yet' }} to the Way</p>
+      </div> -->
 
       <!-- <md-input-container class="md-icon-float md-block">
         <label>from: {{ createMessageCtrl.message.fromProfileID}}</label>

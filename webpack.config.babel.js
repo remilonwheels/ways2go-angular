@@ -51,7 +51,9 @@ module.exports = () => {
         },
         { //:::: png ::::
           test: /\.(png|svg)$/,
-          use: 'file-loader?name=/assets/[path][name].[ext]',
+          use: 'file-loader',
+          // use: 'file-loader?name=[name].[ext]',
+
         },
       ],
     },

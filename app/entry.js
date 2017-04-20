@@ -2,7 +2,7 @@
 
 require('./scss/main.scss');
 require('angular-material/angular-material.scss');
-require('./assets/ways2go.svg');
+const logo = require('./assets/ways2go.svg');
 
 const
   path = require('path'),

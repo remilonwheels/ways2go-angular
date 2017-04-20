@@ -60,13 +60,24 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           }
         ];
 
+        let dash = {
+          // path: 'M -1,-1 0,1 1,-1',
+          path: 'M -1,1 0,-1 1,1',
+          strokeOpacity: 1,
+          scale: 3.5
+        };
+
         let googlePath = new google.maps.Polyline({
           map: map,
           path: waypath,
           geodesic: true,
-          strokeColor: '#FF0000',
-          strokeOpacity: 1.0,
-          strokeWeight: 2
+          strokeColor: '#3f51b5',
+          strokeOpacity: 0,
+          icons: [{
+            icon: dash,
+            offset: '0',
+            repeat: '20px'
+          }],
         });
 
         startMarkers.push(startMarker);

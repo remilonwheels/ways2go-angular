@@ -32,7 +32,7 @@
         <md-select placeholder="Add a Wayer" ng-model="editWayCtrl.wayerToAdd" md-on-open="editWayCtrl.loadAllProfiles()" style="min-width: 200px;">
           <md-option ng-value="wayerToAdd" ng-repeat="wayerToAdd in editWayCtrl.allProfiles">{{wayerToAdd.displayName}}</md-option>
         </md-select>
-        <p class="md-caption">You have assigned the task to: {{ editWayCtrl.wayerToAdd ? editWayCtrl.wayerToAdd.displayName : 'No one yet' }}</p>
+        <p class="md-caption">Add {{ editWayCtrl.wayerToAdd ? editWayCtrl.wayerToAdd.displayName : 'No one yet' }} to the Way</p>
       </div>
     <!-- //////////////////////////////////////////////////////////// -->
 

@@ -34,7 +34,8 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
   this.isLoading = false;
   this.isLoadingDelete = false;
 
-  this.allProfiles = [];
+  this.wayerToAdd = null;
+  this.allProfiles = null;
   this.loadAllProfiles = function() {
     profileService.fetchAllProfiles()
     .then( profiles => {

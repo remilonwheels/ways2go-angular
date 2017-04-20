@@ -10,13 +10,17 @@
     <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoHome()">
       <md-icon ng-md-icon icon="home" ></md-icon>
     </md-button>
+    <md-button class="md-fab md-mini" aria-label="Proile" ng-click="mobileHeaderCtrl.toggleProfile()" hide-gt-xs>
+      <md-icon ng-md-icon icon="account_circle" ></md-icon>
+    </md-button>
     <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoWay()">
       <md-icon ng-md-icon icon="directions_car"></md-icon>
     </md-button>
     <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoMessage()">
       <md-icon ng-md-icon icon="message"></md-icon>
     </md-button>
-    <md-button class="md-raised" aria-label="Sign out">
+    <md-button class="md-raised" aria-label="Sign out"
+      ng-click="mobileHeaderCtrl.logout()">
       Sign out
     </md-button>
   </div>

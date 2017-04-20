@@ -1,12 +1,12 @@
-<md-dialog aria-label="Create a Profile">
+<md-dialog aria-label="Edit your Profile">
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>tell people about yourself</h2>
+        <h2>update your profile</h2>
         <span flex></span>
         <md-button class="md-icon-button"
-        aria-label="Close Create Profile Dialog"
-        ng-click="createProfileCtrl.closeDialog()">
+        aria-label="Close Edit Profile Dialog"
+        ng-click="editProfileCtrl.closeDialog()">
           <md-icon ng-md-icon icon="highlight_off"></md-icon>
         </md-button>
       </div>
@@ -18,7 +18,7 @@
         <input
           type="text"
           placeholder="displayName"
-          ng-model="createProfileCtrl.profile.displayName"
+          ng-model="editProfileCtrl.profile.displayName"
           required>
       </md-input-container>
 
@@ -27,7 +27,7 @@
         <input
           type="text"
           placeholder="Full Name"
-          ng-model="createProfileCtrl.profile.fullName"
+          ng-model="editProfileCtrl.profile.fullName"
           required>
       </md-input-container>
 
@@ -36,7 +36,7 @@
         <input
           type="text"
           placeholder="your address"
-          ng-model="createProfileCtrl.profile.address"
+          ng-model="editProfileCtrl.profile.address"
           required>
       </md-input-container>
 
@@ -46,7 +46,7 @@
           placeholder="fun facts about you"
           md-maxlength="500"
           rows="3"
-          ng-model="createProfileCtrl.profile.bio"
+          ng-model="editProfileCtrl.profile.bio"
           aria-label="profile bio field"
           required></textarea>
       </md-input-container>
@@ -56,17 +56,17 @@
         <md-button
           class="md-raised"
           ngf-select
-          ng-model="createProfileCtrl.profile.photo">
+          ng-model="editProfileCtrl.profile.photo">
           upload a profile photo
         </md-button>
       </md-input-container>
     </md-dialog-content>
 
     <md-dialog-actions>
-      <md-button ng-click="createProfileCtrl.createProfile()"
+      <md-button ng-click="editProfileCtrl.updateProfile()"
       class="md-primary md-raised" layout layout-align="center center">
-      <span ng-show="!createProfileCtrl.isLoading">home</span>
-      <md-progress-circular md-mode="indeterminate" ng-show="createProfileCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
+      <span ng-show="!editProfileCtrl.isLoading">send updates</span>
+      <md-progress-circular md-mode="indeterminate" ng-show="editProfileCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
       </md-button>
     </md-dialog-actions>
 

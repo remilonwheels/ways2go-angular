@@ -4,20 +4,26 @@ require('./_mobile-header.scss');
 
 module.exports = {
   template: require('./mobile-header.html'),
-  controller: ['$log', '$http', '$location', '$mdToast', '$rootScope', 'authService', MobileHeaderController],
+  controller: ['$log', '$http', '$location', '$mdToast', '$rootScope', '$state', 'authService', MobileHeaderController],
   controllerAs: 'mobileHeaderCtrl',
   bindings: {
     ways: '<'
   }
 };
 
-function MobileHeaderController($log, $http, $location, $mdToast, $rootScope, authService) {
+function MobileHeaderController($log, $http, $location, $mdToast, $rootScope, $state, authService) {
+
+  this.currentUrl = $location.url();
+
+  $rootScope.$on('$locationChangeSuccess', () => {
+    this.currentUrl = $location.url();
+  });
 
   this.gotoWay = function() {
     $location.url('/way');
   };
   this.gotoHome = function() {
-    $location.url('/test');
+    $location.url('/home');
   };
   this.gotoMessage = function() {
     $location.url('/message');

@@ -21,67 +21,71 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   this.centerOnLoad = [ 47.618217, -122.351832 ];
 
   const drawWays = () => {
-    const startMarkers = [];
-    const endMarkers = [];
-    const googlePaths = [];
+    NgMap.getMap().then( map => {
+      const startMarkers = [];
+      const endMarkers = [];
+      const googlePaths = [];
 
-    this.ways.forEach( way => {
+      this.ways.forEach( way => {
 
-      let startPos = new google.maps.LatLng(way.startLocation.lat, way.startLocation.lng);
-      let endPos = new google.maps.LatLng(way.endLocation.lat, way.endLocation.lng);
+        let startPos = new google.maps.LatLng(way.startLocation.lat, way.startLocation.lng);
+        let endPos = new google.maps.LatLng(way.endLocation.lat, way.endLocation.lng);
 
-      let bounds = new google.maps.LatLngBounds();
-      bounds.extend(startPos);
-      bounds.extend(endPos);
-      this.map.fitBounds(bounds);
+        let bounds = new google.maps.LatLngBounds();
+        bounds.extend(startPos);
+        bounds.extend(endPos);
+        map.fitBounds(bounds);
 
-      let startMarker = new google.maps.Marker({
-        map: this.map,
-        position: startPos,
-        wayID: way._id
+        let startMarker = new google.maps.Marker({
+          map: map,
+          position: startPos,
+          wayID: way._id
+        });
+
+        let endMarker = new google.maps.Marker({
+          map: map,
+          position: endPos,
+          wayID: way._id
+        });
+
+        let waypath = [
+          {
+            lat: way.startLocation.lat,
+            lng: way.startLocation.lng
+          },
+          {
+            lat: way.endLocation.lat,
+            lng: way.endLocation.lng
+          }
+        ];
+
+        let googlePath = new google.maps.Polyline({
+          map: map,
+          path: waypath,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        startMarkers.push(startMarker);
+        endMarkers.push(endMarker);
+        googlePaths.push(googlePath);
+
+        google.maps.event.addListener(startMarker, 'click', function() {
+          let _way = wayService.getOneWay(this.wayID);
+
+          viewWay(event, true, _way);
+        });
+
+        google.maps.event.addListener(endMarker, 'click', function() {
+          let _way = wayService.getOneWay(this.wayID);
+
+          viewWay(event, true, _way);
+        });
       });
 
-      let endMarker = new google.maps.Marker({
-        map: this.map,
-        position: endPos,
-        wayID: way._id
-      });
 
-      let waypath = [
-        {
-          lat: way.startLocation.lat,
-          lng: way.startLocation.lng
-        },
-        {
-          lat: way.endLocation.lat,
-          lng: way.endLocation.lng
-        }
-      ];
-
-      let googlePath = new google.maps.Polyline({
-        map: this.map,
-        path: waypath,
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2
-      });
-
-      startMarkers.push(startMarker);
-      endMarkers.push(endMarker);
-      googlePaths.push(googlePath);
-
-      google.maps.event.addListener(startMarker, 'click', function() {
-        let _way = wayService.getOneWay(this.wayID);
-
-        viewWay(event, true, _way);
-      });
-
-      google.maps.event.addListener(endMarker, 'click', function() {
-        let _way = wayService.getOneWay(this.wayID);
-
-        viewWay(event, true, _way);
-      });
     });
   };
 
@@ -89,73 +93,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   const mapInit = () => {
     NgMap.getMap().then( map => {
       this.map = map;
+      drawWays();
 
-      drawWays(this.map);
-
-      // this.startMarkers = [];
-      // this.endMarkers = [];
-      // this.googlePaths = [];
-      //
-      // this.ways.forEach( way => {
-      //
-      //   let startPos = new google.maps.LatLng(way.startLocation.lat, way.startLocation.lng);
-      //   let endPos = new google.maps.LatLng(way.endLocation.lat, way.endLocation.lng);
-      //
-      //   let bounds = new google.maps.LatLngBounds();
-      //   bounds.extend(startPos);
-      //   bounds.extend(endPos);
-      //   this.map.fitBounds(bounds);
-      //
-      //   let startMarker = new google.maps.Marker({
-      //     map: this.map,
-      //     position: startPos,
-      //     wayID: way._id
-      //   });
-      //
-      //   let endMarker = new google.maps.Marker({
-      //     map: this.map,
-      //     position: endPos,
-      //     wayID: way._id
-      //   });
-      //
-      //   let waypath = [
-      //     {
-      //       lat: way.startLocation.lat,
-      //       lng: way.startLocation.lng
-      //     },
-      //     {
-      //       lat: way.endLocation.lat,
-      //       lng: way.endLocation.lng
-      //     }
-      //   ];
-      //
-      //   let googlePath = new google.maps.Polyline({
-      //     map: this.map,
-      //     path: waypath,
-      //     geodesic: true,
-      //     strokeColor: '#FF0000',
-      //     strokeOpacity: 1.0,
-      //     strokeWeight: 2
-      //   });
-      //
-      //   this.startMarkers.push(startMarker);
-      //   this.endMarkers.push(endMarker);
-      //   this.googlePaths.push(googlePath);
-      //
-      //   google.maps.event.addListener(startMarker, 'click', function() {
-      //     let way = wayService.getOneWay(this.wayID);
-      //
-      //     viewWay(event, true, way);
-      //   });
-      //
-      //   google.maps.event.addListener(endMarker, 'click', function() {
-      //     console.log(this.wayID);
-      //
-      //     let way = wayService.getOneWay(this.wayID);
-      //
-      //     viewWay(event, true, way);
-      //   });
-      // });
     });
   };
 

@@ -21,7 +21,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   this.centerOnLoad = [ 47.618217, -122.351832 ];
 
   //map data
-
   const mapInit = () => {
     NgMap.getMap().then( map => {
       console.log('ng map init success', map);
@@ -29,7 +28,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
       this.startMarkers = [];
       this.endMarkers = [];
-      this.paths = [];
+      this.googlePaths = [];
 
       this.ways.forEach( way => {
         let startMarker = new google.maps.Marker({
@@ -44,8 +43,37 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           wayID: way._id
         });
 
+        var flightPlanCoordinates = [
+          {lat: 37.772, lng: -122.214},
+          {lat: 21.291, lng: -157.821},
+          {lat: -18.142, lng: 178.431},
+          {lat: -27.467, lng: 153.027}
+        ];
+
+        let waypath = [
+          {
+            lat: way.startLocation.lat,
+            lng: way.startLocation.lng
+          },
+          {
+            lat: way.endLocation.lat,
+            lng: way.endLocation.lng
+          }
+        ];
+
+        let googlePath = new google.maps.Polyline({
+          map: this.map,
+          path: waypath,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        // flightPath.setMap(map);
+
         this.startMarkers.push(startMarker);
         this.endMarkers.push(endMarker);
+        this.googlePaths.push(googlePath);
 
         google.maps.event.addListener(startMarker, 'click', function() {
           let way = wayService.getOneWay(this.wayID);

@@ -17,27 +17,8 @@
     center="current-location"
     geo-fallback-center="47.618217,-122.351832"
     class="map"
-    map-type-control-options="{style:'HORIZONTAL_BAR', position:'BOTTOM_CENTER'}">
-
-    <!-- <marker
-      ng-repeat="loc in wayMapCtrl.startMarkers" position="{{loc}}"
-      on-click="wayMapCtrl.wayClick()">
-    </marker>
-
-    <marker
-      ng-repeat="loc in wayMapCtrl.endMarkers"
-      position="{{loc}}"
-      on-click="wayMapCtrl.wayClick()">
-    </marker>
-
-    <shape
-      name="polyline"
-      ng-repeat="path in wayMapCtrl.paths"
-      path="{{path}}"
-      stroke-color="#FF0000"
-      stroke-opacity="1.0"
-      stroke-weight="3">
-    </shape> -->
-
+    map-type-control-options="{style:'HORIZONTAL_BAR', position:'TOP_LEFT'}"
+    zoom-control-options="{style:'LARGE', position:'RIGHT_TOP'}"
+    street-view-control-options="{position:'RIGHT_TOP'}">
   </ng-map>
 </div>

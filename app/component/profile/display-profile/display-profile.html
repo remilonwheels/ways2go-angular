@@ -3,7 +3,8 @@
     <md-sidenav
         class="md-sidenav-left"
         md-component-id="left"
-        md-is-locked-open="$mdMedia('gt-xs')">
+        md-is-locked-open="$mdMedia('gt-xs')"
+        ng-cloak>
       <md-toolbar>
         <div class="md-toolbar-tools">
           <md-truncate>{{ displayProfileCtrl.profile.fullName }}</md-truncate>
@@ -15,18 +16,10 @@
           <md-button class="md-fab md-mini" aria-label="Delete Profile">
             <md-icon ng-md-icon icon="delete_sweep"></md-icon>
           </md-button>
-          <md-button ng-click="close()" class="md-fab md-mini" aria-label="Close Profile VIew" hide-gt-xs>
-            <md-icon ng-md-icon icon="cancel"></md-icon>
-          </md-button>
         </div>
       </md-toolbar>
-      <md-content layout-padding>
-        <p hide show-gt-md>
-          This sidenav is locked open on your device. To go back to the default behavior,
-          narrow your display.
-        </p>
-      </md-content>
-      <md-card>
+
+      <md-card layout-fill layout-padding flex>
         <img ng-src="{{ displayProfileCtrl.profile.photo }}"
         alt="photo of {{displayProfileCtrl.profile.displayName}}"
         class="md-media-xl card-media">
@@ -38,10 +31,9 @@
         <md-card-content layout="columns" layout-align="space-between">
           <p>{{ displayProfileCtrl.profile.bio }}</p>
         </md-card-content>
-      </md-card>
 
       <md-fab-speed-dial md-open="displayProfileCtrl.isOpen"
-        md-direction="right" ng-class="md-fling">
+        md-direction="right" ng-class="md-scale">
         <md-fab-trigger>
           <md-button aria-label="menu" class="md-fab md-warn">
             <md-icon ng-md-icon icon="message"></md-icon>
@@ -63,6 +55,8 @@
           </md-button>
         </md-fab-actions>
       </md-fab-speed-dial>
+    </md-card>
+
     </md-sidenav>
   </section>
 </section>

@@ -13,11 +13,17 @@ module.exports = {
 
 function MobileHeaderController($log, $http, $location, $mdToast, $rootScope, authService) {
 
+  this.currentUrl = $location.url();
+
+  $rootScope.$on('$locationChangeSuccess', () => {
+    this.currentUrl = $location.url();
+  });
+
   this.gotoWay = function() {
     $location.url('/way');
   };
   this.gotoHome = function() {
-    $location.url('/test');
+    $location.url('/home');
   };
   this.gotoMessage = function() {
     $location.url('/message');

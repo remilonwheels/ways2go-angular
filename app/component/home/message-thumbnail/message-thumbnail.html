@@ -1,12 +1,12 @@
 
 <md-list-item class="secondary-button-padding" layout-margin layout-padding
-  ng-repeat="message in messagethumbnailCtrl.messages | limitTo: 3">
+  ng-repeat="message in messagethumbnailCtrl.messages">
   <span ng-if="!incoming">to:</span>
   <span ng-if="incoming">from:</span>
   <span flex="none">{{ message.displayName }}</span>
-  <span class="md-title">{{ message.subject}}</span>
-  <span class="md-subhead">{{ message.text | limitTo: 30}}</span>
-  <span class="md-subhead" layout-align="end end" flex="none">{{ message.timestamp | limitTo: 10}}</span>
+  <span class="md-title" flex="20">{{ message.subject}}</span>
+  <span class="md-subhead" flex="40">{{ message.text | limitTo: 30}}</span>
+  <span class="md-subhead" flex="none" layout-align="end end">{{ message.timestamp | limitTo: 10}}</span>
 
 <!-- <md-button ng-click="messageCtrl.createMessage($event, true)" class="md-raised md-primary message-action">Read</md-button> -->
   <md-button class="md-secondary" ng-click="messagethumbnailCtrl.deleteMessage($event, true, message)"

@@ -22,6 +22,7 @@ function CreateProfileController($log, $window, $location, $mdDialog, $mdToast, 
     .then( () => {
       $mdToast.showSimple('Thanks for creating your profile!');
       this.isLoading = false;
+      $location.url('/home');
       $mdDialog.hide();
     })
     .catch( err => {

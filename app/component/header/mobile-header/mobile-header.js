@@ -2,17 +2,16 @@
 
 require('./_mobile-header.scss');
 
-
 module.exports = {
   template: require('./mobile-header.html'),
-  controller: ['$log', '$http', '$location', '$mdToast', 'authService', MobileHeaderController],
+  controller: ['$log', '$http', '$location', '$mdToast', '$rootScope', 'authService', MobileHeaderController],
   controllerAs: 'mobileHeaderCtrl',
   bindings: {
     ways: '<'
   }
 };
 
-function MobileHeaderController($log, $http, $location, $mdToast, authService) {
+function MobileHeaderController($log, $http, $location, $mdToast, $rootScope, authService) {
 
   this.gotoWay = function() {
     $location.url('/way');
@@ -23,6 +22,11 @@ function MobileHeaderController($log, $http, $location, $mdToast, authService) {
   this.gotoMessage = function() {
     $location.url('/message');
   };
+
+  this.toggleProfile = function() {
+    $rootScope.$emit('toggleProfile');
+  };
+
   this.logout = function() {
     $log.debug('MobileHeaderController.logout');
     authService.logout()

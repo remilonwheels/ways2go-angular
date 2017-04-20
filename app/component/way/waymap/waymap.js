@@ -61,7 +61,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
         ];
 
         let dash = {
-          // path: 'M -1,-1 0,1 1,-1',
           path: 'M -1,1 0,-1 1,1',
           strokeOpacity: 1,
           scale: 3.5

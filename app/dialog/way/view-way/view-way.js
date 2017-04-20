@@ -11,7 +11,7 @@ module.exports = {
 function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
 
   this.way = wayService.getOneWay(way._id);
-  this.title = this.way.name || 'Way';
+  this.name = this.way.name || 'Way';
 
   this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
   this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;

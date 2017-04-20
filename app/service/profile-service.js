@@ -97,7 +97,7 @@ function profileService($q, $log, $http, Upload, authService) {
         }
       };
 
-      return $http.get(url, {headers: headers});
+      return $http.get(url, config);
     })
     .then( res => {
       $log.log('profile retrieved');
@@ -145,17 +145,20 @@ function profileService($q, $log, $http, Upload, authService) {
     .then( token => {
       let url = `${__API_URL__}/api/profile`; //eslint-disable-line
 
-      let headers = {
-        Authorization: `Bearer ${token}`
+      let config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       };
 
-      return $http.delete(url, headers);
+      return $http.delete(url, config);
     })
     .then( res => {
       $log.log(res.status);
-      for (var key of service.profile) {
-        delete service.profile[key];
-      }
+      return res.status;
+      // for (var key of service.profile) {
+      //   delete service.profile[key];
+      // }
     })
     .catch( err => {
       $log.error(err.message);

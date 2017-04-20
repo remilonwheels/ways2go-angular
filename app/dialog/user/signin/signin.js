@@ -50,7 +50,7 @@ function SigninController($log, $window, $location, $mdDialog, $mdToast, $scope,
   };
 
   this.deleteUser = function() {
-    $log.debug('SigninController.updateUser');
+    $log.debug('SigninController.deleteUser');
 
     this.isLoading = true;
 

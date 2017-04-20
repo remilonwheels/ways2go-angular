@@ -10,10 +10,10 @@
           <md-truncate>{{ displayProfileCtrl.profile.fullName }}</md-truncate>
 
           <span flex></span>
-          <md-button class="md-fab md-mini" aria-label="Edit Profile">
+          <md-button class="md-fab md-mini" aria-label="Edit Profile" ng-click="displayProfileCtrl.editProfile(true)">
             <md-icon ng-md-icon icon="create"></md-icon>
           </md-button>
-          <md-button class="md-fab md-mini" aria-label="Delete Profile">
+          <md-button class="md-fab md-mini" aria-label="Delete Profile" ng-click="displayProfileCtrl.deleteProfile()">
             <md-icon ng-md-icon icon="delete_sweep"></md-icon>
           </md-button>
         </div>

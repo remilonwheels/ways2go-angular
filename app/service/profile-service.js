@@ -7,6 +7,7 @@ function profileService($q, $log, $http, Upload, authService) {
 
   let service = {};
   service.profile = {};
+  service.allProfiles = [];
 
   service.createProfile = function(profile) {
     $log.debug('profileService.createProfile');
@@ -82,23 +83,26 @@ function profileService($q, $log, $http, Upload, authService) {
   };
 
   service.fetchProfile = function() {
-    $log.debug('profileService.updateProfile');
+    $log.debug('profileService.fetchProfile');
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profile`; //eslint-disable-line
+      let url = `${__API_URL__}/api/profile/user`; //eslint-disable-line
 
-      let headers = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
       };
 
-      return $http.get(url, headers);
+      return $http.get(url, config);
     })
     .then( res => {
       $log.log('profile retrieved');
       service.profile = res.data;
+      $log.log('service.profile', service.profile);
       return service.profile;
     })
     .catch( err => {
@@ -132,6 +136,5 @@ function profileService($q, $log, $http, Upload, authService) {
     });
   };
 
-  $log.log('service.profile', service.profile);
   return service;
 }

@@ -1,33 +1,33 @@
-<!-- <section layout="column">
- -->  <section layout="row" layout-fill flex>
+<section layout="column">
+  <section layout="row" layout-fill flex>
     <md-sidenav
         class="md-sidenav-left"
         md-component-id="left"
         md-is-locked-open="$mdMedia('gt-xs')">
       <md-toolbar>
         <div class="md-toolbar-tools">
-          <md-truncate style="position: absolute; left: 90px; right: 170px; top: 13px; bottom: 13px;">{{ displayProfileCtrl.profile.fullName }}</md-truncate>
+          <md-truncate>{{ displayProfileCtrl.profile.fullName }}</md-truncate>
 
           <span flex></span>
-          <md-button class="md-raised" aria-label="Learn More">
-            edit profile
+          <md-button class="md-fab md-mini" aria-label="Edit Profile">
+            <md-icon ng-md-icon icon="create"></md-icon>
           </md-button>
-          <md-button class="md-fab md-mini" aria-label="Favorite">
-            <md-icon ng-md-icon icon="account_circle"></md-icon>
+          <md-button class="md-fab md-mini" aria-label="Delete Profile">
+            <md-icon ng-md-icon icon="delete_sweep"></md-icon>
+          </md-button>
+          <md-button ng-click="close()" class="md-fab md-mini" aria-label="Close Profile VIew" hide-gt-xs>
+            <md-icon ng-md-icon icon="cancel"></md-icon>
           </md-button>
         </div>
       </md-toolbar>
       <md-content layout-padding>
-        <md-button ng-click="close()" class="md-primary" hide-gt-md>
-          Close Sidenav Left
-        </md-button>
         <p hide show-gt-md>
           This sidenav is locked open on your device. To go back to the default behavior,
           narrow your display.
         </p>
       </md-content>
       <md-card>
-        <img src="{{ displayProfileCtrl.profile.photo }}"
+        <img ng-src="{{ displayProfileCtrl.profile.photo }}"
         alt="photo of {{displayProfileCtrl.profile.displayName}}"
         class="md-media-xl card-media">
         <md-card-title>
@@ -65,4 +65,4 @@
       </md-fab-speed-dial>
     </md-sidenav>
   </section>
-<!-- </section> -->
+</section>

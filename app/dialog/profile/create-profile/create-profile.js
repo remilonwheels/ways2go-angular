@@ -1,6 +1,6 @@
 'use strict';
 
-require('./_create-profile.js');
+require('./_create-profile.scss');
 
 module.exports = {
   template: require('./create-profile.html'),

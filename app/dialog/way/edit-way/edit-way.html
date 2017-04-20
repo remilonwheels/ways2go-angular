@@ -27,6 +27,15 @@
         <input ng-model="editWayCtrl.way.endLocation" required>
       </md-input-container>
 
+      <!-- //////////////////////  Wayerz //////////////////////// -->
+      <div layout="column" layout-align="center center">
+        <md-select placeholder="Add a Wayer" ng-model="editWayCtrl.wayerToAdd" md-on-open="editWayCtrl.loadAllProfiles()" style="min-width: 200px;">
+          <md-option ng-value="wayerToAdd" ng-repeat="wayerToAdd in editWayCtrl.allProfiles">{{wayerToAdd.displayName}}</md-option>
+        </md-select>
+        <p class="md-caption">You have assigned the task to: {{ editWayCtrl.wayerToAdd ? editWayCtrl.wayerToAdd.displayName : 'No one yet' }}</p>
+      </div>
+    <!-- //////////////////////////////////////////////////////////// -->
+
       <div layout>
         <div layout="row" layout-wrap flex="50">
           <div flex="33" ng-repeat="day in editWayCtrl.daysOfWeek">

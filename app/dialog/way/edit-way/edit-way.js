@@ -4,11 +4,11 @@ require('./_edit-way.scss');
 
 module.exports = {
   template: require('./edit-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', EditWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', 'profileService', '$scope', EditWayController],
   controllerAs: 'editWayCtrl'
 };
 
-function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
+function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileService, $scope) {
   this.way = wayService.getOneWay(way._id);
   this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
   this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
@@ -33,6 +33,15 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
 
   this.isLoading = false;
   this.isLoadingDelete = false;
+
+  this.allProfiles = [];
+  this.loadAllProfiles = function() {
+    profileService.fetchAllProfiles()
+    .then( profiles => {
+      this.allProfiles = profiles;
+    })
+    .catch( err => $log.debug(err));
+  };
 
   this.deleteWaySubmit = function() {
     this.isLoadingDelete = true;

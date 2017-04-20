@@ -42,7 +42,7 @@
 
     <div layout layout-margin layout-padding>
       <md-input-container>
-        <input flex type="number" ng-model="editWayCtrl.way.hour" aria-label="hour" aria-controls="hour-slider">
+        <input flex type="number" ng-model="editWayCtrl.hour12" aria-label="hour" aria-controls="hour-slider">
       </md-input-container>
       <md-input-container>
         <input flex type="number" ng-model="editWayCtrl.way.minutes" aria-label="hour" aria-controls="hour-slider">
@@ -55,7 +55,7 @@
 
     <div layout="row" layout-padding layout-align="center stretch">
       <md-slider-container flex>
-        <md-slider ng-model="editWayCtrl.way.hour" min="1" max="12" aria-label="hour" id="hour-slider" class="md-accent" md-vertical md-range></md-slider>
+        <md-slider ng-model="editWayCtrl.hour12" min="1" max="12" aria-label="hour" id="hour-slider" class="md-accent" md-vertical md-range></md-slider>
         <h5>Hour</h5>
       </md-slider-container>
 

@@ -13,12 +13,16 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
   this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
   this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
 
-  this.way.oneTimeDate = new Date(this.way.oneTimeDate);
+  if (this.way.oneTimeDate) this.way.oneTimeDate = new Date(this.way.oneTimeDate);
 
   if (this.way.hour) {
-    this.way.hour = this.way.hour % 12;
-    if ( this.way.hour > 12 ) this.ampm = 'pm';
-    else this.ampm = 'am';
+    if (this.way.hour > 12) {
+      this.hour12 = this.way.hour - 12;
+      this.ampm = 'pm';
+    } else {
+      this.ampm = 'am';
+      this.hour12 = this.way.hour;
+    }
   }
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
@@ -44,14 +48,17 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, $scope) {
     .catch( err => {
       $mdToast.showSimple(err.data);
       this.isLoading = false;
-    });;
+    });
   };
 
   this.editWaySubmit = function() {
     this.isLoading = true;
 
-    if (this.ampm) {
-      if (this.ampm === 'pm') this.way.hour += 12;
+    if (this.hour12) {
+      this.way.hour = this.hour12;
+      if (this.ampm === 'pm') {
+        this.way.hour += 12;
+      }
     }
 
     console.log('this.way before api call', this.way);

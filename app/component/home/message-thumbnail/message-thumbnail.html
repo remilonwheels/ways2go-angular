@@ -3,8 +3,8 @@
   ng-repeat="message in messagethumbnailCtrl.messages | limitTo: 3">
   <span>from: {{ message.fromProfileID }}</span>
   <span class="md-title">{{ message.subject}}</span>
-  <span class="md-subhead">{{ message.text }}</span>
-  <span class="md-subhead">{{ message.timestamp }}</span>
+  <span class="md-subhead">{{ message.text | limitTo: 25}}</span>
+  <span class="md-subhead">{{ message.timestamp | limitTo: 10}}</span>
 
 <!-- <md-button ng-click="messageCtrl.createMessage($event, true)" class="md-raised md-primary message-action">Read</md-button> -->
   <md-button class="md-secondary" ng-click="messagethumbnailCtrl.createMessage($event, true)"
@@ -12,4 +12,4 @@
   <md-button class="md-secondary" ng-click="messagethumbnailCtrl.readMessage($event, true, message)"
     layout-align="end end">Read</md-button>
 </md-list-item>
-<md-divider></md-divider>
+<!-- <md-divider></md-divider> -->

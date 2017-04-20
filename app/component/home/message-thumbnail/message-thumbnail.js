@@ -57,4 +57,9 @@ function MessageThumbnailController($q, $log, $http, $interval, $mdMedia, $scope
     };
     $mdDialog.show(Object.assign(readMessageDialog, dialogConfig));
   };
+
+  this.deleteMessage = function ($event, bindFlag, message) {
+    messageService.deleteMessage(message._id);
+    this.messages.splice(this.messages.indexOf(message), 1);
+  };
 }

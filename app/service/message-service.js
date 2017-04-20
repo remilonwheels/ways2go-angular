@@ -6,6 +6,7 @@ function messageService($q, $log, $http, Upload, authService) {
   $log.debug('messageService');
   let service = {};
   service.messages= [];
+
   service.createMessage = function(message) {
     $log.debug('messageService.createMessage');
     return authService.getToken()
@@ -60,15 +61,30 @@ function messageService($q, $log, $http, Upload, authService) {
     $log.log('messageService.getMessages');
     return service.messages;
   };
-  service.getOneMessage = function(messageID) {
-    $log.log('messageService.getOneMessage');
 
-    for (let m in service.messages) {
-      if (service.messages[m]._id === messageID) {
-        return service.messages[m];
-      }
-    }
-    return null;
+  service.deleteMessage = function(messageID) {
+    $log.debug('messageService.deleteMessage');
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/message/${messageID}`
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      return $http.delete(url, config);
+    })
+    .then( res => {
+      $log.log('message deleted');
+      return res.data;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
   };
 
   return service;

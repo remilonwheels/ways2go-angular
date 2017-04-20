@@ -44,8 +44,8 @@ function DisplayProfileController($log, $mdToast, $mdSidenav, $rootScope, $scope
     })
     .catch( err => {
       $mdToast.showSimple(err.data);
-    })
-  }
+    });
+  };
 
   this.closeProfile = function() {
     $mdSidenav('left').close();

@@ -38,11 +38,28 @@ function MessageThumbnailController($q, $log, $http, $interval, $mdMedia, $scope
     } else {
       this.messages = this.messages.filter((msg) => (msg.fromProfileID == this.profile._id));
     }
+
+    for (let message of this.messages) {
+      this.fetchDisplayName(message);
+    }
   })
   .catch((err) => {
     $log.error(err.message);
     return $q.reject(err);
   });
+
+  this.fetchDisplayName = function (message) {
+    let profileId;
+    if (this.incoming) {
+      profileId = message.fromProfileID;
+    } else {
+      profileId = message.toProfileID;
+    }
+    profileService.fetchProfileByID(profileId)
+    .then((profile) => {
+      message.displayName = profile.displayName;
+    });
+  };
 
   this.readMessage = function ($event, bindFlag, message) {
     const dialogConfig = {

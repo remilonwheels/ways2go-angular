@@ -24,8 +24,10 @@ function CreateMessageController($log, $mdDialog, $mdToast,  messageService,  $t
 
   this.createMessageSubmit = function() {
     this.isLoading = true;
-
-    this.message.toProfileID = this.profileToAdd.profileID;
+    console.log('before', this.message);
+    console.log('profile to add', this.profileToAdd);
+    this.message.toProfileID = this.profileToAdd._id;
+    console.log('after', this.message);
 
     messageService.createMessage(this.message)
     .then( message => {

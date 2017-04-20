@@ -11,6 +11,13 @@ function appStyleConfig($mdThemingProvider) {
       warnPalette: 'red',
       backgroundPalette: 'grey'
     },
+    traffic1: {
+      themeName: 'traffic1',
+      primaryPalette: 'indigo',
+      accentPalette: 'blue',
+      warnPalette: 'grey',
+      backgroundPalette: 'grey'
+    },
   };
 
   for (let theme in themes) {
@@ -22,7 +29,7 @@ function appStyleConfig($mdThemingProvider) {
     .backgroundPalette(themes[theme].backgroundPalette);
   }
 
-  $mdThemingProvider.setDefaultTheme('default');
+  $mdThemingProvider.setDefaultTheme('traffic1');
   // $mdThemingProvider.setDefaultTheme('blueGreyPrmCyanAcc');
 
 }

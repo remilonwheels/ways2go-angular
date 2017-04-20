@@ -44,6 +44,18 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
     .catch( err => $log.debug(err));
   };
 
+  this.addWayerSubmit = function() {
+    this.isLoadingWayer = true;
+
+    wayService.addWayer(this.way._id, this.wayerToAdd._id)
+    .then( wayer => {
+      $mdToast.showSimple(`Added Wayer Successfully`);
+      this.isLoadingWayer = false;
+
+      $mdDialog.hide();
+    });
+  };
+
   this.deleteWaySubmit = function() {
     this.isLoadingDelete = true;
 

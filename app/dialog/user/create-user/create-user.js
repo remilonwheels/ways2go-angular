@@ -2,13 +2,15 @@
 
 require('./_create-user.scss');
 
+const createProfileComponent = require('../../profile/create-profile/create-profile.js');
+
 module.exports = {
   template: require('./create-user.html'),
-  controller: ['$log', '$window', '$location', '$mdDialog','$mdToast', 'authService', SignupController],
+  controller: ['$log', '$window', '$location', '$mdDialog','$mdToast', '$scope', '$mdMedia', 'authService', SignupController],
   controllerAs: 'signupCtrl'
 };
 
-function SignupController($log, $window, $location, $mdDialog, $mdToast, authService) {
+function SignupController($log, $window, $location, $mdDialog, $mdToast, $scope, $mdMedia, authService) {
   $log.debug('SignupController');
 
   this.isLoading = false;
@@ -38,8 +40,13 @@ function SignupController($log, $window, $location, $mdDialog, $mdToast, authSer
     });
   };
 
-  this.goHome = function() {
-    $location.url('/home');
+  this.createProfile = function(bindFlag) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      scope: $scope.$new(bindFlag)
+    };
+
+    $mdDialog.show(Object.assign(createProfileComponent, dialogConfig));
   };
 
   this.closeDialog = function() {

@@ -1,23 +1,10 @@
 <section>
   <md-card>
     <md-subheader class="md-no-sticky">My Ways</md-subheader>
-    <md-list-item class="secondary-button-padding" layout-margin layout-padding>
-      <!-- ng-repeat="item in messages | limitTo: 3"  -->
-      <span class="md-title">{{ waythumbnailCtrl.name }}</span>
-      <div layout="column">
-        <span class="md-subhead">Start:  {{ waythumbnailCtrl.startLocation }}</span>
-        <span class="md-subhead">End: {{ waythumbnailCtrl.endLocation }}</span>
-      </div>
-      <span></span>
-      <span class="md-subhead">Sunday</span>
-      <span class="md-subhead">3:00pm</span>
-      <md-button class="md-secondary" ng-click="">See Way</md-button>
-    </md-list-item>
-    <md-divider></md-divider>
 
 
     <!-- this is just for testing having multiple items -->
-    <md-list-item class="secondary-button-padding" layout-margin layout-padding>
+    <md-list-item class="secondary-button-padding" layout-margin layout-padding ng-show="waythumbnailCtrl.myWays.length === 0">
       <!-- ng-repeat="item in messages | limitTo: 3"  -->
       <span class="md-title">{{ waythumbnailCtrl.name }}</span>
       <div layout="column">
@@ -34,11 +21,11 @@
       <!-- ng-repeat="item in messages | limitTo: 3"  -->
       <span class="md-title">{{ way.name }}</span>
       <div layout="column">
-        <span class="md-subhead">Start:  {{ way.startLocation.fullAddress }}</span>
-        <span class="md-subhead">End: {{ way.endLocation.fullAddress }}</span>
+        <span class="md-subhead">Start: {{ way.startLocation.street}} {{ way.startLocation.city}} {{ way.startLocation.state}} </span>
+        <span class="md-subhead">End: {{ way.endLocation.street}} {{ way.endLocation.city}} {{ way.endLocation.state}}</span>
       </div>
       <span></span>
-      <span class="md-subhead">{{way.oneTimeDate}}</span>
+      <span class="md-subhead">{{way.oneTimeDate | limitTo : 10}}</span>
       <span class="md-subhead">{{way.hour}} {{way.minutes}}</span>
       <md-button class="md-secondary" ng-click="">See Way</md-button>
     </md-list-item>

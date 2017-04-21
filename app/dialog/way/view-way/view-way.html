@@ -24,21 +24,28 @@
 
             <md-list-item>
               <div>
-                <span class="md-subheader">TO</span><span>{{viewWayCtrl.way.startLocation}}</span>
+                <span class="md-subheader">TO</span><span>{{viewWayCtrl.way.endLocation}}</span>
               </div>
 
             </md-list-item>
 
-            <md-list-item>
+            <md-list-item ng-show="viewWayCtrl.way.recurringDayOfWeek">
               <div>
-                <span class="md-subheader">DAYS OF THE WEEK</span><span>{{viewWayCtrl.daysOfWeekOutput()}}</span>
+                <span class="md-subheader">DAYS OF THE WEEK</span>
+                <span ng-repeat="day in viewWayCtrl.dayArray">{{day}}</span>
               </div>
 
             </md-list-item>
 
-            <md-list-item>
+            <md-list-item ng-show="viewWayCtrl.way.oneTimeDate">
               <div>
-                <span class="md-subheader">ONE-TIME DATE</span><span>{{viewWayCtrl.way.oneTimeDate}}</span>
+                <span class="md-subheader">ONE-TIME DATE</span><span>{{viewWayCtrl.oneTimeDate| date:"MMMM dd 'yy" }}</span>
+              </div>
+
+            </md-list-item>
+            <md-list-item ng-show="viewWayCtrl.way.hour">
+              <div>
+                <span class="md-subheader">TIME</span><span>{{viewWayCtrl.hour}}:{{viewWayCtrl.minutes}} {{viewWayCtrl.ampm}}</span>
               </div>
 
             </md-list-item>
@@ -55,30 +62,15 @@
                 </md-button>
               </span>
             </md-list-item>
-
-
           </md-list>
 
-
-
-          <div layout layout-margin layout-padding>
-            <md-input-container>
-              <input flex type="number" ng-model="viewWayCtrl.hour12" aria-label="hour" aria-controls="hour-slider">
-            </md-input-container>
-            <md-input-container>
-              <input flex type="number" ng-model="viewWayCtrl.way.startTime.minutes" aria-label="hour" aria-controls="hour-slider">
-            </md-input-container>
-            <md-input-container>
-              <input flex  ng-model="viewWayCtrl.ampm" aria-label="hour" aria-controls="hour-slider">
-            </md-input-container>
-          </div>
   </md-content>
 
 
     </md-dialog-content>
 
     <md-dialog-actions>
-      <md-button ng-click="viewWayCtrl.viewWaySubmit()" class="md-primary md-raised" layout layout-align="center center">
+      <md-button ng-click="viewWayCtrl.joinSubmit()" class="md-primary md-raised" layout layout-align="center center">
         <span ng-show="!viewWayCtrl.isLoading">Request to Join</span>
         <md-progress-circular md-mode="indeterminate" ng-show="viewWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
       </md-button>

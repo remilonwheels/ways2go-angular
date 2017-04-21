@@ -4,11 +4,14 @@
     <!-- <img src="" class="md-card-image" alt="image caption"> -->
     <md-card-content>
       <h2>{{ way.name || 'Way' }} by {{way.wayerz[0].displayName}}</h2>
-      <p>From: {{way.startLocation.street}} {{way.startLocation.city}} {{way.startLocation.state}}</p>
-      <p>To: {{way.endLocation.street}} {{way.endLocation.city}} {{way.endLocation.state}}</p>
+      <p ng-show="way.startLocation.lat"><b>From</b>: {{way.startLocation.street}} {{way.startLocation.city}} {{way.startLocation.state}}</p>
+      <p ng-show="!way.startLocation.lat"><b>From</b>: {{way.startLocation}}</p>
+      <p ng-show="way.endLocation.lat"><b>To</b>: {{way.endLocation.street}} {{way.endLocation.city}} {{way.endLocation.state}}</p>
+      <p ng-show="!way.endLocation.lat"><b>To</b>: {{way.endLocation}}</p>
+      <!-- <p>To: {{way.endLocation.street}} {{way.endLocation.city}} {{way.endLocation.state}}</p> -->
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
-      <md-button ng-click="wayDetailCtrl.editWay($event, true, way)" class="md-primary">Edit</md-button>
+      <md-button ng-show="" ng-click="wayDetailCtrl.editWay($event, true, way)" class="md-primary">Edit</md-button>
       <md-button ng-click="wayDetailCtrl.viewWay($event, true, way)" class="md-primary">View</md-button>
     </md-card-actions>
   </md-card>

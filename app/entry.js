@@ -3,6 +3,8 @@
 require('./scss/main.scss');
 require('angular-material/angular-material.scss');
 const logo = require('./assets/ways2go.svg');
+const logoWhite = require('./assets/ways2go.png');
+const background = require('./assets/background.jpg');
 
 const
   path = require('path'),

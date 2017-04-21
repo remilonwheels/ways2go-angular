@@ -50,7 +50,7 @@ module.exports = () => {
           use: 'file-loader',
         },
         { //:::: png ::::
-          test: /\.(png|svg)$/,
+          test: /\.(png|svg|jpg)$/,
           use: 'file-loader',
           // use: 'file-loader?name=[name].[ext]',
 

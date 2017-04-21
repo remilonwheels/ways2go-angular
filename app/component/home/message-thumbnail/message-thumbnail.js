@@ -23,7 +23,7 @@ function MessageThumbnailController($q, $log, $http, $interval, $mdMedia, $scope
   })
   .catch((e) => {
     console.error("Failed to fetch profile: ", e);
-    this.profile = {_id: '58f7e2802a70f40011b1ad16'};
+    // this.profile = {_id: '58f7e2802a70f40011b1ad16'};
     return messageService.fetchMessages();
   })
   .then((messages) => {

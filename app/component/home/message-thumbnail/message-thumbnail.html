@@ -1,8 +1,8 @@
 <!-- <section> -->
 <md-list-item class="secondary-button-padding" layout-margin layout-padding
   ng-repeat="message in messagethumbnailCtrl.messages">
-  <span ng-if="!incoming">to:</span>
-  <span ng-if="incoming">from:</span>
+  <!-- <span ng-if="incoming">from:</span>
+  <span ng-if="!incoming">to:</span> -->
   <span flex="none">{{ message.displayName }}</span>
   <span class="md-title" flex="20">{{ message.subject}}</span>
   <span class="md-subhead" flex="40">{{ message.text | limitTo: 30}}</span>

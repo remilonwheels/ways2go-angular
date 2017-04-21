@@ -3,8 +3,9 @@
   <!-- <md-card ng-repeat="way in wayDetailCtrl.ways" ng-click="wayDetailCtrl.editWay($event, true, way)"> -->
     <!-- <img src="" class="md-card-image" alt="image caption"> -->
     <md-card-content>
-      <h2>{{ way.profileID }}</h2>
-      <p>Card content</p>
+      <h2>{{ way.name || 'Way' }} by {{way.wayerz[0].displayName}}</h2>
+      <p>From: {{way.startLocation.street}} {{way.startLocation.city}} {{way.startLocation.state}}</p>
+      <p>To: {{way.endLocation.street}} {{way.endLocation.city}} {{way.endLocation.state}}</p>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
       <md-button ng-click="wayDetailCtrl.editWay($event, true, way)" class="md-primary">Edit</md-button>

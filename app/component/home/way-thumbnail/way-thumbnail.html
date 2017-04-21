@@ -34,11 +34,11 @@
       <!-- ng-repeat="item in messages | limitTo: 3"  -->
       <span class="md-title">{{ way.name }}</span>
       <div layout="column">
-        <span class="md-subhead">Start:  {{ way.startLocation.fullAddress }}</span>
-        <span class="md-subhead">End: {{ way.endLocation.fullAddress }}</span>
+        <span class="md-subhead">Start: {{ way.startLocation.street}} {{ way.startLocation.city}} {{ way.startLocation.state}} </span>
+        <span class="md-subhead">End: {{ way.endLocation.street}} {{ way.endLocation.city}} {{ way.endLocation.state}}</span>
       </div>
       <span></span>
-      <span class="md-subhead">{{way.oneTimeDate}}</span>
+      <span class="md-subhead">{{way.oneTimeDate | limitTo :10}}</span>
       <span class="md-subhead">{{way.hour}} {{way.minutes}}</span>
       <md-button class="md-secondary" ng-click="">See Way</md-button>
     </md-list-item>

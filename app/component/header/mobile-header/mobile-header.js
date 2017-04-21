@@ -22,6 +22,9 @@ function MobileHeaderController($log, $http, $location, $mdToast, $rootScope, au
   this.gotoWay = function() {
     $location.url('/way');
   };
+  this.gotoLanding = function() {
+    $location.url('/');
+  };
   this.gotoHome = function() {
     $location.url('/home');
   };

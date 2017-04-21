@@ -16,10 +16,7 @@ function WayThumbnailController($log, wayService, profileService) { // eslint-li
   .then( profile => {
     // this.allWays = wayService.getWays();
     this.profile = profile;
-    this.myWays = wayService.getWays().filter( way => {
-      way.profileID === this.profile._id;
-      console.log('w', way);
-    });
+    this.myWays = wayService.getWays().filter( way => way.profileID === this.profile._id);
     console.log('my ways', this.myWays);
   })
 

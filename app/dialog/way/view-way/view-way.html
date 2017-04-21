@@ -57,7 +57,7 @@
               <span><b>{{viewWayCtrl.way.wayerz[0].displayName}}</b></span>
               <span></span>
               <span>
-                <md-button ng-click="viewWayCtrl.viewWaySubmit()" class="md-secondary md-raised" layout layout-align="center center">
+                <md-button ng-click="viewWayCtrl.viewProfile($event, true, viewWayCtrl.profile)" class="md-secondary md-raised" layout layout-align="center center">
                   <span ng-show="!viewWayCtrl.isLoading" >Profile</span>
                 </md-button>
               </span>

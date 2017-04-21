@@ -55,11 +55,7 @@
                 </md-button>
               </span>
             </md-list-item>
-
-
           </md-list>
-
-
 
           <div layout layout-margin layout-padding>
             <md-input-container>
@@ -78,7 +74,7 @@
     </md-dialog-content>
 
     <md-dialog-actions>
-      <md-button ng-click="viewWayCtrl.viewWaySubmit()" class="md-primary md-raised" layout layout-align="center center">
+      <md-button ng-click="viewWayCtrl.joinSubmit()" class="md-primary md-raised" layout layout-align="center center">
         <span ng-show="!viewWayCtrl.isLoading">Request to Join</span>
         <md-progress-circular md-mode="indeterminate" ng-show="viewWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
       </md-button>

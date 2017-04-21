@@ -37,7 +37,6 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
         dayStr.concat(`${dayMap[i]}, `);
       });
       return dayStr;
-
     }
 
     return;
@@ -50,24 +49,21 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   this.joinSubmit = function() {
     this.isLoading = true;
 
+    console.log(this.way);
+
+    const joinMessage = {
+      subject: `${this.way.wayerz[0].displayName} wants to join your way!`,
+      text: `Please add me to way ${this.way._id}`,
+      toProfileID: this.way.wayerz[0]._id
+    };
 
 
-    messageService.createMessage(this.way)
+    messageService.createMessage(joinMessage)
     .then( res => {
-      console.log(res);
-      $mdToast.showSimple('Changed Way Successfully');
+      $mdToast.showSimple('Request to Join Sent Successfully!');
       this.isLoading = false;
 
       $mdDialog.hide();
-      // $scope.apply();
-
-
-      // this.way = updatedWay;
-      // this.way.startLocation = updatedWay.startLocation.fullAddress;
-      // this.way.endLocation = updatedWay.endLocation.fullAddress;
-      // .then( updatedWay => {
-      //   // $scope.$apply();
-      // });
     })
     .catch( err => {
       $mdToast.showSimple(err.data);

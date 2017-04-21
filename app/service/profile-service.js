@@ -1,13 +1,17 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', 'Upload', 'authService', profileService];
+module.exports = ['$q', '$log', '$http', '$mdSidenav', 'Upload', 'authService', profileService];
 
-function profileService($q, $log, $http, Upload, authService) {
+function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
   $log.debug('profileService');
 
   let service = {};
   service.profile = {};
   service.allProfiles = [];
+
+  service.toggleProfile = function() {
+    $mdSidenav('left').toggle();
+  };
 
   service.createProfile = function(profile) {
     $log.debug('profileService.createProfile');

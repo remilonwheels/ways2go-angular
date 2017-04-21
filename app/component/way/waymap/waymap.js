@@ -1,20 +1,25 @@
-'use strict';
 
 require('./_waymap.scss');
+'use strict';
 
 const viewWayComponent = require('../../../dialog/way/view-way/view-way.js');
 
 module.exports = {
   template: require('./waymap.html'),
-  controller: ['$log', '$http', '$interval', 'NgMap', 'wayService', '$mdMedia', '$scope', '$mdDialog', WayMapController],
+  controller: ['$log', '$http', '$interval', 'NgMap', 'wayService', '$mdMedia', '$scope', '$mdDialog', 'profileService', WayMapController],
   controllerAs: 'wayMapCtrl',
   bindings: {
     ways: '<'
   }
 };
 
-function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $scope, $mdDialog) {
+function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $scope, $mdDialog, profileService) {
   $log.debug('WayMapController');
+
+  profileService.fetchProfile()
+  .then( profile => {
+    this.profile = profile;
+  });
 
   //map config
   this.type = 'geocode';
@@ -74,11 +79,16 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           scale: 3.5
         };
 
+        let color = '';
+        if (way.profileID === this.profile._id) {
+          color = '#3f51b5'
+        } else color = '#757575'
+
         let googlePath = new google.maps.Polyline({
           map: map,
           path: waypath,
           geodesic: true,
-          strokeColor: '#3f51b5',
+          strokeColor: color,
           strokeOpacity: 0,
           icons: [{
             icon: dash,

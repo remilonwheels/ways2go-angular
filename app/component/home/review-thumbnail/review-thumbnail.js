@@ -11,9 +11,14 @@ module.exports = {
 function Reviewthumbnailontroller($log) {
   $log.debug('Reviewthumbnailontroller');
 
-  this.review = {
+  this.review1 = {
     rating: '4.5',
-    comment: 'Bob is great to ride with, he has the best music, but he chews loudly.'
+    comment: 'Nice conversation, terrible music choices.'
+  };
+
+  this.review2 = {
+    rating: '4.5',
+    comment: 'Will happily ride together again.'
   };
 
 }

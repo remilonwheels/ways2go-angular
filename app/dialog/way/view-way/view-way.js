@@ -24,25 +24,34 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   // this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
   this.isPM = true;
   // const dayMap = { M: 0, T: 1, W: 2, R: 3, F: 4, Sa: 5, Su: 6 };
-  const dayMap = { 0: 'Monday', 1:'Tuesday', 2:'Wednesday', 3: 'Thursday', 4: 'Friday', 5: 'Saturday', 6: 'Sunday'};
+  const dayMap = { '0': 'Monday', '1':'Tuesday', '2':'Wednesday', '3': 'Thursday', '4': 'Friday', '5': 'Saturday', '6': 'Sunday'};
 
-  this.daysOfWeekOutput = function() {
-    let dayArray = [];
-    let dayStr = '';
+  let dayArray = [];
 
-    if (this.way.recurringDayOfWeek) {
-      this.way.recurringDayOfWeek.forEach( i => {
-        console.log(dayMap[i]);
-        dayArray.push(dayMap[i]);
-        dayStr.concat(`${dayMap[i]}, `);
-      });
-      return dayStr;
-    }
-
-    return;
+  if (this.way.recurringDayOfWeek) {
+    this.way.recurringDayOfWeek.forEach( i => {
+      dayArray.push(`${dayMap[i]} `);
+    });
   }
 
+  if (this.way.oneTimeDate) {
+    this.oneTimeDate = new Date(this.way.oneTimeDate);
+  }
 
+  if (this.way.hour) {
+    if (this.way.hour > 12) {
+      this.hour = this.way.hour - 12;
+      this.ampm = 'pm';
+    } else {
+      this.hour = this.way.
+      this.ampm = 'am';
+    }
+    this.minutes = this.way.minutes;
+  }
+
+  this.dayArray = dayArray;
+
+  console.log(this.dayArray);
 
   this.isLoading = false;
 

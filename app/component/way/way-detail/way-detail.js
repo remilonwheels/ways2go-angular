@@ -17,7 +17,6 @@ module.exports = {
 function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia, $scope, $mdDialog) {
   $log.debug('WayDetailController');
 
-
   this.editWay = function ($event, bindFlag, way) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),

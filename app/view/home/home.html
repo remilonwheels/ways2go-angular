@@ -1,5 +1,16 @@
-<section class="view-home" layout-fill>
-  <display-profile profile="homeCtrl.profile"></display-profile>
-  <create-review></create-review>
-  <profile-thumbnail></profile-thumbnail>
+<section class="view-home" layout layout-fill>
+  <div layout-padding>
+    <display-profile profile="homeCtrl.profile" flex="33">
+    </display-profile>
+  </div>
+  <div layout="column" layout-fill>
+    <way-thumbnail flex="66"> </way-thumbnail>
+    <md-card flex="66">
+      <md-subheader class="md-no-sticky">My Messages</md-subheader>
+      <message-thumbnail/>
+    </md-card>
+    <review-thumbnail flex="66"> </review-thumbnail>
+  </div>
+  <!-- <create-review></create-review>
+  <profile-thumbnail></profile-thumbnail> -->
 </section>

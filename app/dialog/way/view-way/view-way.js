@@ -2,13 +2,15 @@
 
 require('./_view-way.scss');
 
+const viewOneProfileComponent = require('../../../dialog/profile/view-one-profile/view-one-profile.js');
+
 module.exports = {
   template: require('./view-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', 'profileService', ViewWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', 'profileService', '$mdMedia', ViewWayController],
   controllerAs: 'viewWayCtrl'
 };
 
-function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService) {
+function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService, $mdMedia) {
 
   this.way = wayService.getOneWay(way._id);
   profileService.fetchProfile()
@@ -65,12 +67,12 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
       targetEvent: $event,
       scope: $scope.$new(bindFlag),
       resolve: {
-        way: function() {
-          return way;
+        profile: function() {
+          return profile;
         }
       },
     };
-    $mdDialog.show(Object.assign(editWayComponent, dialogConfig));
+    $mdDialog.show(Object.assign(viewOneProfileComponent, dialogConfig));
   };
 
   this.joinSubmit = function() {

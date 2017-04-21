@@ -16,10 +16,6 @@ module.exports = {
 function DisplayProfileController($log, $mdToast, $mdSidenav, $rootScope, $scope, $mdMedia, $mdDialog, $location, profileService) {
   $log.debug('DisplayProfileController');
 
-  $rootScope.$on('toggleProfile', () => {
-    $mdSidenav('left').toggle();
-  });
-
   this.editProfile = function(bindFlag) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),

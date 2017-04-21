@@ -4,13 +4,17 @@ require('./_view-way.scss');
 
 module.exports = {
   template: require('./view-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', ViewWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', 'profileService', ViewWayController],
   controllerAs: 'viewWayCtrl'
 };
 
-function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService) {
+function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService) {
 
   this.way = wayService.getOneWay(way._id);
+  profileService.fetchProfile()
+  .then( profile => {
+    this.profile = profile;
+  });
 
   console.log(this.way);
   this.name = this.way.name || 'Way';
@@ -43,7 +47,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
       this.hour = this.way.hour - 12;
       this.ampm = 'pm';
     } else {
-      this.hour = this.way.
+      this.hour = this.way.hour;
       this.ampm = 'am';
     }
     this.minutes = this.way.minutes;
@@ -55,13 +59,27 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
 
   this.isLoading = false;
 
+  this.viewProfile = function($event, bindFlag, profile) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      scope: $scope.$new(bindFlag),
+      resolve: {
+        way: function() {
+          return way;
+        }
+      },
+    };
+    $mdDialog.show(Object.assign(editWayComponent, dialogConfig));
+  };
+
   this.joinSubmit = function() {
     this.isLoading = true;
 
     console.log(this.way);
 
     const joinMessage = {
-      subject: `${this.way.wayerz[0].displayName} wants to join your way!`,
+      subject: `${this.profile.displayName} wants to join your way!`,
       text: `Please add me to way ${this.way._id}`,
       toProfileID: this.way.wayerz[0]._id
     };

@@ -2,12 +2,16 @@
 
 require('./_home.scss');
 
-module.exports = ['$log', '$rootScope', '$mdToast', 'profileService', HomeController]; //TODO: Add service dependencies
+module.exports = ['$log', '$rootScope', '$mdToast', 'profileService', 'wayService', HomeController]; //TODO: Add service dependencies
 
-function HomeController($log, $rootScope, $mdToast, profileService) {
+function HomeController($log, $rootScope, $mdToast, profileService, wayService ) {
   $log.debug('HomeContoller');
 
   // this.profile = {};
+  wayService.fetchWays()
+  .then( ways => {
+    $log.log('ways fetched on home view');
+  })
 
   this.fetchProfile = function() {
     profileService.fetchProfile()

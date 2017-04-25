@@ -1,6 +1,7 @@
+/* global google */
+'use strict';
 
 require('./_waymap.scss');
-'use strict';
 
 const viewWayComponent = require('../../../dialog/way/view-way/view-way.js');
 
@@ -46,11 +47,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           let startPos = new google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng));
           let endPos = new google.maps.LatLng(Number(way.endLocation.lat), Number(way.endLocation.lng));
 
-          // let bounds = new google.maps.LatLngBounds();
-          // bounds.extend(startPos);
-          // bounds.extend(endPos);
-          // map.fitBounds(bounds);
-
           let startMarker = new google.maps.Marker({
             map: map,
             position: startPos,
@@ -82,8 +78,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
           let color = '';
           if (way.profileID === this.profile._id) {
-            color = '#3f51b5'
-          } else color = '#757575'
+            color = '#3f51b5';
+          } else color = '#757575';
 
           let googlePath = new google.maps.Polyline({
             map: map,
@@ -105,13 +101,13 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           google.maps.event.addListener(startMarker, 'click', function() {
             let _way = wayService.getOneWay(this.wayID);
 
-            viewWay(event, true, _way);
+            viewWay(event, true, _way); // eslint-disable-line
           });
 
           google.maps.event.addListener(endMarker, 'click', function() {
             let _way = wayService.getOneWay(this.wayID);
 
-            viewWay(event, true, _way);
+            viewWay(event, true, _way); // eslint-disable-line
           });
 
 

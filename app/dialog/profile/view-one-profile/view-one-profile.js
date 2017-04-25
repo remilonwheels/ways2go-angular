@@ -9,6 +9,8 @@ module.exports = {
 };
 
 function ViewOneProfileController($log, $mdDialog, $mdToast, wayService, $scope, messageService, profileService, profile) {
+  console.log('profile view one inject', profile);
+  console.log(this);
 
   this.profile = profile;
 

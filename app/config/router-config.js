@@ -43,6 +43,26 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       template: require('../view/test/test.html'),
       controller: 'TestController',
       controllerAs: 'testCtrl'
+    },
+    {
+      name: 'resolve',
+      url: '/resolve',
+      template: require('../view/resolve/resolve.html'),
+      controller: 'ResolveController',
+      controllerAs: 'resolveCtrl',
+      resolve: {
+        profileService: 'profileService',
+        testresolve: function() {
+          return 'ayo';
+        },
+        myprofile: function(profileService) {
+          return profileService.fetchProfile()
+          .then( profile => {
+            console.log('resolve profile', profile);
+            return profile;
+          });
+        }
+      }
     }
   ];
 

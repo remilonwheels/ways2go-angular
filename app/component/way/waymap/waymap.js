@@ -41,8 +41,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
         this.ways.forEach( way => {
 
-          let startPos = new google.maps.LatLng(way.startLocation.lat, way.startLocation.lng);
-          let endPos = new google.maps.LatLng(way.endLocation.lat, way.endLocation.lng);
+          let startPos = new google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng));
+          let endPos = new google.maps.LatLng(Number(way.endLocation.lat), Number(way.endLocation.lng));
 
           let bounds = new google.maps.LatLngBounds();
           bounds.extend(startPos);
@@ -63,11 +63,11 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
           let waypath = [
             {
-              lat: way.startLocation.lat,
-              lng: way.startLocation.lng
+              lat: Number(way.startLocation.lat),
+              lng: Number(way.startLocation.lng)
             },
             {
-              lat: way.endLocation.lat,
+              lat: Number(way.endLocation.lat),
               lng: way.endLocation.lng
             }
           ];
@@ -182,8 +182,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   //
   //     this.ways.forEach( way => {
   //
-  //       let startPos = new google.maps.LatLng(way.startLocation.lat, way.startLocation.lng);
-  //       let endPos = new google.maps.LatLng(way.endLocation.lat, way.endLocation.lng);
+  //       let startPos = new google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng));
+  //       let endPos = new google.maps.LatLng(Number(way.endLocation.lat), way.endLocation.lng);
   //
   //       let bounds = new google.maps.LatLngBounds();
   //       bounds.extend(startPos);
@@ -204,11 +204,11 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   //
   //       let waypath = [
   //         {
-  //           lat: way.startLocation.lat,
-  //           lng: way.startLocation.lng
+  //           lat: Number(way.startLocation.lat),
+  //           lng: Number(way.startLocation.lng)
   //         },
   //         {
-  //           lat: way.endLocation.lat,
+  //           lat: Number(way.endLocation.lat),
   //           lng: way.endLocation.lng
   //         }
   //       ];

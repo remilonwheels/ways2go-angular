@@ -51,18 +51,38 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       controller: 'ResolveController',
       controllerAs: 'resolveCtrl',
       resolve: {
+        authService: 'authService',
         profileService: 'profileService',
         testresolve: function() {
           return 'ayo';
         },
-        myprofile: function(profileService) {
-          return profileService.fetchProfile()
-          .then( profile => {
-            console.log('resolve profile', profile);
-            return profile;
-          });
+        myprofile: function(profileService, $q, $location, $mdToast) {
+          // return profileService.fetchProfile()
+          // .then( profile => {
+          //   console.log('resolve profile', profile);
+          //   return profile;
+          // })
+          // .catch(e => {
+          //   console.log(e);
+          //   // console.log('didnt login');
+          //   // $mdToast.showSimple('Please login');
+          //   // $location.url('/');
+          //   // return $q.reject();
+          // });
+          return 2;
+        },
+        authorize: function(authService) {
+          console.log('resolve authorize');
+          console.log(authService.authorize);
+          return authService.authorize();
         }
-      }
+
+        // isAuthorized: function(authService) {
+        //   return authService.getToken()
+        //   .then( () => true)
+        //   .catch();
+        // },
+      },
     }
   ];
 

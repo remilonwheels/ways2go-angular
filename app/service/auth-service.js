@@ -1,30 +1,43 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', '$window', authService];
+module.exports = ['$q', '$log', '$http', '$window', '$location', '$mdToast', authService];
 
-function authService($q, $log, $http, $window) {
+function authService($q, $log, $http, $window, $location, $mdToast) {
   $log.debug('authService');
 
   let service = {};
   let token = null;
-  this.token = token;
+  service.isAuthorized = false;
 
-  function setToken(_token) {
+  service.authorize = function() {
+    console.log('in authorize', service.isAuthorized);
+    if (service.isAuthorized) return $q.resolve();
+
+    $mdToast.showSimple('Please login');
+    $location.url('/');
+    console.log('hit');
+    return $q.reject();
+  };
+
+  const setToken = (_token) => {
+  // function setToken(_token) {
     $log.debug('authService.setToken');
 
     if (!_token) {
       return $q.reject(new Error('no token'));
     }
 
+    service.isAuthorized = true;
     $window.localStorage.setItem('token', _token);
     token = _token;
     return $q.resolve(token);
-  }
+  };
 
   service.getToken = function() {
     $log.debug('authService.getToken');
 
     if (token) {
+      service.isAuthorized = true;
       return $q.resolve(token);
     }
 
@@ -133,6 +146,7 @@ function authService($q, $log, $http, $window) {
     $log.debug('authService.logout');
 
     $window.localStorage.removeItem('token');
+    service.isAuthorized = false;
     token = null;
     return $q.resolve();
   };

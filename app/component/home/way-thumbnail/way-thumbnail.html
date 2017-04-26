@@ -2,22 +2,7 @@
   <md-card>
     <md-subheader class="md-no-sticky">My Ways</md-subheader>
 
-
-    <!-- this is just for testing having multiple items -->
-    <!-- <md-list-item class="secondary-button-padding" layout-margin layout-padding ng-show="waythumbnailCtrl.myWays.length === 0">
-      <span class="md-title">{{ waythumbnailCtrl.name }}</span>
-      <div layout="column">
-        <span class="md-subhead md-truncate">Start:  {{ waythumbnailCtrl.startLocation }}</span>
-        <span class="md-subhead md-truncate">End: {{ waythumbnailCtrl.endLocation }}</span>
-      </div>
-      <span></span>
-      <span class="md-subhead">Sunday</span>
-      <span class="md-subhead">3:00pm</span>
-      <md-button class="md-secondary" ng-click="">See Way</md-button>
-    </md-list-item> -->
-
     <md-list-item class="secondary-button-padding" layout-margin layout-padding ng-repeat="way in waythumbnailCtrl.myWays | limitTo: 3">
-      <!-- ng-repeat="item in messages | limitTo: 3"  -->
       <span class="md-title md-truncate">{{ way.name }}</span>
       <div layout="column">
         <span class="md-subhead md-truncate">Start: {{ way.startLocation.street}} {{ way.startLocation.city}} {{ way.startLocation.state}} </span>
@@ -28,7 +13,6 @@
       <span class="md-subhead">{{way.hour}} {{way.minutes}}</span>
       <md-button class="md-secondary" ng-click="">See Way</md-button>
     </md-list-item>
-
 
   </md-card>
 </section>

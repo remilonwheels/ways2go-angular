@@ -7,15 +7,15 @@ function authService($q, $log, $http, $window, $location, $mdToast) {
 
   let service = {};
   let token = null;
-  // service.token = token;
   service.isAuthorized = false;
 
-  service.authorize = () => {
+  service.authorize = function() {
     console.log('in authorize', service.isAuthorized);
     if (service.isAuthorized) return $q.resolve();
 
     $mdToast.showSimple('Please login');
     $location.url('/');
+    console.log('hit');
     return $q.reject();
   };
 

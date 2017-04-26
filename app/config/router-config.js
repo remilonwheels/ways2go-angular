@@ -64,29 +64,35 @@ function routerConfig($stateProvider, $urlRouterProvider) {
           // })
           // .catch(e => {
           //   console.log(e);
-          //   // console.log('didnt login');
-          //   // $mdToast.showSimple('Please login');
-          //   // $location.url('/');
-          //   // return $q.reject();
+          //   console.log('didnt login');
+          //   $mdToast.showSimple('Please login');
+          //   $location.url('/');
+          //   return $q.reject();
           // });
-          return 2;
-        },
-        authorize: function(authService) {
-          console.log('resolve authorize');
-          console.log(authService.authorize);
-          return authService.authorize();
-        }
 
-        // isAuthorized: function(authService) {
-        //   return authService.getToken()
-        //   .then( () => true)
-        //   .catch();
-        // },
+          return;
+        },
       },
     }
   ];
 
+  const stateConfig = {
+    resolve: {
+      isAuthorized
+    },
+    onEnter
+  };
   states.forEach( state => {
-    $stateProvider.state(state);
+    if (state.name === 'landing') $stateProvider.state(state);
+    else $stateProvider.state(Object.assign(state, stateConfig));
   });
+}
+
+function isAuthorized($window) {
+  if($window.localStorage.token) return true;
+  return false;
+}
+
+function onEnter(isAuthorized, $location) {
+  if (!isAuthorized) $location.url('/');
 }

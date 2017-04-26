@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', '$mdMedia', '$scope', 'testresolve', 'myprofile', 'authorize', ResolveController];
+module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', '$mdMedia', '$scope', 'testresolve', 'myprofile',ResolveController];
 
-function ResolveController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia, $scope, testresolve, myprofile, authorize) {
+function ResolveController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia, $scope, testresolve, myprofile) {
 }

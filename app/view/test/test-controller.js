@@ -52,9 +52,6 @@ function TestController($log, $rootScope, $mdDialog, wayService, $http, $interva
 
   };
 
-  $rootScope.$on('$locationChangeSuccess', () => {
-    this.fetchWays();
-  });
 
   this.seeReview = function ($event, bindFlag) {
 

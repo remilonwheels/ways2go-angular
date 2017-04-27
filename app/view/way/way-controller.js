@@ -54,13 +54,10 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     this.mapView = !this.mapView;
   };
 
-  this.fetchWays();
+  // this.fetchWays();
 
   $scope.$watchCollection('wayCtrl.ways', function(newValue, oldValue, scope) {
     $scope.$broadcast('wayChange');
   });
 
-  $rootScope.$on('$locationChangeSuccess', () => {
-    this.fetchWays();
-  });
 }

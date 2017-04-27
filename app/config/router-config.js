@@ -14,7 +14,10 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       url: '/home',
       template: require('../view/home/home.html'),
       controller: 'HomeController',
-      controllerAs: 'homeCtrl'
+      controllerAs: 'homeCtrl',
+      resolve: {
+        isAuthorized
+      }
     },
     {
       name: 'landing',
@@ -28,21 +31,37 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       url: '/message',
       template: require('../view/message/message.html'),
       controller: 'MessageController',
-      controllerAs: 'messageCtrl'
+      controllerAs: 'messageCtrl',
+      resolve: {
+        isAuthorized
+      }
     },
     {
       name: 'way',
       url: '/way',
       template: require('../view/way/way.html'),
       controller: 'WayController',
-      controllerAs: 'wayCtrl'
+      controllerAs: 'wayCtrl',
+      resolve: {
+        wayService: 'wayService',
+        ways: function(wayService) {
+          if (wayService.waysFetchFlag) return;
+          
+          return wayService.fetchWays()
+          .then( ways => ways);
+        },
+        isAuthorized
+      }
     },
     {
       name: 'test',
       url: '/test',
       template: require('../view/test/test.html'),
       controller: 'TestController',
-      controllerAs: 'testCtrl'
+      controllerAs: 'testCtrl',
+      resolve: {
+        isAuthorized
+      },
     },
     {
       name: 'resolve',
@@ -77,9 +96,6 @@ function routerConfig($stateProvider, $urlRouterProvider) {
   ];
 
   const stateConfig = {
-    resolve: {
-      isAuthorized
-    },
     onEnter
   };
   states.forEach( state => {

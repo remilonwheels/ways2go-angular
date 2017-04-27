@@ -7,6 +7,7 @@ function wayService($q, $log, $http, authService) {
 
   let service = {};
   service.ways = [];
+  service.waysFetchFlag = false;
 
   service.createWay = function(way) {
     $log.debug('wayService.createWay');
@@ -82,7 +83,7 @@ function wayService($q, $log, $http, authService) {
     })
     .then( res => {
       $log.log('ways fetched');
-
+      service.waysFetchFlag = true;
       angular.copy(res.data, service.ways); //eslint-disable-line
 
       return service.ways;

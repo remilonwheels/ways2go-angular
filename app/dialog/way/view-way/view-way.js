@@ -12,7 +12,14 @@ module.exports = {
 
 function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService, $mdMedia) {
 
-  this.way = wayService.getOneWay(way._id);
+  for (let prop in wayService.getOneWay(way._id))
+  {
+    console.log(prop);
+  }
+  const _way = wayService.getOneWay(way._id);
+  this.way = _way;
+  // this.way = wayService.getOneWay(way._id);
+
   console.log('this way view way', this.way);
   profileService.fetchProfile()
   .then( profile => {
@@ -66,7 +73,6 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,
-      // scope: $scope.$new(bindFlag),
       resolve: {
         profile: function() {
           return profile;

@@ -28,7 +28,7 @@
       <md-button
         ng-show="!signinCtrl.isAuthorized"
         ng-click="signinCtrl.signinUser()"
-        class="md-primary md-raised" layout layout-align="center center">
+        class="md-primary md-raised">
         <span ng-show="!signinCtrl.isLoading">login</span>
         <md-progress-circular md-mode="indeterminate"
           ng-show="signinCtrl.isLoading"

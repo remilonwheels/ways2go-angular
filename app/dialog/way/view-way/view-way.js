@@ -29,7 +29,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   console.log(this.way);
   this.name = this.way.name || 'Way';
 
-  this.way.startLocation = way.startLocation.lat ? way.startLocation.lat : way.startLocation;
+  this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
   this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
 
 

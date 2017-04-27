@@ -10,8 +10,9 @@ module.exports = {
 
 function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileService, $scope) {
   this.way = wayService.getOneWay(way._id);
-  this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
-  this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
+
+  this.startLocation = displayLocation(way.startLocation);
+  this.endLocation = displayLocation(way.endLocation);
 
   if (this.way.oneTimeDate) this.way.oneTimeDate = new Date(this.way.oneTimeDate);
 
@@ -118,4 +119,8 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
       list.push(dayMap[item]);
     }
   };
+}
+
+function displayLocation({street, city, state}) {
+  return `${street ? street : ''} ${city}, ${state}`;
 }

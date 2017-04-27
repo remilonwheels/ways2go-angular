@@ -19,7 +19,6 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
     this.profile = profile;
   });
 
-  console.log(this.way);
   this.name = this.way.name || 'Way';
 
   this.startLocation = displayLocation(way.startLocation);

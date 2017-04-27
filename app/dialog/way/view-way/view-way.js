@@ -29,8 +29,10 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   console.log(this.way);
   this.name = this.way.name || 'Way';
 
-  this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
-  this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
+  this.startLocation = displayLocation(way.startLocation);
+  this.endLocation = displayLocation(way.endLocation);
+  // this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
+  // this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
 
 
   console.log('wayer 0', this.way.wayerz[0]);
@@ -126,4 +128,8 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
       list.push(dayMap[item]);
     }
   };
+}
+
+function displayLocation({street, city, state}) {
+  return `${street ? street : ''} ${city}, ${state}`;
 }

@@ -13,20 +13,20 @@
     <md-truncate style="position: absolute; left: 90px; right: 170px; top: 13px; bottom: 13px;">ways2go</md-truncate>
 
     <span flex></span>
-    <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoHome()">
+    <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoHome()" ng-show="mobileHeaderCtrl.currentUrl !== '/join'">
       <md-icon ng-md-icon icon="home" ></md-icon>
     </md-button>
     <md-button class="md-fab md-mini" aria-label="Proile" ng-show="mobileHeaderCtrl.currentUrl === '/home'" ng-click="mobileHeaderCtrl.toggleProfile()" hide-gt-sm>
       <md-icon ng-md-icon icon="account_circle" ></md-icon>
     </md-button>
-    <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoWay()">
+    <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoWay()" ng-show="mobileHeaderCtrl.currentUrl !== '/join'">
       <md-icon ng-md-icon icon="directions_car"></md-icon>
     </md-button>
-    <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoMessage()">
+    <md-button class="md-fab md-mini" aria-label="Favorite" ng-click="mobileHeaderCtrl.gotoMessage()" ng-show="mobileHeaderCtrl.currentUrl !== '/join'">
       <md-icon ng-md-icon icon="message"></md-icon>
     </md-button>
     <md-button class="md-raised" aria-label="Sign out"
-      ng-click="mobileHeaderCtrl.logout()">
+      ng-click="mobileHeaderCtrl.logout()" ng-show="mobileHeaderCtrl.currentUrl !== '/join'">
       Sign out
     </md-button>
   </div>

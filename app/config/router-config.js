@@ -24,7 +24,13 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       url: '/join',
       template: require('../view/landing/landing.html'),
       controller: 'LandingController',
-      controllerAs: 'landingCtrl'
+      controllerAs: 'landingCtrl',
+      resolve: {
+        isAuthorized
+      },
+      onEnter: function landingOnEnter(isAuthorized, $location) {
+        if (isAuthorized) $location.url('/home');
+      }
     },
     {
       name: 'message',
@@ -46,7 +52,7 @@ function routerConfig($stateProvider, $urlRouterProvider) {
         wayService: 'wayService',
         ways: function(wayService) {
           if (wayService.waysFetchFlag) return;
-          
+
           return wayService.fetchWays()
           .then( ways => ways);
         },
@@ -76,19 +82,6 @@ function routerConfig($stateProvider, $urlRouterProvider) {
           return 'ayo';
         },
         myprofile: function(profileService, $q, $location, $mdToast) {
-          // return profileService.fetchProfile()
-          // .then( profile => {
-          //   console.log('resolve profile', profile);
-          //   return profile;
-          // })
-          // .catch(e => {
-          //   console.log(e);
-          //   console.log('didnt login');
-          //   $mdToast.showSimple('Please login');
-          //   $location.url('/');
-          //   return $q.reject();
-          // });
-
           return;
         },
       },

@@ -17,14 +17,14 @@
             <md-subheader class="md-no-sticky">Way Details</md-subheader>
             <md-list-item>
               <div>
-                <span class="md-subheader">FROM</span><span>{{viewWayCtrl.way.startLocation}}</span>
+                <span class="md-subheader">FROM</span><span>{{viewWayCtrl.startLocation}}</span>
               </div>
 
             </md-list-item>
 
             <md-list-item>
               <div>
-                <span class="md-subheader">TO</span><span>{{viewWayCtrl.way.endLocation}}</span>
+                <span class="md-subheader">TO</span><span>{{viewWayCtrl.endLocation}}</span>
               </div>
 
             </md-list-item>
@@ -52,12 +52,12 @@
 
             <md-divider></md-divider>
 
-            <md-subheader class="md-no-sticky">Lead Wayer</md-subheader>
-            <md-list-item>
-              <span><b>{{viewWayCtrl.way.wayerz[0].displayName}}</b></span>
-              <span></span>
+            <md-subheader class="md-no-sticky">Wayerz</md-subheader>
+            <md-list-item ng-repeat="wayer in viewWayCtrl.way.wayerz">
+              <span ng-show="viewWayCtrl.way.profileID === wayer._id">LEAD:</span>
+              <span><b>{{wayer.displayName}}</b></span>
               <span>
-                <md-button ng-click="viewWayCtrl.viewProfile($event, true, viewWayCtrl.profile)" class="md-secondary md-raised" layout layout-align="center center">
+                <md-button ng-click="viewWayCtrl.viewProfile($event, true, wayer)" class="md-secondary md-raised" layout layout-align="center center">
                   <span ng-show="!viewWayCtrl.isLoading" >Profile</span>
                 </md-button>
               </span>

@@ -11,9 +11,10 @@ module.exports = {
 };
 
 function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService, $mdMedia) {
+  console.log('this.way on view way ctrl before', this.way);
   this.way = wayService.getOneWay(way._id);
 
-  console.log('this.way on view way ctrl', this.way);
+  console.log('this.way on view way ctrl after', this.way);
 
   profileService.fetchProfile()
   .then( profile => {
@@ -54,8 +55,6 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   }
 
   this.dayArray = dayArray;
-
-  console.log(this.dayArray);
 
   this.isLoading = false;
 

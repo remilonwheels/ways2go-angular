@@ -70,7 +70,7 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
     .then( wayer => {
       $mdToast.showSimple(`Added Wayer Successfully`);
       this.isLoadingWayer = false;
-
+      $scope.$emit('wayModify');
       $mdDialog.hide();
     });
   };

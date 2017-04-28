@@ -43,6 +43,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
         this.endMarkers = [];
         this.googlePaths = [];
 
+        console.log('draw ways this.ways', this.ways);
+
         this.ways.forEach( way => {
 
           let startPos = new google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng));

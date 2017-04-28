@@ -158,9 +158,8 @@ function wayService($q, $log, $http, authService) {
     })
     .then( res => {
       $log.log('wayer added', res.data);
-      // let way = service.getOneWay(res.data._id)
-      //
-      // angular.copy(res.data, way.wayerz);
+      let wayUpdate = service.getOneWay(res.data._id);
+      angular.copy(res.data.wayerz, wayUpdate.wayerz);
       return res.data;
     })
     .catch( err => {

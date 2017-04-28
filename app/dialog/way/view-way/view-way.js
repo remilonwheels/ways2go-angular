@@ -30,7 +30,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
 
   console.log('wayer 0', this.way.wayerz[0]);
 
-  this.isPM = true;
+  // this.isPM = true;
   const dayMap = { '0': 'Monday', '1':'Tuesday', '2':'Wednesday', '3': 'Thursday', '4': 'Friday', '5': 'Saturday', '6': 'Sunday'};
 
   let dayArray = [];

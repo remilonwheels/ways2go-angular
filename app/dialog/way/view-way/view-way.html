@@ -34,11 +34,15 @@
               </div>
             </md-list-item>
 
-            <md-list-item ng-show="viewWayCtrl.way.hour">
-              <div>
+            <md-list-item ng-show="viewWayCtrl.way.hour" layout="column">
+              <!-- <div>
                 <span class="md-subheader">TIME</span><span>{{viewWayCtrl.hour}}:{{viewWayCtrl.minutes}} {{viewWayCtrl.ampm}}</span>
-              </div>
+              </div> -->
 
+              <div class="">
+                <md-icon ng-md-icon icon="access_time"></md-icon>
+                <span>{{viewWayCtrl.hour}}:{{viewWayCtrl.minutes}} {{viewWayCtrl.ampm}}</span>
+              </div>
             </md-list-item>
 
             <md-divider></md-divider>

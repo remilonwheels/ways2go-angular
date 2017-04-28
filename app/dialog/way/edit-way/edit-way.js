@@ -96,9 +96,9 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
     this.isLoading = true;
 
     if (this.hour12) {
-      this.way.hour = this.hour12;
+      this.waySubmit.hour = this.hour12;
       if (this.ampm === 'pm') {
-        this.way.hour += 12;
+        this.waySubmit.hour += 12;
       }
     }
 

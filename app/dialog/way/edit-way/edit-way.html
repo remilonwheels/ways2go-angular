@@ -27,7 +27,7 @@
         <input ng-model="editWayCtrl.endLocation" required>
       </md-input-container>
 
-      <!-- //////////////////////  Wayerz //////////////////////// -->
+      <!-- //////////////////////  Wayerz to Add //////////////////////// -->
       <div layout="row" layout-align="center center">
         <div>
 
@@ -38,6 +38,22 @@
         </div>
         <md-button ng-click="editWayCtrl.addWayerSubmit()" class="md-primary md-raised" layout layout-align="center center">
           <span ng-show="!editWayCtrl.isLoadingWayer">Add</span>
+          <md-progress-circular md-mode="indeterminate" ng-show="editWayCtrl.isLoadingWayer" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
+        </md-button>
+      </div>
+    <!-- //////////////////////////////////////////////////////////// -->
+
+      <!-- //////////////////////  Wayerz to Delete //////////////////////// -->
+      <div layout="row" layout-align="center center">
+        <div>
+
+          <md-select placeholder="Delete a Wayer" ng-model="editWayCtrl.wayerToDelete" md-on-open="editWayCtrl.loadWayerlist()" style="min-width: 200px;">
+            <md-option ng-value="wayerToDelte" ng-repeat="wayerToDelete in editWayCtrl.wayerList">{{wayerToDelete.displayName}}</md-option>
+          </md-select>
+          <p class="md-caption">Delete {{ editWayCtrl.wayerToDelete ? editWayCtrl.wayerToDelete.displayName : 'No one yet' }} from the Way</p>
+        </div>
+        <md-button ng-click="editWayCtrl.deleteWayerSubmit()" class="md-primary md-raised" layout layout-align="center center">
+          <span ng-show="!editWayCtrl.isLoadingDeleteWayer">Delete</span>
           <md-progress-circular md-mode="indeterminate" ng-show="editWayCtrl.isLoadingWayer" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
         </md-button>
       </div>

@@ -167,6 +167,35 @@ function wayService($q, $log, $http, authService) {
     });
   };
 
+  service.deleteWayer = function(wayID, wayerID) {
+    $log.debug('wayService.deleteWayer');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/way/${wayID}/wayerz/${wayerID}`; //eslint-disable-line
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+
+      return $http.delete(url, config);
+    })
+    .then( res => {
+      $log.log('wayer deleted', res.data);
+      let wayUpdate = service.getOneWay(res.data._id);
+      angular.copy(res.data.wayerz, wayUpdate.wayerz);
+      return res.data;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
 
   return service;
 }

@@ -14,7 +14,7 @@
       <md-input-container class="md-icon-float md-block">
         <label>name</label>
         <md-icon ng-md-icon icon="send"></md-icon>
-        <input type="text" ng-model="editWayCtrl.way.name">
+        <input type="text" ng-model="editWayCtrl.waySubmit.name">
       </md-input-container>
 
       <md-input-container class="md-icon-float md-block">
@@ -46,13 +46,13 @@
       <div layout>
         <div layout="row" layout-wrap flex="50">
           <div flex="33" ng-repeat="day in editWayCtrl.daysOfWeek">
-            <md-checkbox ng-checked="editWayCtrl.exists(day, editWayCtrl.way.recurringDayOfWeek)" ng-click="editWayCtrl.toggle(day, editWayCtrl.way.recurringDayOfWeek)">
-              {{ day }} <span ng-if="exists(day, editWayCtrl.way.recurringDayOfWeek)">selected</span>
+            <md-checkbox ng-checked="editWayCtrl.exists(day, editWayCtrl.waySubmit.recurringDayOfWeek)" ng-click="editWayCtrl.toggle(day, editWayCtrl.waySubmit.recurringDayOfWeek)">
+              {{ day }} <span ng-if="exists(day, editWayCtrl.waySubmit.recurringDayOfWeek)">selected</span>
             </md-checkbox>
           </div>
         </div>
 
-        <md-datepicker ng-model="editWayCtrl.way.oneTimeDate" md-placeholder="One Time Way" class="md-block" flex="50"></md-datepicker>
+        <md-datepicker ng-model="editWayCtrl.waySubmit.oneTimeDate" md-placeholder="One Time Way" class="md-block" flex="50"></md-datepicker>
       </div>
 
 
@@ -61,7 +61,7 @@
         <input flex type="number" ng-model="editWayCtrl.hour12" aria-label="hour" aria-controls="hour-slider">
       </md-input-container>
       <md-input-container>
-        <input flex type="number" ng-model="editWayCtrl.way.minutes" aria-label="hour" aria-controls="hour-slider">
+        <input flex type="number" ng-model="editWayCtrl.waySubmit.minutes" aria-label="hour" aria-controls="hour-slider">
       </md-input-container>
       <md-input-container>
         <input flex  ng-model="editWayCtrl.ampm" aria-label="hour" aria-controls="hour-slider">
@@ -76,7 +76,7 @@
       </md-slider-container>
 
       <md-slider-container flex>
-          <md-slider md-discrete ng-model="editWayCtrl.way.minutes" min="0" max="60" step="5" aria-label="minute" class="md-primary"
+          <md-slider md-discrete ng-model="editWayCtrl.waySubmit.minutes" min="0" max="60" step="5" aria-label="minute" class="md-primary"
         md-vertical></md-slider>
       <h5>Minutes</h5>
     </md-slider-container>

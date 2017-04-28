@@ -55,7 +55,8 @@ function wayService($q, $log, $http, authService) {
       return $http.put(url, way, config);
     })
     .then( res => {
-      $log.log('way edited');
+      angular.copy(res.data, service.getOneWay(res.data._id));
+      $log.log('way edited', res.data);
       let way = res.data;
       return way;
     })
@@ -138,8 +139,6 @@ function wayService($q, $log, $http, authService) {
     return;
   };
 
-
-//wayRouter.post('/api/way/:wayID/wayerz/:wayerID
   service.addWayer = function(wayID, wayerID) {
     $log.debug('wayService.addWayer');
 
@@ -158,12 +157,10 @@ function wayService($q, $log, $http, authService) {
       return $http.post(url, null, config);
     })
     .then( res => {
-      $log.log('wayer created');
-      let wayer = res.data;
-
-      service.getOneWay(wayer._id)
-
-      // service.ways.unshift(way);
+      $log.log('wayer added', res.data);
+      // let way = service.getOneWay(res.data._id)
+      //
+      // angular.copy(res.data, way.wayerz);
       return res.data;
     })
     .catch( err => {

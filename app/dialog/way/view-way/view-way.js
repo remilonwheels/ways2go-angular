@@ -11,7 +11,6 @@ module.exports = {
 };
 
 function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService, $mdMedia) {
-
   this.way = wayService.getOneWay(way._id);
 
   profileService.fetchProfile()

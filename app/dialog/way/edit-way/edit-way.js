@@ -10,21 +10,39 @@ module.exports = {
 
 function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileService, $scope) {
   this.way = wayService.getOneWay(way._id);
+  this.waySubmit = {};
 
+  const addPropToForm = (prop) => {
+    if ( prop === 'oneTimeDate') {
+      this.waySubmit[prop] = new Date(this.way[prop]);
+      return;
+    }
+
+    if (
+      prop === 'hour'
+    ) {
+      if (this.way[prop] > 12) {
+        this.hour12 = this.way[prop] - 12;
+        this.ampm = 'pm';
+        return;
+      } else {
+        this.ampm = 'am';
+        this.hour12 = this.way[prop];
+        return;
+      }
+    }
+
+    this.waySubmit[prop] = this.way[prop];
+    return;
+  };
+
+  for (let prop in this.way) {
+    addPropToForm(prop);
+  }
+
+  console.log('waysubit init', this.waySubmit);
   this.startLocation = displayLocation(way.startLocation);
   this.endLocation = displayLocation(way.endLocation);
-
-  if (this.way.oneTimeDate) this.way.oneTimeDate = new Date(this.way.oneTimeDate);
-
-  if (this.way.hour) {
-    if (this.way.hour > 12) {
-      this.hour12 = this.way.hour - 12;
-      this.ampm = 'pm';
-    } else {
-      this.ampm = 'am';
-      this.hour12 = this.way.hour;
-    }
-  }
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
   this.isPM = true;
@@ -84,14 +102,18 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
       }
     }
 
-    console.log('this.way before api call', this.way);
+    this.waySubmit.startLocation = this.startLocation;
+    this.waySubmit.endLocation = this.endLocation;
 
-    wayService.editWay(this.way)
+    console.log('this.way before api call', this.waySubmit);
+
+    wayService.editWay(this.waySubmit)
     .then( res => {
       console.log(res);
       $mdToast.showSimple('Changed Way Successfully');
       this.isLoading = false;
 
+      $scope.$emit('wayModify');
       $mdDialog.hide();
     })
     .catch( err => {
@@ -119,8 +141,10 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
       list.push(dayMap[item]);
     }
   };
+
+
 }
 
-function displayLocation({street, city, state}) {
-  return `${street ? street : ''} ${city}, ${state}`;
+function displayLocation({number, street, city, state}) {
+  return `${number} ${street ? street : ''} ${city}, ${state}`;
 }

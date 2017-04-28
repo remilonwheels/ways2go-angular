@@ -60,4 +60,9 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     $scope.$broadcast('wayChange');
   });
 
+  $scope.$on('wayModify', function() {
+    console.log('waymodify detected');
+    $scope.$broadcast('wayChange');
+  });
+
 }

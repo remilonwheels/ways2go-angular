@@ -33,6 +33,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
     this.googlePaths = [];
 
     const drawWays = () => {
+      console.log('in draw ways');
       NgMap.getMap().then( map => {
 
         this.startMarkers.forEach( marker => marker.setMap(null));
@@ -41,6 +42,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
         this.startMarkers = [];
         this.endMarkers = [];
         this.googlePaths = [];
+
+        console.log('draw ways this.ways', this.ways);
 
         this.ways.forEach( way => {
 
@@ -66,7 +69,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
             },
             {
               lat: Number(way.endLocation.lat),
-              lng: way.endLocation.lng
+              lng: Number(way.endLocation.lng)
             }
           ];
 
@@ -112,10 +115,15 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
 
         });
+
         let myLastWay = this.ways.filter( way => way.profileID === this.profile._id)[0];
+        console.log('last way', myLastWay);
         let myLastStartPos = new
         google.maps.LatLng(Number(myLastWay.startLocation.lat), Number(myLastWay.startLocation.lng));
         let myLastEndPos = new google.maps.LatLng(Number(myLastWay.endLocation.lat), Number(myLastWay.endLocation.lng));
+
+        console.log(myLastStartPos);
+        console.log(myLastEndPos);
 
         let bounds = new google.maps.LatLngBounds();
         bounds.extend(myLastStartPos);
@@ -161,7 +169,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
 
     $scope.$on('wayChange', () => {
-    // $scope.$on('wayChange', function() {
       $log.debug('waychange broadcast');
 
       drawWays();

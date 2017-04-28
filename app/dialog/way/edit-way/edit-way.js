@@ -10,20 +10,39 @@ module.exports = {
 
 function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileService, $scope) {
   this.way = wayService.getOneWay(way._id);
-  this.way.startLocation = way.startLocation.fullAddress ? way.startLocation.fullAddress : way.startLocation;
-  this.way.endLocation = way.endLocation.fullAddress ? way.endLocation.fullAddress : way.endLocation;
+  this.waySubmit = {};
 
-  if (this.way.oneTimeDate) this.way.oneTimeDate = new Date(this.way.oneTimeDate);
-
-  if (this.way.hour) {
-    if (this.way.hour > 12) {
-      this.hour12 = this.way.hour - 12;
-      this.ampm = 'pm';
-    } else {
-      this.ampm = 'am';
-      this.hour12 = this.way.hour;
+  const addPropToForm = (prop) => {
+    if ( prop === 'oneTimeDate') {
+      this.waySubmit[prop] = new Date(this.way[prop]);
+      return;
     }
+
+    if (
+      prop === 'hour'
+    ) {
+      if (this.way[prop] > 12) {
+        this.hour12 = this.way[prop] - 12;
+        this.ampm = 'pm';
+        return;
+      } else {
+        this.ampm = 'am';
+        this.hour12 = this.way[prop];
+        return;
+      }
+    }
+
+    this.waySubmit[prop] = this.way[prop];
+    return;
+  };
+
+  for (let prop in this.way) {
+    addPropToForm(prop);
   }
+
+  console.log('waysubit init', this.waySubmit);
+  this.startLocation = displayLocation(way.startLocation);
+  this.endLocation = displayLocation(way.endLocation);
 
   this.daysOfWeek = ['M', 'T', 'W', 'R', 'F', 'Sa', 'Su'];
   this.isPM = true;
@@ -51,7 +70,7 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
     .then( wayer => {
       $mdToast.showSimple(`Added Wayer Successfully`);
       this.isLoadingWayer = false;
-
+      $scope.$emit('wayModify');
       $mdDialog.hide();
     });
   };
@@ -77,20 +96,24 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
     this.isLoading = true;
 
     if (this.hour12) {
-      this.way.hour = this.hour12;
+      this.waySubmit.hour = this.hour12;
       if (this.ampm === 'pm') {
-        this.way.hour += 12;
+        this.waySubmit.hour += 12;
       }
     }
 
-    console.log('this.way before api call', this.way);
+    this.waySubmit.startLocation = this.startLocation;
+    this.waySubmit.endLocation = this.endLocation;
 
-    wayService.editWay(this.way)
+    console.log('this.way before api call', this.waySubmit);
+
+    wayService.editWay(this.waySubmit)
     .then( res => {
       console.log(res);
       $mdToast.showSimple('Changed Way Successfully');
       this.isLoading = false;
 
+      $scope.$emit('wayModify');
       $mdDialog.hide();
     })
     .catch( err => {
@@ -118,4 +141,10 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
       list.push(dayMap[item]);
     }
   };
+
+
+}
+
+function displayLocation({number, street, city, state}) {
+  return `${number} ${street ? street : ''} ${city}, ${state}`;
 }

@@ -2,7 +2,7 @@
 
 require('./_way-detail.scss');
 
-const editWayComponent = require('../../../dialog/way/edit-way/edit-way.js');
+// const editWayComponent = require('../../../dialog/way/edit-way/edit-way.js');
 const viewWayComponent = require('../../../dialog/way/view-way/view-way.js');
 
 module.exports = {
@@ -22,25 +22,10 @@ function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia
     this.profile = profile;
   });
 
-  this.editWay = function ($event, bindFlag, way) {
-    const dialogConfig = {
-      fullscreen: !$mdMedia('gt-sm'),
-      targetEvent: $event,
-      scope: $scope.$new(bindFlag),
-      resolve: {
-        way: function() {
-          return way;
-        }
-      },
-    };
-    $mdDialog.show(Object.assign(editWayComponent, dialogConfig));
-  };
-
   this.viewWay = function ($event, bindFlag, way) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,
-      scope: $scope.$new(bindFlag),
       resolve: {
         way: function() {
           return way;

@@ -4,6 +4,8 @@ require('./_view-way.scss');
 
 const viewOneProfileComponent = require('../../../dialog/profile/view-one-profile/view-one-profile.js');
 
+const editWayComponent = require('../../../dialog/way/edit-way/edit-way.js');
+
 module.exports = {
   template: require('./view-way.html'),
   controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', 'profileService', '$mdMedia', ViewWayController],
@@ -11,15 +13,16 @@ module.exports = {
 };
 
 function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService, $mdMedia) {
-
+  console.log('this.way on view way ctrl before', this.way);
   this.way = wayService.getOneWay(way._id);
+
+  console.log('this.way on view way ctrl after', this.way);
 
   profileService.fetchProfile()
   .then( profile => {
     this.profile = profile;
   });
 
-  console.log(this.way);
   this.name = this.way.name || 'Way';
 
   this.startLocation = displayLocation(way.startLocation);
@@ -27,7 +30,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
 
   console.log('wayer 0', this.way.wayerz[0]);
 
-  this.isPM = true;
+  // this.isPM = true;
   const dayMap = { '0': 'Monday', '1':'Tuesday', '2':'Wednesday', '3': 'Thursday', '4': 'Friday', '5': 'Saturday', '6': 'Sunday'};
 
   let dayArray = [];
@@ -55,9 +58,20 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
 
   this.dayArray = dayArray;
 
-  console.log(this.dayArray);
-
   this.isLoading = false;
+
+  this.editWay = function ($event, bindFlag, way) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      resolve: {
+        way: function() {
+          return way;
+        }
+      },
+    };
+    $mdDialog.show(Object.assign(editWayComponent, dialogConfig));
+  };
 
   this.viewProfile = function($event, bindFlag, profile) {
     const dialogConfig = {

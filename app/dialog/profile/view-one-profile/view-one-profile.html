@@ -1,21 +1,54 @@
 <md-dialog aria-label="View OneProfile">
-    <form ng-cloak>
-      <md-toolbar>
-        <div class="md-toolbar-tools">
-          <h2>{{ viewOneProfileCtrl.profile.displayName }}</h2>
-          <span flex></span>
-          <md-button class="md-icon-button" ng-click="viewOneProfileCtrl.closeDialog()">
-            <md-icon ng-md-icon icon="highlight_off"></md-icon>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{ viewOneProfileCtrl.profile.displayName }}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="viewOneProfileCtrl.closeDialog()">
+          <md-icon ng-md-icon icon="highlight_off"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content layout-margin layout-padding layout="column">
+      <md-card flex>
+        <img ng-src="{{ viewOneProfileCtrl.profile.photo }}"
+        alt="photo of {{ viewOneProfileCtrl.profile.displayName }}"
+        class="md-media-xl card-media">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{viewOneProfileCtrl.profile.displayName}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content layout="columns" layout-align="space-between">
+          <p>{{ viewOneProfileCtrl.profile.bio }}</p>
+        </md-card-content>
+
+      <md-fab-speed-dial md-open="viewOneProfileCtrl.isOpen"
+        md-direction="right" ng-class="md-scale">
+        <md-fab-trigger>
+          <md-button aria-label="menu" class="md-fab md-warn">
+            <md-icon ng-md-icon icon="message"></md-icon>
           </md-button>
-        </div>
-      </md-toolbar>
+        </md-fab-trigger>
 
-      <md-dialog-content layout-margin layout-padding layout="column">
-        <md-content>
+        <md-fab-actions>
+          <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
+            <md-icon ng-md-icon icon="twitter" aria-label="Twitter"></md-icon>
+          </md-button>
+          <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+            <md-icon ng-md-icon icon="facebook-box" aria-label="Facebook"></md-icon>
+          </md-button>
+          <md-button aria-label="Google Plus" class="md-fab md-raised md-mini">
+            <md-icon ng-md-icon icon="google-plus-box" aria-label="Google Plus"></md-icon>
+          </md-button>
+          <md-button aria-label="LinkedIn" class="md-fab md-raised md-mini">
+            <md-icon ng-md-icon icon="linkedin-box" aria-label="LinkedIn"></md-icon>
+          </md-button>
+        </md-fab-actions>
+      </md-fab-speed-dial>
 
-  </md-content>
-
-
+      </md-card>
     </md-dialog-content>
 
     <md-dialog-actions>

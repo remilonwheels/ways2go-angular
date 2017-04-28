@@ -1,3 +1,5 @@
+/* global google */
+
 'use strict';
 
 require('./_way.scss');
@@ -5,11 +7,12 @@ require('./_way.scss');
 const createWayComponent = require('../../dialog/way/create-way/create-way.js');
 const editWayComponent = require('../../dialog/way/edit-way/edit-way.js');
 
-module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', '$mdMedia', '$scope', WayController];
+module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', '$mdMedia', '$scope', 'myProfile', WayController];
 
-function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia, $scope) {
+function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia, $scope, myProfile) {
   $log.debug('WayController');
 
+  console.log('myProfile', myProfile);
   this.ways = wayService.getWays();
   this.currentWay = null;
   this.mapView = true;
@@ -52,6 +55,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
   this.toggleView = function() {
     this.mapView = !this.mapView;
+
   };
 
   // this.fetchWays();

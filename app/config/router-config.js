@@ -50,12 +50,14 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       controllerAs: 'wayCtrl',
       resolve: {
         wayService: 'wayService',
+        profileService: 'profileService',
         ways: function(wayService) {
           if (wayService.waysFetchFlag) return;
 
           return wayService.fetchWays()
           .then( ways => ways);
         },
+        myProfile,
         isAuthorized
       }
     },
@@ -104,4 +106,10 @@ function isAuthorized($window) {
 
 function onEnter(isAuthorized, $location) {
   if (!isAuthorized) $location.url('/');
+}
+
+function myProfile(profileService) {
+  return profileService.fetchProfile()
+  .then( profile => profile)
+  .catch(console.log);
 }

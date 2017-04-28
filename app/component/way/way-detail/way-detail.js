@@ -40,7 +40,6 @@ function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,
-      // scope: $scope.$new(bindFlag),
       resolve: {
         way: function() {
           return way;

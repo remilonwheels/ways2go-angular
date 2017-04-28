@@ -28,17 +28,14 @@
               </div>
             </md-list-item>
 
-            <md-list-item ng-show="viewWayCtrl.way.oneTimeDate">
+            <md-list-item ng-show="viewWayCtrl.way.oneTimeDate" layout="column">
               <div>
-                <span class="md-subheader">ONE-TIME DATE</span><span>{{viewWayCtrl.oneTimeDate| date:"MMMM dd 'yy" }}</span>
+                <md-icon ng-md-icon icon="today"></md-icon>
+                <span>{{viewWayCtrl.oneTimeDate| date : "MMMM dd '''yy" }}</span>
               </div>
             </md-list-item>
 
             <md-list-item ng-show="viewWayCtrl.way.hour" layout="column">
-              <!-- <div>
-                <span class="md-subheader">TIME</span><span>{{viewWayCtrl.hour}}:{{viewWayCtrl.minutes}} {{viewWayCtrl.ampm}}</span>
-              </div> -->
-
               <div class="">
                 <md-icon ng-md-icon icon="access_time"></md-icon>
                 <span>{{viewWayCtrl.hour}}:{{viewWayCtrl.minutes}} {{viewWayCtrl.ampm}}</span>

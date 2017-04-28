@@ -27,7 +27,7 @@ function CreateProfileController($log, $window, $location, $mdDialog, $mdToast, 
     })
     .catch( err => {
       $mdToast.showSimple(err.data);
-      this.isLoading = true;
+      this.isLoading = false;
     });
   };
 

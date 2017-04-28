@@ -12,26 +12,18 @@
 
       <md-dialog-content layout-margin layout-padding layout="column">
         <md-content>
-          <md-list>
-            <md-divider></md-divider>
+          <md-list layout="column">
             <md-subheader class="md-no-sticky">Way Details</md-subheader>
-            <md-list-item>
-              <div>
-                <span class="md-subheader">FROM</span><span>{{viewWayCtrl.startLocation}}</span>
-              </div>
+            <md-list-item layout="column" flex="none">
+              <span>{{viewWayCtrl.startLocation}}</span>
+              <md-icon ng-md-icon icon="arrow_downward"></md-icon>
+              <span>{{viewWayCtrl.endLocation}}</span>
 
             </md-list-item>
 
-            <md-list-item>
-              <div>
-                <span class="md-subheader">TO</span><span>{{viewWayCtrl.endLocation}}</span>
-              </div>
-
-            </md-list-item>
-
-            <md-list-item ng-show="viewWayCtrl.way.recurringDayOfWeek.length > 0">
-              <div>
-                <span class="md-subheader">DAYS OF THE WEEK</span>
+            <md-list-item ng-show="viewWayCtrl.way.recurringDayOfWeek.length > 0" layout="column">
+              <div class="">
+                <md-icon ng-md-icon icon="today"></md-icon>
                 <span ng-repeat="day in viewWayCtrl.dayArray">{{day}}</span>
               </div>
             </md-list-item>
@@ -52,8 +44,7 @@
             <md-divider></md-divider>
 
             <md-subheader class="md-no-sticky">Wayerz</md-subheader>
-            <md-list-item ng-repeat="wayer in viewWayCtrl.way.wayerz">
-              <span ng-show="viewWayCtrl.way.profileID === wayer._id">LEAD:</span>
+            <md-list-item ng-repeat="wayer in viewWayCtrl.way.wayerz" md-colors="{{ viewWayCtrl.way.profileID === wayer._id ? {backgroundColor: 'default-accent-100'} : '' }}">
               <span><b>{{wayer.displayName}}</b></span>
               <span>
                 <md-button ng-click="viewWayCtrl.viewProfile($event, true, wayer)" class="md-secondary md-raised" layout layout-align="center center">
@@ -73,6 +64,8 @@
         <span ng-show="!viewWayCtrl.isLoading">Request to Join</span>
         <md-progress-circular md-mode="indeterminate" ng-show="viewWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
       </md-button>
+
+      <md-button ng-show="way.wayerz[0]._id === wayDetailCtrl.profile._id" ng-click="viewWayCtrl.editWay($event, true, viewWayCtrl.way)" class="md-primary">Edit</md-button>
     </md-dialog-actions>
 
   </form>

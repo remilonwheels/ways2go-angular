@@ -4,6 +4,8 @@ require('./_view-way.scss');
 
 const viewOneProfileComponent = require('../../../dialog/profile/view-one-profile/view-one-profile.js');
 
+const editWayComponent = require('../../../dialog/way/edit-way/edit-way.js');
+
 module.exports = {
   template: require('./view-way.html'),
   controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', 'profileService', '$mdMedia', ViewWayController],
@@ -57,6 +59,19 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   this.dayArray = dayArray;
 
   this.isLoading = false;
+
+  this.editWay = function ($event, bindFlag, way) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      resolve: {
+        way: function() {
+          return way;
+        }
+      },
+    };
+    $mdDialog.show(Object.assign(editWayComponent, dialogConfig));
+  };
 
   this.viewProfile = function($event, bindFlag, profile) {
     const dialogConfig = {

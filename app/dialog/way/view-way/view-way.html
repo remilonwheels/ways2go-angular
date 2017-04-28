@@ -65,7 +65,7 @@
         <md-progress-circular md-mode="indeterminate" ng-show="viewWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
       </md-button>
 
-      <md-button ng-show="way.wayerz[0]._id === wayDetailCtrl.profile._id" ng-click="viewWayCtrl.editWay($event, true, viewWayCtrl.way)" class="md-primary">Edit</md-button>
+      <md-button ng-show="viewWayCtrl.way.profileID === viewWayCtrl.profile._id" ng-click="viewWayCtrl.editWay($event, true, viewWayCtrl.way)" class="md-primary">Edit</md-button>
     </md-dialog-actions>
 
   </form>

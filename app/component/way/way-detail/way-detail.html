@@ -8,8 +8,7 @@
       <p ng-show="!way.endLocation.lat"><b>To</b>: {{way.endLocation}}</p>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
-      <md-button ng-click="wayDetailCtrl.viewWay($event, true, way)" class="md-primary">View</md-button>
-      <md-button ng-show="way.wayerz[0]._id === wayDetailCtrl.profile._id" ng-click="wayDetailCtrl.editWay($event, true, way)" class="md-primary">Edit</md-button>
+      <md-button ng-click="wayDetailCtrl.viewWay($event, true, way)" class="md-primary">More</md-button>
     </md-card-actions>
   </md-card>
 </div>

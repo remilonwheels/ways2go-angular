@@ -4,11 +4,11 @@ require('./_edit-way.scss');
 
 module.exports = {
   template: require('./edit-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', 'profileService', '$scope', EditWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', 'profileService', '$scope', '$q', EditWayController],
   controllerAs: 'editWayCtrl'
 };
 
-function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileService, $scope) {
+function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileService, $scope, $q) {
   this.way = wayService.getOneWay(way._id);
   this.waySubmit = {};
 
@@ -68,8 +68,26 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
 
     wayService.addWayer(this.way._id, this.wayerToAdd._id)
     .then( wayer => {
-      $mdToast.showSimple(`Added Wayer Successfully`);
+      $mdToast.showSimple('Added Wayer Successfully');
       this.isLoadingWayer = false;
+      $scope.$emit('wayModify');
+      $mdDialog.hide();
+    });
+  };
+
+  this.wayerToDelete = null;
+  this.wayerList = this.way.wayerz;
+  this.loadWayerList = function() {
+    $q.resolve(this.wayerList);
+  };
+
+  this.deleteWayerSubmit = function() {
+    this.isLoadingDeleteWayer = true;
+
+    wayService.deleteWayer(this.way._id, this.wayerToDelete._id)
+    .then( wayer => {
+      $mdToast.showSimple('Removed Wayer Successfully');
+      this.isLoadingDeleteWayer = false;
       $scope.$emit('wayModify');
       $mdDialog.hide();
     });

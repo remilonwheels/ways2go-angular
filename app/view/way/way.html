@@ -1,5 +1,17 @@
 <section class="view-way" layout-fill>
 
+  <md-input-container
+    class="google-search"
+    md-colors="{background: 'grey-50-.8'}"
+    class="md-block">
+    <input places-auto-complete
+      ng-model="wayCtrl.address"
+      component-restrictions="{country:'us'}"
+      type="{{wayCtrl.type}}"
+      on-place-changed="wayCtrl.placeChanged()"
+      md-colors="{color:'grey-10'}"/>
+  </md-input-container>
+
   <div class="map-action">
     <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
     <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>

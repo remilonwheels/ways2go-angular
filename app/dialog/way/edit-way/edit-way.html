@@ -48,7 +48,7 @@
         <div>
 
           <md-select placeholder="Delete a Wayer" ng-model="editWayCtrl.wayerToDelete" md-on-open="editWayCtrl.loadWayerlist()" style="min-width: 200px;">
-            <md-option ng-value="wayerToDelte" ng-repeat="wayerToDelete in editWayCtrl.wayerList">{{wayerToDelete.displayName}}</md-option>
+            <md-option ng-value="wayerToDelete" ng-repeat="wayerToDelete in editWayCtrl.wayerList">{{wayerToDelete.displayName}}</md-option>
           </md-select>
           <p class="md-caption">Delete {{ editWayCtrl.wayerToDelete ? editWayCtrl.wayerToDelete.displayName : 'No one yet' }} from the Way</p>
         </div>

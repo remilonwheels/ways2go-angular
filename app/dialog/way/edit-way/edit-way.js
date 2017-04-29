@@ -68,7 +68,7 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
 
     wayService.addWayer(this.way._id, this.wayerToAdd._id)
     .then( wayer => {
-      $mdToast.showSimple(`Added Wayer Successfully`);
+      $mdToast.showSimple('Added Wayer Successfully');
       this.isLoadingWayer = false;
       $scope.$emit('wayModify');
       $mdDialog.hide();
@@ -86,7 +86,7 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
 
     wayService.deleteWayer(this.way._id, this.wayerToDelete._id)
     .then( wayer => {
-      $mdToast.showSimple(`Removed Wayer Successfully`);
+      $mdToast.showSimple('Removed Wayer Successfully');
       this.isLoadingDeleteWayer = false;
       $scope.$emit('wayModify');
       $mdDialog.hide();

@@ -1,3 +1,4 @@
+/* global angular __API_URL__ */
 'use strict';
 
 module.exports = ['$q', '$log', '$http', 'authService', wayService];
@@ -14,7 +15,7 @@ function wayService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/way` //eslint-disable-line
+      let url = `${__API_URL__}/api/way`;
       let config = {
         headers: {
           Accept: 'application/json',
@@ -43,7 +44,7 @@ function wayService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/way/${way._id}` //eslint-disable-line
+      let url = `${__API_URL__}/api/way/${way._id}`;
       let config = {
         headers: {
           Accept: 'application/json',
@@ -71,7 +72,7 @@ function wayService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/way` //eslint-disable-line
+      let url = `${__API_URL__}/api/way`;
       let config = {
         headers: {
           Accept: 'application/json',
@@ -85,8 +86,7 @@ function wayService($q, $log, $http, authService) {
     .then( res => {
       $log.log('ways fetched');
       service.waysFetchFlag = true;
-      angular.copy(res.data, service.ways); //eslint-disable-line
-
+      angular.copy(res.data, service.ways);
       return service.ways;
     })
     .catch( err => {
@@ -101,7 +101,7 @@ function wayService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/way/${wayID}` //eslint-disable-line
+      let url = `${__API_URL__}/api/way/${wayID}`;
       let config = {
         headers: {
           Accept: 'application/json',
@@ -143,7 +143,7 @@ function wayService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/way/${wayID}/wayerz/${wayerID}`; //eslint-disable-line
+      let url = `${__API_URL__}/api/way/${wayID}/wayerz/${wayerID}`;
       let config = {
         headers: {
           Accept: 'application/json',
@@ -172,7 +172,7 @@ function wayService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/way/${wayID}/wayerz/${wayerID}`; //eslint-disable-line
+      let url = `${__API_URL__}/api/way/${wayID}/wayerz/${wayerID}`;
       let config = {
         headers: {
           Accept: 'application/json',

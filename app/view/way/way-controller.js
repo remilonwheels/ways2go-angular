@@ -1,5 +1,3 @@
-/* global google */
-
 'use strict';
 
 require('./_way.scss');
@@ -58,11 +56,9 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
   };
 
-  // this.fetchWays();
-
-  $scope.$watchCollection('wayCtrl.ways', function(newValue, oldValue, scope) {
+  $scope.$watch('wayCtrl.ways', function(newValue, oldValue, scope) {
     $scope.$broadcast('wayChange');
-  });
+  }, true);
 
   $scope.$on('wayModify', function() {
     console.log('waymodify detected');

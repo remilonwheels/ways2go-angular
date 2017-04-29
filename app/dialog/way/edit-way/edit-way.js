@@ -58,7 +58,7 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
   this.loadAllProfiles = function() {
     profileService.fetchAllProfiles()
     .then( profiles => {
-      this.allProfiles = profiles;
+      this.allProfiles = profiles.filter( profile => profile._id !== this.way.profileID);
     })
     .catch( err => $log.debug(err));
   };
@@ -76,7 +76,7 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
   };
 
   this.wayerToDelete = null;
-  this.wayerList = this.way.wayerz;
+  this.wayerList = this.way.wayerz.filter( wayer => wayer._id !== this.way.profileID);
   this.loadWayerList = function() {
     $q.resolve(this.wayerList);
   };
@@ -127,9 +127,11 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
 
     wayService.editWay(this.waySubmit)
     .then( res => {
-      console.log(res);
+      console.log('edit way rezzy', res);
       $mdToast.showSimple('Changed Way Successfully');
       this.isLoading = false;
+
+      console.log('this in edit way submit promise', this);
 
       $scope.$emit('wayModify');
       $mdDialog.hide();

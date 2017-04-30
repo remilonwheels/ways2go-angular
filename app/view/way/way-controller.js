@@ -25,10 +25,27 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     setPlaceChange(this.getPlace());
   };
   const setPlaceChange = (place) => {
-    console.log('this in setPlaceChange()', this.address);
     this.place = place;
     this.map.setCenter(this.place.geometry.location);
-    $log.debug('wapmap searchbar address', this.address);
+    console.log('this.place in setplace', this.place);
+    var {
+      lat,
+      lng
+    } = this.place.geometry.location;
+
+    angular.copy({
+      lat: lat(),
+      lng: lng()
+    }, this.searchLocation);
+
+    // this.searchLocation = {
+    //   lat: lat(),
+    //   lng: lng()
+    // };
+
+    console.log('way controller search loc', this.searchLocation);
+
+    $scope.$broadcast('wayChange');
   };
 
   this.createWay = function ($event, bindFlag) {

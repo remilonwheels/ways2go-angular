@@ -58,6 +58,8 @@ function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia
   };
 
   $scope.$on('wayChange', () => {
+    console.log('way detail waychange detect');
+    console.log('way detail searchLocation', this.searchLocation);
     this.createDistanceWays();
   });
 

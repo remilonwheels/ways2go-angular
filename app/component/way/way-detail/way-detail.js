@@ -11,7 +11,8 @@ module.exports = {
   controller: ['$log', '$http', '$interval', 'NgMap', 'wayService', '$mdMedia', '$scope', '$mdDialog', 'profileService', WayDetailController],
   controllerAs: 'wayDetailCtrl',
   bindings: {
-    ways: '<'
+    ways: '<',
+    searchLocation: '<'
   }
 };
 
@@ -20,17 +21,21 @@ function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia
 
 
   this.createDistanceWays = function createDistanceWays() {
-    this.distanceWays = this.ways.map( way => Object.assign(way, {distance: computeWayDistance.call(way)}));
+    this.distanceWays = this.ways.map( way => Object.assign(way, {distance: this.computeWayDistance(way)}));
 
-    function computeWayDistance() {
-      return google.maps.geometry.spherical.computeDistanceBetween(
-        new google.maps.LatLng(Number(this.startLocation.lat), Number(this.startLocation.lng)),
-        new google.maps.LatLng(Number(this.endLocation.lat), Number(this.endLocation.lng))
-      );
-    }
+  };
+
+  this.computeWayDistance = (way) => {
+    console.log('this in compute', this);
+    console.log('way in compute', way);
+    return google.maps.geometry.spherical.computeDistanceBetween(
+      new google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng)),
+      new google.maps.LatLng(Number(this.searchLocation.lat), Number(this.searchLocation.lng))
+    );
   };
 
   this.$onInit = () => {
+    console.log('this in init', this);
     this.createDistanceWays();
   };
 

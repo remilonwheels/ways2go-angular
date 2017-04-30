@@ -10,18 +10,12 @@ module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$in
 function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia, $scope, myProfile) {
   $log.debug('WayController');
 
-  console.log('myProfile', myProfile);
-
-  // this.ways = wayService.getWays();
   this.ways = wayService.getWays();
-
-
-  this.currentWay = null;
   this.mapView = true;
+  this.searchLocation = myProfile.address[0];
 
   NgMap.getMap()
   .then( map => this.map = map);
-
 
   // search bar
   this.type = 'geocode';

@@ -91,6 +91,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
               offset: '0',
               repeat: '20px'
             }],
+            wayID: way._id
           });
 
           this.startMarkers.push(startMarker);
@@ -109,7 +110,11 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
             viewWay(event, true, _way); // eslint-disable-line
           });
 
+          google.maps.event.addListener(googlePath, 'click', function() {
+            let _way = wayService.getOneWay(this.wayID);
 
+            viewWay(event, true, _way); // eslint-disable-line
+          });
         });
 
         // let myLastWay = this.ways.filter( way => way.profileID === this.profile._id)[0];
@@ -151,7 +156,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
       $mdDialog.show(Object.assign(viewWayComponent, dialogConfig));
     };
 
-
     $scope.$on('wayChange', () => {
       $log.debug('waychange broadcast');
       console.log('waychange broadcast');
@@ -159,5 +163,4 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
       drawWays();
     });
   });
-
 }

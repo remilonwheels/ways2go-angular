@@ -86,11 +86,13 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
   $scope.$watch('wayCtrl.ways', function(newValue, oldValue, scope) {
     $scope.$broadcast('wayChange');
+    $scope.$broadcast('searchChange');
   }, true);
 
   $scope.$on('wayModify', function() {
     console.log('waymodify detected');
     $scope.$broadcast('wayChange');
+    $scope.$broadcast('searchChange');
   });
 
 }

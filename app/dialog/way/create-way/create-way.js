@@ -4,11 +4,11 @@ require('./_create-way.scss');
 
 module.exports = {
   template: require('./create-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', CreateWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', '$scope', CreateWayController],
   controllerAs: 'createWayCtrl'
 };
 
-function CreateWayController($log, $mdDialog, $mdToast, wayService) {
+function CreateWayController($log, $mdDialog, $mdToast, wayService, $scope) {
   $log.debug('CreateWayController');
 
   this.way = {};
@@ -31,7 +31,8 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
 
     wayService.createWay(this.way)
     .then( () => {
-      $mdToast.showSimple('Made a Way was successful');
+      $mdToast.showSimple('Made a Way successfully');
+      $scope.$emit('wayModify');
       this.isLoading = false;
       this.way = {};
       this.way.recurringDayOfWeek = [];

@@ -103,9 +103,10 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
 
     wayService.deleteWay(this.way._id)
     .then( res => {
-      console.log(res);
+      console.log('this in deletewaysubmit', this);
       $mdToast.showSimple('Deleted Way Successfully');
       this.isLoading = false;
+      $scope.$emit('wayModify');
 
       $mdDialog.hide();
     })

@@ -32,7 +32,12 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
       }
     }
 
-    this.waySubmit[prop] = this.way[prop];
+    { let disAllowedProps = ['distance'];
+      if (!disAllowedProps.includes(prop)) {
+        this.waySubmit[prop] = this.way[prop];
+      }
+    }
+
     return;
   };
 

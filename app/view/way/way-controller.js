@@ -11,7 +11,11 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   $log.debug('WayController');
 
   console.log('myProfile', myProfile);
+
+  // this.ways = wayService.getWays();
   this.ways = wayService.getWays();
+
+
   this.currentWay = null;
   this.mapView = true;
 

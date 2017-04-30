@@ -1,12 +1,5 @@
 .cpt-waymap {
 
-  .google-search {
-    position: fixed;
-    top: 5%;
-    z-index: 1;
-    width: 100%;
-  }
-
   ng-map {
     z-index: 10;
   }

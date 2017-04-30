@@ -1,3 +1,5 @@
+/* global angular */
+
 'use strict';
 
 require('./_way.scss');
@@ -38,14 +40,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
       lng: lng()
     }, this.searchLocation);
 
-    // this.searchLocation = {
-    //   lat: lat(),
-    //   lng: lng()
-    // };
-
-    console.log('way controller search loc', this.searchLocation);
-
-    $scope.$broadcast('wayChange');
+    $scope.$broadcast('searchChange');
   };
 
   this.createWay = function ($event, bindFlag) {

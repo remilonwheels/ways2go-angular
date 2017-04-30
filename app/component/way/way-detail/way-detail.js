@@ -21,13 +21,12 @@ function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia
 
 
   this.createDistanceWays = function createDistanceWays() {
+    $log.debug('WayDetailController createDistanceWays()');
+    console.log('WayDetailController createDistanceWays()');
     this.distanceWays = this.ways.map( way => Object.assign(way, {distance: this.computeWayDistance(way)}));
-
   };
 
   this.computeWayDistance = (way) => {
-    console.log('this in compute', this);
-    console.log('way in compute', way);
     return google.maps.geometry.spherical.computeDistanceBetween(
       new google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng)),
       new google.maps.LatLng(Number(this.searchLocation.lat), Number(this.searchLocation.lng))
@@ -57,10 +56,7 @@ function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia
     $mdDialog.show(Object.assign(viewWayComponent, dialogConfig));
   };
 
-  $scope.$on('wayChange', () => {
-    console.log('way detail waychange detect');
-    console.log('way detail searchLocation', this.searchLocation);
+  $scope.$on('searchChange', () => {
     this.createDistanceWays();
   });
-
 }

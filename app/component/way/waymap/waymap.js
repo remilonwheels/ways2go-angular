@@ -154,6 +154,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
     $scope.$on('wayChange', () => {
       $log.debug('waychange broadcast');
+      console.log('waychange broadcast');
 
       drawWays();
     });

@@ -29,7 +29,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
     this.googlePaths = [];
 
     const drawWays = () => {
-      console.log('in draw ways');
+      console.log('this in draw ways', this);
       NgMap.getMap().then( map => {
 
         this.startMarkers.forEach( marker => marker.setMap(null));
@@ -138,8 +138,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
       NgMap.getMap().then( map => {
         this.isMapInitialized = true;
         this.map = map;
-        drawWays();
 
+        drawWays();
       });
     };
 

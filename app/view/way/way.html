@@ -14,7 +14,11 @@
   </md-input-container>
 
   <div class="map-action">
+    <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="5" min="0" max="50" aria-label="search-radius" ng-change="wayCtrl.createDistanceWays()">
+    </md-slider>
+
     <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
+
     <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>
   </div>
 

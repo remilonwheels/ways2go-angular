@@ -26,7 +26,9 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     const meterToMile = 0.000621371;
     this.distanceWays = this.ways
       .map( way => Object.assign(way, {distance: this.computeWayDistance(way) * meterToMile}))
-      .filter( way => way.distance < this.searchRadius);
+      .filter( way => way.distance <= this.searchRadius);
+
+    $scope.$broadcast('wayChange');
   };
 
   this.computeWayDistance = (way) => {

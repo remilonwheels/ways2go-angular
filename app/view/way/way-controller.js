@@ -1,4 +1,4 @@
-/* global angular */
+/* global angular google */
 
 'use strict';
 
@@ -15,9 +15,28 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.ways = wayService.getWays();
   this.mapView = true;
   this.searchLocation = myProfile.address[0];
-
+  this.searchRadius = 50;
   NgMap.getMap()
   .then( map => this.map = map);
+
+  this.createDistanceWays = function createDistanceWays() {
+    $log.debug('WayDetailController createDistanceWays()');
+    console.log('WayDetailController createDistanceWays()');
+
+    const meterToMile = 0.000621371;
+    this.distanceWays = this.ways.map( way => Object.assign(way, {distance: this.computeWayDistance(way) * meterToMile}));
+  };
+
+  this.computeWayDistance = (way) => {
+    return google.maps.geometry.spherical.computeDistanceBetween(
+      new google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng)),
+      new google.maps.LatLng(Number(this.searchLocation.lat), Number(this.searchLocation.lng))
+    );
+  };
+
+  this.$onInit = () => {
+    this.createDistanceWays();
+  };
 
   // search bar
   this.type = 'geocode';
@@ -41,8 +60,11 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
       lng: lng()
     }, this.searchLocation);
 
-    $scope.$broadcast('searchChange');
+    this.createDistanceWays();
+    // $scope.$broadcast('searchChange');
   };
+
+
 
   this.createWay = function ($event, bindFlag) {
     const dialogConfig = {

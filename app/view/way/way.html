@@ -4,7 +4,8 @@
     class="google-search"
     md-colors="{background: 'grey-50-.8'}"
     class="md-block">
-    <input places-auto-complete
+    <input
+      places-auto-complete
       ng-model="wayCtrl.address"
       component-restrictions="{country:'us'}"
       type="{{wayCtrl.type}}"
@@ -17,7 +18,8 @@
     <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>
   </div>
 
-  <way-detail ways="wayCtrl.ways" ng-show="!wayCtrl.mapView" search-location="wayCtrl.searchLocation"></way-detail>
+  <way-detail ways="wayCtrl.distanceWays" ng-show="!wayCtrl.mapView"></way-detail>
+  <!-- <way-detail ways="wayCtrl.ways" ng-show="!wayCtrl.mapView" search-location="wayCtrl.searchLocation"></way-detail> -->
 
   <waymap layout-fill ways="wayCtrl.ways" ng-show="wayCtrl.mapView"></waymap>
 

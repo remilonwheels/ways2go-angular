@@ -29,7 +29,8 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   const setPlaceChange = (place) => {
     this.place = place;
     this.map.setCenter(this.place.geometry.location);
-    console.log('this.place in setplace', this.place);
+    this.map.setZoom(13);
+
     var {
       lat,
       lng

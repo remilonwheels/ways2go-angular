@@ -4,11 +4,11 @@ require('./_create-way.scss');
 
 module.exports = {
   template: require('./create-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', CreateWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', '$scope', 'NgMap', CreateWayController],
   controllerAs: 'createWayCtrl'
 };
 
-function CreateWayController($log, $mdDialog, $mdToast, wayService) {
+function CreateWayController($log, $mdDialog, $mdToast, wayService, $scope, NgMap) {
   $log.debug('CreateWayController');
 
   this.way = {};
@@ -30,12 +30,30 @@ function CreateWayController($log, $mdDialog, $mdToast, wayService) {
 
 
     wayService.createWay(this.way)
-    .then( () => {
-      $mdToast.showSimple('Made a Way was successful');
+    .then( way => {
+      $mdToast.showSimple('Made a Way successfully');
+      $scope.$emit('wayModify');
       this.isLoading = false;
       this.way = {};
       this.way.recurringDayOfWeek = [];
-      $mdDialog.hide();
+
+      NgMap.getMap()
+      .then( map => {
+
+        let start = new
+        google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng));
+        let end = new google.maps.LatLng(Number(way.endLocation.lat), Number(way.endLocation.lng));
+
+        console.log(start);
+        console.log(end);
+
+        let bounds = new google.maps.LatLngBounds();
+        bounds.extend(start);
+        bounds.extend(end);
+        map.fitBounds(bounds);
+
+        $mdDialog.hide();
+      });
     })
     .catch( err => {
       $mdToast.showSimple(err.data);

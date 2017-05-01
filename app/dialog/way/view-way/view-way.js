@@ -62,6 +62,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
 
   this.editWay = function ($event, bindFlag, way) {
     const dialogConfig = {
+      // scope: $scope.$new(true),
       fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,
       resolve: {

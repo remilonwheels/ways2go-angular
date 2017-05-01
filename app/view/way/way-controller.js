@@ -1,3 +1,5 @@
+/* global angular google */
+
 'use strict';
 
 require('./_way.scss');
@@ -10,10 +12,64 @@ module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$in
 function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval, NgMap, $mdMedia, $scope, myProfile) {
   $log.debug('WayController');
 
-  console.log('myProfile', myProfile);
   this.ways = wayService.getWays();
-  this.currentWay = null;
   this.mapView = true;
+  this.searchLocation = myProfile.address[0];
+  this.searchRadius = 25;
+  NgMap.getMap()
+  .then( map => this.map = map);
+
+  this.createDistanceWays = function createDistanceWays() {
+    $log.debug('WayDetailController createDistanceWays()');
+    console.log('WayDetailController createDistanceWays()');
+
+    const meterToMile = 0.000621371;
+    this.distanceWays = this.ways
+      .map( way => Object.assign(way, {distance: this.computeWayDistance(way) * meterToMile}))
+      .filter( way => way.distance <= this.searchRadius);
+
+    console.log('distance ways after calc', this.distanceWays);
+    $scope.$broadcast('wayChange');
+  };
+
+  this.computeWayDistance = (way) => {
+    return google.maps.geometry.spherical.computeDistanceBetween(
+      new google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng)),
+      new google.maps.LatLng(Number(this.searchLocation.lat), Number(this.searchLocation.lng))
+    );
+  };
+
+  this.$onInit = () => {
+    this.createDistanceWays();
+  };
+
+  // search bar
+  this.type = 'geocode';
+  this.placeChanged = function() {
+    // "this" inside function references the location entered in from the search bar
+
+    setPlaceChange(this.getPlace());
+  };
+  const setPlaceChange = (place) => {
+    this.place = place;
+    this.map.setCenter(this.place.geometry.location);
+    this.map.setZoom(13);
+
+    var {
+      lat,
+      lng
+    } = this.place.geometry.location;
+
+    angular.copy({
+      lat: lat(),
+      lng: lng()
+    }, this.searchLocation);
+
+    this.createDistanceWays();
+    // $scope.$broadcast('searchChange');
+  };
+
+
 
   this.createWay = function ($event, bindFlag) {
     const dialogConfig = {
@@ -56,12 +112,14 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
   };
 
-  $scope.$watch('wayCtrl.ways', function(newValue, oldValue, scope) {
+  $scope.$watch('wayCtrl.ways', (newValue, oldValue, scope) => {
+    this.createDistanceWays();
     $scope.$broadcast('wayChange');
   }, true);
 
-  $scope.$on('wayModify', function() {
+  $scope.$on('wayModify', () => {
     console.log('waymodify detected');
+    this.createDistanceWays();
     $scope.$broadcast('wayChange');
   });
 

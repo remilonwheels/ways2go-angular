@@ -58,9 +58,9 @@ context.keys().forEach( key => {
   ways2go.filter(name, module);
 });
 
-// context = require.context('./directive/', true, /\.js$/);
-// context.keys().forEach( key => {
-//   let name = camelcase(path.basename(key, '.js'));
-//   let module = context(key);
-//   ways2go.directive(name, module);
-// });
+context = require.context('./directive/', true, /\.js$/);
+context.keys().forEach( key => {
+  let name = camelcase(path.basename(key, '.js'));
+  let module = context(key);
+  ways2go.directive(name, module);
+});

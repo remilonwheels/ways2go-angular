@@ -1,8 +1,9 @@
+/* global */
+
 'use strict';
 
 require('./_way-detail.scss');
 
-// const editWayComponent = require('../../../dialog/way/edit-way/edit-way.js');
 const viewWayComponent = require('../../../dialog/way/view-way/view-way.js');
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
   controller: ['$log', '$http', '$interval', 'NgMap', 'wayService', '$mdMedia', '$scope', '$mdDialog', 'profileService', WayDetailController],
   controllerAs: 'wayDetailCtrl',
   bindings: {
-    ways: '<'
+    ways: '<',
   }
 };
 
@@ -34,5 +35,4 @@ function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia
     };
     $mdDialog.show(Object.assign(viewWayComponent, dialogConfig));
   };
-
 }

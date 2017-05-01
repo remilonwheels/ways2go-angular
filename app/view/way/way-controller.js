@@ -24,7 +24,9 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     console.log('WayDetailController createDistanceWays()');
 
     const meterToMile = 0.000621371;
-    this.distanceWays = this.ways.map( way => Object.assign(way, {distance: this.computeWayDistance(way) * meterToMile}));
+    this.distanceWays = this.ways
+      .map( way => Object.assign(way, {distance: this.computeWayDistance(way) * meterToMile}))
+      .filter( way => way.distance < this.searchRadius);
   };
 
   this.computeWayDistance = (way) => {
@@ -107,15 +109,15 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
   };
 
-  $scope.$watch('wayCtrl.ways', function(newValue, oldValue, scope) {
+  $scope.$watch('wayCtrl.ways', (newValue, oldValue, scope) => {
+    this.createDistanceWays();
     $scope.$broadcast('wayChange');
-    $scope.$broadcast('searchChange');
   }, true);
 
-  $scope.$on('wayModify', function() {
+  $scope.$on('wayModify', () => {
     console.log('waymodify detected');
+    this.createDistanceWays();
     $scope.$broadcast('wayChange');
-    $scope.$broadcast('searchChange');
   });
 
 }

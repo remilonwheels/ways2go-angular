@@ -4,7 +4,7 @@
         class="md-sidenav-left"
         md-component-id="left"
         md-is-locked-open="$mdMedia('gt-sm')"
-        ng-cloak layout-fill layout-padding flex>
+        layout-fill layout-padding flex>
       <md-toolbar>
         <div class="md-toolbar-tools">
           <md-truncate>{{ displayProfileCtrl.profile.fullName }}</md-truncate>
@@ -31,9 +31,9 @@
         <md-card-content layout="columns" layout-align="space-between">
           <p>{{ displayProfileCtrl.profile.bio }}</p>
         </md-card-content>
-
-      <md-fab-speed-dial md-open="displayProfileCtrl.isOpen"
-        md-direction="right" ng-class="md-scale">
+      <md-content>
+      <md-fab-speed-dial md-direction="right"
+        ng-class="md-scale" ng-cloak>
         <md-fab-trigger>
           <md-button aria-label="menu" class="md-fab md-warn">
             <md-icon ng-md-icon icon="message"></md-icon>
@@ -41,20 +41,21 @@
         </md-fab-trigger>
 
         <md-fab-actions>
-          <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
+          <md-button aria-label="Twitter" class="md-fab md-raised md-mini" ng-click="displayProfileCtrl.linkMediaSite('twitter', displayProfileCtrl.profile.socialMedia.twitter)">
             <md-icon ng-md-icon icon="twitter" aria-label="Twitter"></md-icon>
           </md-button>
-          <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+          <md-button aria-label="Facebook" class="md-fab md-raised md-mini" ng-click="displayProfileCtrl.linkMediaSite('facebook', displayProfileCtrl.profile.socialMedia.facebook)">
             <md-icon ng-md-icon icon="facebook-box" aria-label="Facebook"></md-icon>
           </md-button>
-          <md-button aria-label="Google Plus" class="md-fab md-raised md-mini">
+          <md-button aria-label="Google Plus" class="md-fab md-raised md-mini" ng-click="displayProfileCtrl.linkGoogle(displayProfileCtrl.profile.socialMedia.googlePlus)">
             <md-icon ng-md-icon icon="google-plus-box" aria-label="Google Plus"></md-icon>
           </md-button>
-          <md-button aria-label="LinkedIn" class="md-fab md-raised md-mini">
+          <md-button aria-label="LinkedIn" class="md-fab md-raised md-mini" ng-click="displayProfileCtrl.linkedIn(displayProfileCtrl.profile.socialMedia.linkedIn)">
             <md-icon ng-md-icon icon="linkedin-box" aria-label="LinkedIn"></md-icon>
           </md-button>
         </md-fab-actions>
       </md-fab-speed-dial>
+      </md-content>
     </md-card>
 
     </md-sidenav>

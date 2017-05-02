@@ -1,9 +1,8 @@
 <section class="view-way" layout-fill>
 
   <md-input-container
-    class="google-search"
-    md-colors="{background: 'grey-50-.8'}"
-    class="md-block">
+    class="md-block google-search"
+    md-colors="{background: 'grey-50-.8'}">
     <input
       places-auto-complete
       ng-model="wayCtrl.address"
@@ -13,8 +12,10 @@
       md-colors="{color:'grey-10'}"/>
   </md-input-container>
 
+  <waymap flex ways="wayCtrl.distanceWays" ng-show="wayCtrl.mapView"></waymap>
+
   <div class="map-action">
-    <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="5" min="0" max="50" aria-label="search-radius" ng-change="wayCtrl.createDistanceWays()">
+    <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="2" min="0" max="20" aria-label="search-radius" ng-change="wayCtrl.createDistanceWays()">
     </md-slider>
 
     <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
@@ -24,7 +25,6 @@
 
   <way-detail ways="wayCtrl.distanceWays" ng-show="!wayCtrl.mapView"></way-detail>
 
-  <waymap layout-fill ways="wayCtrl.distanceWays" ng-show="wayCtrl.mapView"></waymap>
   <!-- <waymap layout-fill ways="wayCtrl.ways" ng-show="wayCtrl.mapView"></waymap> -->
 
 </section>

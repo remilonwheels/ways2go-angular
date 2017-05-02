@@ -69,8 +69,6 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     // $scope.$broadcast('searchChange');
   };
 
-
-
   this.createWay = function ($event, bindFlag) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),

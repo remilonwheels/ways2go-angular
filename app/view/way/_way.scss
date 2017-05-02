@@ -2,9 +2,11 @@
 
   .google-search {
     position: fixed;
-    top: 5%;
+    top: 56px;
     z-index: 1;
     width: 100%;
+    margin: 0;
+    // max-width: 960px;
   }
 
 

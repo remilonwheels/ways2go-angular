@@ -51,6 +51,37 @@
           required></textarea>
       </md-input-container>
 
+     <div layout-gt-xs="row">
+        <md-input-container class="md-icon-float md-block" flex-gt-xs>
+          <md-icon ng-md-icon icon="twitter"></md-icon>
+          <input
+            type="text"
+            placeholder="twitter handle"
+            ng-model="editProfileCtrl.profile.socialMedia.twitter">
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block" flex-gt-xs>
+          <md-icon ng-md-icon icon="facebook-box"></md-icon>
+          <input
+            type="text"
+            placeholder="facebook username"
+            ng-model="editProfileCtrl.profile.socialMedia.facebook">
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block" flex-gt-xs>
+          <md-icon ng-md-icon icon="google-plus-box"></md-icon>
+          <input
+            type="text"
+            placeholder="google+"
+            ng-model="editProfileCtrl.profile.socialMedia.googlePlus">
+        </md-input-container>
+      <md-input-container class="md-icon-float md-block" flex-gt-xs>
+          <md-icon ng-md-icon icon="linkedin-box"></md-icon>
+          <input
+            type="text"
+            placeholder="LinkedIn"
+            ng-model="editProfileCtrl.profile.socialMedia.linkedIn">
+        </md-input-container>
+      </div>      
+
       <md-input-container class="md-icon-left">
         <md-icon ng-md-icon icon="portrait"></md-icon>
         <md-button

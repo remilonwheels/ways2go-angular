@@ -20,10 +20,12 @@ function CreateProfileController($log, $window, $location, $mdDialog, $mdToast, 
     this.isLoading = true;
     profileService.createProfile(this.profile)
     .then( () => {
-      $mdToast.showSimple('Thanks for creating your profile!');
-      this.isLoading = false;
-      $location.url('/home');
-      $mdDialog.hide();
+      $mdToast.showSimple('Thanks for creating your profile!')
+      .then( () => {
+        this.isLoading = false;
+        $location.url('/home');
+        $mdDialog.hide();
+      });
     })
     .catch( err => {
       $mdToast.showSimple(err.data);

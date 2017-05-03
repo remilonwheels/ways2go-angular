@@ -2,7 +2,7 @@
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>{{ viewOneProfileCtrl.profile.displayName }}</h2>
+        <md-truncate flex>{{ viewOneProfileCtrl.profile.displayName }}</md-truncate>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="viewOneProfileCtrl.closeDialog()">
           <md-icon ng-md-icon icon="highlight_off"></md-icon>
@@ -10,21 +10,21 @@
       </div>
     </md-toolbar>
 
-    <md-dialog-content layout-margin layout-padding layout="column">
-      <md-card flex>
+    <md-dialog-content layout-margin layout-padding layout="column" flex-sm>
+      <md-card>
         <img ng-src="{{ viewOneProfileCtrl.profile.photo }}"
         alt="photo of {{ viewOneProfileCtrl.profile.displayName }}"
-        class="md-media-xl card-media">
+        class="md-card-image">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">{{viewOneProfileCtrl.profile.displayName}}</span>
           </md-card-title-text>
         </md-card-title>
-        <md-card-content layout="columns" layout-align="space-between">
+        <md-card-content>
           <p>{{ viewOneProfileCtrl.profile.bio }}</p>
         </md-card-content>
-
-        <md-content>
+        <span flex></span>
+        <md-card-actions>
           <md-button aria-label="menu" class="md-fab md-raised md-mini" ng-click="viewOneProfileCtrl.sendMessage($event, true)">
             <md-icon ng-md-icon icon="message"></md-icon>
           </md-button>
@@ -41,9 +41,8 @@
           <md-button aria-label="LinkedIn" class="md-fab md-raised md-mini" ng-click="viewOneProfileCtrl.linkedIn(viewOneProfileCtrl.profile.socialMedia.linkedIn)">
             <md-icon ng-md-icon icon="linkedin-box" aria-label="LinkedIn"></md-icon>
           </md-button>
-      </md-content>
-
-      </md-card>
+      </md-card-actions>
+    </md-card>
     </md-dialog-content>
 
     <md-dialog-actions>

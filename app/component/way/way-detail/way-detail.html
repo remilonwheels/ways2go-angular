@@ -1,5 +1,5 @@
 <div class="way-detail">
-  <md-card ng-repeat="way in wayDetailCtrl.ways | orderBy:'distance'" class="md-primary" md-colors="{{ way.wayerz[0]._id === wayDetailCtrl.profile._id ? {backgroundColor: 'default-primary-100'} : '' }}">
+  <md-card flex="none" ng-repeat="way in wayDetailCtrl.ways | orderBy:'distance'" class="md-primary" md-colors="{{ way.wayerz[0]._id === wayDetailCtrl.profile._id ? {backgroundColor: 'default-primary-100'} : '' }}">
     <md-card-content>
       <h2>{{ way.distance | number:1 }} mi</h2>
       <h2>{{ way.name || 'Way' }} - {{way.wayerz[0].displayName}}</h2>

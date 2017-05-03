@@ -18,6 +18,7 @@ function CreateProfileController($log, $window, $location, $mdDialog, $mdToast, 
     $log.debug('CreateProfileController.createProfile');
 
     this.isLoading = true;
+    
     profileService.createProfile(this.profile)
     .then( () => {
       $mdToast.showSimple('Thanks for creating your profile!')

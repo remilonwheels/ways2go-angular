@@ -15,10 +15,13 @@ module.exports = {
 function MessageThumbnailController($q, $log, $http, $interval, $mdMedia, $scope, $mdDialog, profileService, messageService) { // eslint-line-disable
   $log.debug('MessageThumbnailController');
 
+
+
   this.messages = [];
   profileService.fetchProfile()
   .then((profile) => {
     this.profile = profile;
+    console.log('this in messages', this);
     return messageService.fetchMessages();
   })
   .catch((e) => {
@@ -58,6 +61,9 @@ function MessageThumbnailController($q, $log, $http, $interval, $mdMedia, $scope
     profileService.fetchProfileByID(profileId)
     .then((profile) => {
       message.displayName = profile.displayName;
+      message.photo = profile.photo;
+      message.showTime = new Date(message.timestamp);
+      console.log(message.showTime);
     });
   };
 

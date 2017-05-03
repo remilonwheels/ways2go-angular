@@ -26,7 +26,7 @@
       <md-icon ng-md-icon icon="message"></md-icon>
     </md-button>
     <md-button class="md-raised" aria-label="Sign out"
-      ng-click="mobileHeaderCtrl.logout()" ng-show="mobileHeaderCtrl.currentUrl !== '/join'">
+      ng-click="mobileHeaderCtrl.logout()" ng-show="!mobileHeaderCtrl.currentUrl.includes('join')">
       Sign out
     </md-button>
   </div>

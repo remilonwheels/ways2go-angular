@@ -1,0 +1,25 @@
+<md-dialog aria-label="Way Controls">
+    <form ng-cloak>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Way Controls</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="viewWayCtrl.closeDialog()">
+            <md-icon ng-md-icon icon="highlight_off"></md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+
+      <md-dialog-content layout-margin layout-padding layout="column">
+        <md-content>
+      </md-content>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+      <md-button ng-click="viewWayCtrl.joinSubmit()" class="md-primary md-raised" layout layout-align="center center" ng-show="viewWayCtrl.way.profileID !== viewWayCtrl.profile._id">
+        <span ng-show="!viewWayCtrl.isLoading">Request to Join</span>
+        <md-progress-circular md-mode="indeterminate" ng-show="viewWayCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
+      </md-button>
+
+  </form>
+</md-dialog>

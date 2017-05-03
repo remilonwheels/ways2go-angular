@@ -34,7 +34,11 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
           fullName: profile.fullName,
           address: profile.address,
           bio: profile.bio,
-          photo: profile.photo
+          photo: profile.photo,
+          ['socialMedia.twitter']: profile.socialMedia.twitter,
+          ['socialMedia.facebook']: profile.socialMedia.facebook,
+          ['socialMedia.googlePlus']: profile.socialMedia.googlePlus,
+          ['socialMedia.linkedIn']: profile.socialMedia.linkedIn          
         }
       });
     })
@@ -55,7 +59,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
     return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/profile`; //eslint-disable-line
-
+      $log.debug('update profile', profile);
       let headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -71,7 +75,11 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
           fullName: profile.fullName,
           address: profile.address,
           bio: profile.bio,
-          photo: profile.photo
+          photo: profile.photo,
+          ['socialMedia.twitter']: profile['socialMedia.twitter'],
+          ['socialMedia.facebook']: profile['socialMedia.facebook'],
+          ['socialMedia.googlePlus']: profile['socialMedia.googlePlus'],
+          ['socialMedia.linkedIn']: profile['socialMedia.linkedIn']          
         }
       });
     })

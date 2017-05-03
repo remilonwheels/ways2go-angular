@@ -16,7 +16,7 @@ function EditProfileController($log, $window, $location, $mdDialog, $mdToast, pr
 
   this.updateProfile = function() {
     $log.debug('EditProfileController.updateProfile');
-
+    $log.debug('profile', this.profile);
     this.isLoading = true;
     profileService.updateProfile(this.profile)
     .then( () => {

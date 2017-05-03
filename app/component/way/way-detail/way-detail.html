@@ -1,15 +1,20 @@
 <div class="way-detail">
-  <md-card flex="none" ng-repeat="way in wayDetailCtrl.ways | orderBy:'distance'" class="md-primary" md-colors="{{ way.wayerz[0]._id === wayDetailCtrl.profile._id ? {backgroundColor: 'default-primary-100'} : '' }}">
-    <md-card-content>
-      <h2>{{ way.distance | number:1 }} mi</h2>
-      <h2>{{ way.name || 'Way' }} - {{way.wayerz[0].displayName}}</h2>
-      <p ng-show="way.startLocation.lat"><b>From</b>: {{way.startLocation.street}} {{way.startLocation.city}} {{way.startLocation.state}}</p>
-      <p ng-show="!way.startLocation.lat"><b>From</b>: {{way.startLocation}}</p>
-      <p ng-show="way.endLocation.lat"><b>To</b>: {{way.endLocation.street}} {{way.endLocation.city}} {{way.endLocation.state}}</p>
-      <p ng-show="!way.endLocation.lat"><b>To</b>: {{way.endLocation}}</p>
+  <md-card flex="none" ng-repeat="way in wayDetailCtrl.ways | orderBy:'distance'" class="md-primary" ng-click="wayDetailCtrl.viewWay($event, true, way)">
+    <md-card-header md-colors="{{ way.wayerz[0]._id === wayDetailCtrl.profile._id ? {backgroundColor: 'default-primary-100'} : '' }}">
+      <md-card-header-text>
+        <div layout="row">
+          <span class="md-title" flex>{{ way.name || 'Way' }}</span>
+          <span class="md-subhead" flex="none">{{ way.distance | number:1 }} mi</span>
+        </div>
+      </md-card-header-text>
+      <!-- <md-card-avatar>
+        <img src="{{way.wayerz[0].photo}}"/>
+      </md-card-avatar> -->
+    </md-card-header>
+    <md-card-content layout="column" layout-align="center center">
+      <p>{{way.startLocation.street}} {{way.startLocation.city}} {{way.startLocation.state}}</p>
+      <md-icon ng-md-icon icon="arrow_downward"></md-icon>
+      <p>{{way.endLocation.street}} {{way.endLocation.city}} {{way.endLocation.state}}</p>
     </md-card-content>
-    <md-card-actions layout="row" layout-align="end center">
-      <md-button ng-click="wayDetailCtrl.viewWay($event, true, way)" class="md-primary">More</md-button>
-    </md-card-actions>
   </md-card>
 </div>

@@ -1,4 +1,8 @@
-<md-button ng-click="messageCtrl.createMessage($event, true)" class="md-raised md-primary message-action">Send Message</md-button>
+<!-- <md-button ng-click="messageCtrl.createMessage($event, true)" class="md-raised md-primary message-action">Send Message</md-button> -->
+
+<md-button class="md-fab md-primary message-action" ng-click="messageCtrl.createMessage($event, true)" aria-label="Send Message">
+  <md-icon ng-md-icon icon="send"></md-icon>
+</md-button>
 
 <md-tabs class="md-background" md-selected="data.selectedIndex"
   md-stretch-tabs="auto" layput-padding layout-margin md-dynamic-height>

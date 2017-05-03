@@ -2,13 +2,15 @@
 
 require('./_view-one-profile.scss');
 
+const createMessageDialog = require('../../message/create-message/create-message.js');
+
 module.exports = {
   template: require('./view-one-profile.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', '$scope', '$window', 'messageService', 'profileService', 'profile', ViewOneProfileController],
+  controller: ['$log', '$mdDialog', '$mdMedia', '$mdToast','wayService', '$scope', '$window', 'messageService', 'profileService', 'profile', ViewOneProfileController],
   controllerAs: 'viewOneProfileCtrl'
 };
 
-function ViewOneProfileController($log, $mdDialog, $mdToast, wayService, $scope, $window, messageService, profileService, profile) {
+function ViewOneProfileController($log, $mdDialog, $mdMedia, $mdToast, wayService, $scope, $window, messageService, profileService, profile) {
   console.log('profile view one inject', profile);
   console.log(this);
 
@@ -41,6 +43,16 @@ function ViewOneProfileController($log, $mdDialog, $mdToast, wayService, $scope,
     });
 
     $log.log(this.way);
+  };
+
+  this.sendMessage = function($event, bindFlag) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-xs'),
+      targetEvent: $event,
+      scope: $scope.$new(bindFlag)
+    };
+
+    $mdDialog.show(Object.assign(createMessageDialog, dialogConfig));
   };
 
   this.linkMediaSite = function(site, user) {

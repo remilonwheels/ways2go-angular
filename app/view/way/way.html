@@ -1,30 +1,42 @@
 <section class="view-way" layout-fill>
-
-  <md-input-container
-    class="google-search"
-    md-colors="{background: 'grey-50-.8'}"
-    class="md-block">
-    <input
-      places-auto-complete
-      ng-model="wayCtrl.address"
-      component-restrictions="{country:'us'}"
-      type="{{wayCtrl.type}}"
-      on-place-changed="wayCtrl.placeChanged()"
-      md-colors="{color:'grey-10'}"/>
+  <div layout="row" class="map-controls">
+    <md-input-container
+      flex
+      class="md-block google-search fixed-control"
+      md-colors="{background: 'grey-50-.9'}">
+      <input
+        places-auto-complete
+        ng-model="wayCtrl.address"
+        component-restrictions="{country:'us'}"
+        type="{{wayCtrl.type}}"
+        on-place-changed="wayCtrl.placeChanged()"
+        md-colors="{color:'grey-10'}"/>
   </md-input-container>
 
-  <div class="map-action">
-    <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="5" min="0" max="50" aria-label="search-radius" ng-change="wayCtrl.createDistanceWays()">
-    </md-slider>
+  <md-button
+    flex="none"
+    ng-click="wayCtrl.showWayControl($event, true)"
+    class="md-raised md-warn md-hue-2 way-control-btn fixed-control">Control</md-button>
 
-    <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
+  </div>
 
-    <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>
+  <waymap ways="wayCtrl.distanceWays" ng-show="wayCtrl.mapView"></waymap>
+  <!-- <waymap layout-fill ways="wayCtrl.distanceWays" ng-show="wayCtrl.mapView"></waymap> -->
+
+  <div style="visibility: hidden">
+      <div class="md-dialog-container" id="wayControl">
+        <md-dialog layout-margin layout-padding>
+          <h2 class="md-title">Radius</h2>
+          <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="2" min="0" max="20" aria-label="search-radius" ng-change="wayCtrl.createDistanceWays()">
+          </md-slider>
+
+          <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
+
+          <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>
+        </md-dialog>
+      </div>
   </div>
 
   <way-detail ways="wayCtrl.distanceWays" ng-show="!wayCtrl.mapView"></way-detail>
-
-  <waymap layout-fill ways="wayCtrl.distanceWays" ng-show="wayCtrl.mapView"></waymap>
-  <!-- <waymap layout-fill ways="wayCtrl.ways" ng-show="wayCtrl.mapView"></waymap> -->
 
 </section>

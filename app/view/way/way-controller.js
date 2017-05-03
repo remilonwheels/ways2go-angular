@@ -15,7 +15,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.ways = wayService.getWays();
   this.mapView = true;
   this.searchLocation = myProfile.address[0];
-  this.searchRadius = 25;
+  this.searchRadius = 10;
   NgMap.getMap()
   .then( map => this.map = map);
 
@@ -69,8 +69,6 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     // $scope.$broadcast('searchChange');
   };
 
-
-
   this.createWay = function ($event, bindFlag) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),
@@ -87,6 +85,17 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
       scope: $scope.$new(bindFlag)
     };
     $mdDialog.show(Object.assign(editWayComponent, dialogConfig));
+  };
+
+  this.showWayControl = function ($event, bindFlag) {
+    var dialogConfig = {
+      targetEvent: $event,
+      contentElement: '#wayControl',
+      clickOutsideToClose: true,
+      disableParentScroll: false,
+      hasBackdrop: false
+    };
+    $mdDialog.show(dialogConfig);
   };
 
   this.fetchWays = function() {

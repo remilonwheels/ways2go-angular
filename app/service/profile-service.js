@@ -25,6 +25,27 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
         Authorization: `Bearer ${token}`
       };
 
+      if (profile.socialMedia) {
+        let data = {
+          displayName: profile.displayName,
+          fullName: profile.fullName,
+          address: profile.address,
+          bio: profile.bio,
+          photo: profile.photo,
+          ['socialMedia.twitter']: profile.socialMedia.twitter || null,
+          ['socialMedia.facebook']: profile.socialMedia.facebook || null,
+          ['socialMedia.googlePlus']: profile.socialMedia.googlePlus || null,
+          ['socialMedia.linkedIn']: profile.socialMedia.linkedIn || null
+        };
+
+        return Upload.upload({
+          url,
+          headers,
+          method: 'POST',
+          data: data
+        });
+      }
+
       return Upload.upload({
         url,
         headers,
@@ -34,11 +55,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
           fullName: profile.fullName,
           address: profile.address,
           bio: profile.bio,
-          photo: profile.photo,
-          ['socialMedia.twitter']: profile.socialMedia.twitter,
-          ['socialMedia.facebook']: profile.socialMedia.facebook,
-          ['socialMedia.googlePlus']: profile.socialMedia.googlePlus,
-          ['socialMedia.linkedIn']: profile.socialMedia.linkedIn          
+          photo: profile.photo
         }
       });
     })
@@ -79,7 +96,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
           ['socialMedia.twitter']: profile['socialMedia.twitter'],
           ['socialMedia.facebook']: profile['socialMedia.facebook'],
           ['socialMedia.googlePlus']: profile['socialMedia.googlePlus'],
-          ['socialMedia.linkedIn']: profile['socialMedia.linkedIn']          
+          ['socialMedia.linkedIn']: profile['socialMedia.linkedIn']
         }
       });
     })

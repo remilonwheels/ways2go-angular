@@ -4,11 +4,11 @@ require('./_view-one-profile.scss');
 
 module.exports = {
   template: require('./view-one-profile.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', '$scope', 'messageService', 'profileService', 'profile', ViewOneProfileController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', '$scope', '$window', 'messageService', 'profileService', 'profile', ViewOneProfileController],
   controllerAs: 'viewOneProfileCtrl'
 };
 
-function ViewOneProfileController($log, $mdDialog, $mdToast, wayService, $scope, messageService, profileService, profile) {
+function ViewOneProfileController($log, $mdDialog, $mdToast, wayService, $scope, $window, messageService, profileService, profile) {
   console.log('profile view one inject', profile);
   console.log(this);
 
@@ -41,6 +41,18 @@ function ViewOneProfileController($log, $mdDialog, $mdToast, wayService, $scope,
     });
 
     $log.log(this.way);
+  };
+
+  this.linkMediaSite = function(site, user) {
+    return $window.open(`https://www.${site}.com/${user}`, '_blank');
+  };
+
+  this.linkGoogle = function(user) {
+    return $window.open(`https://www.plus.google.com/${user}`, '_blank');
+  };
+
+  this.linkedIn = function(user) {
+    return $window.open(`https://www.linkedin.com/in/${user}`, '_blank');
   };
 
   this.closeDialog = function() {

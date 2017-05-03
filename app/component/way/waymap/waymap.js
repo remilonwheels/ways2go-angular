@@ -18,6 +18,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   $log.debug('WayMapController');
 
   this.$onInit = () => {
+    console.log('waymap oninit ways', this.ways);
     profileService.fetchProfile()
     .then( profile => {
       this.profile = profile;

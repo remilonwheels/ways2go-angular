@@ -6,7 +6,6 @@ require('./_way.scss');
 
 const createWayComponent = require('../../dialog/way/create-way/create-way.js');
 const editWayComponent = require('../../dialog/way/edit-way/edit-way.js');
-const wayControlComponent = require('../../dialog/way/way-control/way-control.js');
 
 module.exports = ['$log', '$rootScope', '$mdDialog', 'wayService', '$http', '$interval', 'NgMap', '$mdMedia', '$scope', 'myProfile', WayController];
 
@@ -16,7 +15,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.ways = wayService.getWays();
   this.mapView = true;
   this.searchLocation = myProfile.address[0];
-  this.searchRadius = 25;
+  this.searchRadius = 10;
   NgMap.getMap()
   .then( map => this.map = map);
 
@@ -92,7 +91,9 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     var dialogConfig = {
       targetEvent: $event,
       contentElement: '#wayControl',
-      clickOutsideToClose: true
+      clickOutsideToClose: true,
+      disableParentScroll: false,
+      hasBackdrop: false
     };
     $mdDialog.show(dialogConfig);
   };

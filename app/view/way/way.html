@@ -1,17 +1,24 @@
 <section class="view-way" layout-fill>
-  <md-button ng-click="wayCtrl.showWayControl($event, true)" class="md-raised md-warn md-hue-2">Control</md-button>
-
-  <md-input-container
-    class="md-block google-search"
-    md-colors="{background: 'grey-50-.8'}">
-    <input
-      places-auto-complete
-      ng-model="wayCtrl.address"
-      component-restrictions="{country:'us'}"
-      type="{{wayCtrl.type}}"
-      on-place-changed="wayCtrl.placeChanged()"
-      md-colors="{color:'grey-10'}"/>
+  <div layout="row" class="map-controls">
+    <md-input-container
+      flex
+      class="md-block google-search fixed-control"
+      md-colors="{background: 'grey-50-.9'}">
+      <input
+        places-auto-complete
+        ng-model="wayCtrl.address"
+        component-restrictions="{country:'us'}"
+        type="{{wayCtrl.type}}"
+        on-place-changed="wayCtrl.placeChanged()"
+        md-colors="{color:'grey-10'}"/>
   </md-input-container>
+
+  <md-button
+    flex="none"
+    ng-click="wayCtrl.showWayControl($event, true)"
+    class="md-raised md-warn md-hue-2 way-control-btn fixed-control">Control</md-button>
+
+  </div>
 
   <waymap ways="wayCtrl.distanceWays" ng-show="wayCtrl.mapView"></waymap>
   <!-- <waymap layout-fill ways="wayCtrl.distanceWays" ng-show="wayCtrl.mapView"></waymap> -->

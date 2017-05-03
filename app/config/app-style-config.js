@@ -29,7 +29,10 @@ function appStyleConfig($mdThemingProvider) {
     .backgroundPalette(themes[theme].backgroundPalette);
   }
 
-  $mdThemingProvider.setDefaultTheme('traffic1');
+  // $mdThemingProvider.setDefaultTheme('traffic1');
+  $mdThemingProvider.theme('default')
+    .dark();
+  $mdThemingProvider.setDefaultTheme('default');
   // $mdThemingProvider.setDefaultTheme('blueGreyPrmCyanAcc');
 
 }

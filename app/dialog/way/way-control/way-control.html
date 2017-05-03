@@ -4,7 +4,7 @@
         <div class="md-toolbar-tools">
           <h2>Way Controls</h2>
           <span flex></span>
-          <md-button class="md-icon-button" ng-click="viewWayCtrl.closeDialog()">
+          <md-button class="md-icon-button" ng-click="wayControlCtrl.closeDialog()">
             <md-icon ng-md-icon icon="highlight_off"></md-icon>
           </md-button>
         </div>
@@ -12,6 +12,14 @@
 
       <md-dialog-content layout-margin layout-padding layout="column">
         <md-content>
+          <div class="map-action">
+            <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="2" min="0" max="20" aria-label="search-radius" ng-change="wayCtrl.createDistanceWays()">
+            </md-slider>
+
+            <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
+
+            <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>
+          </div>
       </md-content>
     </md-dialog-content>
 

@@ -4,14 +4,30 @@ require('./_way-control.scss');
 
 module.exports = {
   template: require('./way-control.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', 'profileService', '$mdMedia', WayControlController],
+  controller: ['$log', '$mdDialog', '$mdToast','$scope', '$mdMedia', WayControlController],
   controllerAs: 'wayControlCtrl'
 };
 
-function WayControlController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService, $mdMedia) {
+function WayControlController($log, $mdDialog, $mdToast,$scope, $mdMedia) {
 
-  this.closeDialog = function() {
-    $mdDialog.hide();
+  console.log('this in way control', this);
+
+  this.createWay = function ($event, bindFlag) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      scope: 'wayCtrl'
+    };
+    $mdDialog.show(Object.assign(createWayComponent, dialogConfig));
   };
+
+  // this.toggleView = function() {
+  //   this.mapView = !this.mapView;
+  //
+  // };
+  //
+  // this.closeDialog = function() {
+  //   $mdDialog.hide();
+  // };
 
 }

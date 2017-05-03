@@ -84,7 +84,7 @@
 
       <md-input-container class="md-icon-left">
         <md-icon ng-md-icon icon="portrait"></md-icon>
-         <input 
+         <input
           class="md-raised md-primary md-button"
           type="file"
           ngf-select
@@ -98,9 +98,9 @@
 
     <md-dialog-actions>
       <md-button ng-click="createProfileCtrl.createProfile()"
-      class="md-primary md-raised" layout layout-align="center center">
+      class="md-primary md-raised" layout>
       <span ng-show="!createProfileCtrl.isLoading">create my profile</span>
-      <md-progress-circular md-mode="indeterminate" ng-show="createProfileCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
+      <md-progress-circular md-mode="indeterminate" ng-show="createProfileCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1"></md-progress-circular>
       </md-button>
     </md-dialog-actions>
 

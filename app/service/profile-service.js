@@ -78,10 +78,29 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
       let url = `${__API_URL__}/api/profile`; //eslint-disable-line
       $log.debug('update profile', profile);
       let headers = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       };
+
+      if (profile.socialMedia) {
+        let data = {
+          displayName: profile.displayName,
+          fullName: profile.fullName,
+          address: profile.address,
+          bio: profile.bio,
+          photo: profile.photo,
+          ['socialMedia.twitter']: profile.socialMedia.twitter,
+          ['socialMedia.facebook']: profile.socialMedia.facebook,
+          ['socialMedia.googlePlus']: profile.socialMedia.googlePlus,
+          ['socialMedia.linkedIn']: profile.socialMedia.linkedIn
+        };
+
+        return Upload.upload({
+          url,
+          headers,
+          method: 'PUT',
+          data: data
+        });
+      }
 
       return Upload.upload({
         url,
@@ -92,11 +111,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
           fullName: profile.fullName,
           address: profile.address,
           bio: profile.bio,
-          photo: profile.photo,
-          ['socialMedia.twitter']: profile['socialMedia.twitter'],
-          ['socialMedia.facebook']: profile['socialMedia.facebook'],
-          ['socialMedia.googlePlus']: profile['socialMedia.googlePlus'],
-          ['socialMedia.linkedIn']: profile['socialMedia.linkedIn']
+          photo: profile.photo
         }
       });
     })

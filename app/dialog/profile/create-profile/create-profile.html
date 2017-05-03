@@ -84,13 +84,15 @@
 
       <md-input-container class="md-icon-left">
         <md-icon ng-md-icon icon="portrait"></md-icon>
-        <md-button
-          class="md-raised"
+         <input 
+          class="md-raised md-primary md-button"
           type="file"
           ngf-select
+          ngf-accept="'image/*'"
+          ngf-max-size="2MB"
           ng-model="createProfileCtrl.profile.photo">
-          upload a profile photo
-        </md-button>
+        <img
+          ngf-thumbnail="createProfile.profile.photo">
       </md-input-container>
     </md-dialog-content>
 

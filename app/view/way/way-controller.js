@@ -16,6 +16,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.mapView = true;
   this.searchLocation = myProfile.address[0];
   this.searchRadius = 10;
+  this.placeHolder = [];
   NgMap.getMap()
   .then( map => this.map = map);
 
@@ -51,7 +52,13 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     setPlaceChange(this.getPlace());
   };
   const setPlaceChange = (place) => {
+    if (this.placeHolder.length === 1) {
+      this.placeHolder[0].setMap(null);
+      this.placeHolder = [];
+    };
+
     this.place = place;
+
     this.map.setCenter(this.place.geometry.location);
     this.map.setZoom(13);
 
@@ -60,12 +67,22 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
       lng
     } = this.place.geometry.location;
 
+
     angular.copy({
       lat: lat(),
       lng: lng()
     }, this.searchLocation);
 
+
     this.createDistanceWays();
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng( lat(), lng() ),
+      map: this.map,
+      label: 'spot'
+    });
+
+    console.log('maaaarker', marker);
+    this.placeHolder.push(marker);
     // $scope.$broadcast('searchChange');
   };
 

@@ -2,7 +2,7 @@
 
 require('./_view-one-profile.scss');
 
-const createMessageDialog = require('../../message/create-message/create-message.js');
+const createMessageDialog = require('../../message/profile-message/profile-message.js');
 
 module.exports = {
   template: require('./view-one-profile.html'),
@@ -11,17 +11,13 @@ module.exports = {
 };
 
 function ViewOneProfileController($log, $mdDialog, $mdMedia, $mdToast, wayService, $scope, $window, messageService, profileService, profile) {
-  console.log('profile view one inject', profile);
-  console.log(this);
 
   this.profile = profile;
-
   this.isLoading = false;
 
   this.joinSubmit = function() {
+    $log.debug('viewOneProfileCtrl.joinSubmit');
     this.isLoading = true;
-
-    console.log(this.way);
 
     const joinMessage = {
       subject: `${this.profile.displayName} wants to join your way!`,
@@ -29,27 +25,29 @@ function ViewOneProfileController($log, $mdDialog, $mdMedia, $mdToast, wayServic
       toProfileID: this.way.wayerz[0]._id
     };
 
-
     messageService.createMessage(joinMessage)
-    .then( res => {
+    .then( () => {
       $mdToast.showSimple('Request to Join Sent Successfully!');
       this.isLoading = false;
-
       $mdDialog.hide();
     })
     .catch( err => {
       $mdToast.showSimple(err.data);
       this.isLoading = false;
     });
-
-    $log.log(this.way);
   };
 
-  this.sendMessage = function($event, bindFlag) {
+  this.sendMessage = function($event, bindFlag, msgRecipient) {
+    $log.debug('viewOneProfileCtrl.sendMessage');
+
     const dialogConfig = {
-      fullscreen: !$mdMedia('gt-xs'),
+      fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,
-      scope: $scope.$new(bindFlag)
+      resolve: {
+        msgRecipient: function() {
+          return msgRecipient;
+        }
+      }
     };
 
     $mdDialog.show(Object.assign(createMessageDialog, dialogConfig));
@@ -70,5 +68,4 @@ function ViewOneProfileController($log, $mdDialog, $mdMedia, $mdToast, wayServic
   this.closeDialog = function() {
     $mdDialog.hide();
   };
-
 }

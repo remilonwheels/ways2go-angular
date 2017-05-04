@@ -24,11 +24,13 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
       this.profile = profile;
       console.log(this.profile);
 
-      this.centerOnLoad = [ Number(this.profile.address[0].lat), Number(this.profile.address[0].lat)];
+      this.centerOnLoad = [ Number(this.profile.address[0].lat), Number(this.profile.address[0].lng)];
 
       this.startMarkers = [];
       this.endMarkers = [];
       this.googlePaths = [];
+
+
 
       const drawWays = () => {
         console.log('this in draw ways', this);
@@ -141,7 +143,14 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           this.isMapInitialized = true;
           this.map = map;
 
+          console.log('map init this.prof', this);
+
           drawWays();
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(Number(this.profile.address[0].lat), Number(this.profile.address[0].lng)),
+            map: this.map,
+            label: 'home'
+          });
         });
       };
 

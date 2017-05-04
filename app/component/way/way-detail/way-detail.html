@@ -1,6 +1,6 @@
 <div class="way-detail">
   <md-card flex="none" ng-repeat="way in wayDetailCtrl.ways | orderBy:'distance'" class="md-primary" ng-click="wayDetailCtrl.viewWay($event, true, way)">
-    <md-card-header md-colors="{{ way.wayerz[0]._id === wayDetailCtrl.profile._id ? {backgroundColor: 'default-warn'} : '' }}">
+    <md-card-header md-colors="{{ way.wayerz[0]._id === wayDetailCtrl.profile._id ? {backgroundColor: 'swag-accent'} : '' }}">
       <md-card-header-text>
         <div layout="row">
           <span class="md-title" flex>{{ way.name || 'Way' }}</span>

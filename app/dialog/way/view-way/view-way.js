@@ -94,7 +94,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
 
     const joinMessage = {
       subject: `${this.profile.displayName} wants to join your way!`,
-      text: `Please add me to way ${this.way._id}`,
+      text: `Please add me to your ${this.way.name ? this.way.name : '' } Way: ${this.way._id}`,
       toProfileID: this.way.wayerz[0]._id
     };
 

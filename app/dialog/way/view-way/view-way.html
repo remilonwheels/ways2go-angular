@@ -38,7 +38,7 @@
             <md-list-item ng-show="viewWayCtrl.way.hour" layout="column">
               <div class="">
                 <md-icon ng-md-icon icon="access_time"></md-icon>
-                <span>{{viewWayCtrl.hour}}:{{viewWayCtrl.minutes}} {{viewWayCtrl.ampm}}</span>
+                <span>{{viewWayCtrl.hour}}:{{viewWayCtrl.minutes < 10 ? '0' + viewWayCtrl.minutes : viewWayCtrl.minutes}} {{viewWayCtrl.ampm}}</span>
               </div>
             </md-list-item>
 

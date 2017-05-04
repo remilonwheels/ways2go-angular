@@ -39,20 +39,20 @@
       <md-button
         ng-show="signinCtrl.isAuthorized"
         ng-click="signinCtrl.goHome()"
-        class="md-primary md-raised" layout layout-align="center center">
-        <span>take me to my homepage</span>
+        class="md-fab md-mini" aria-label="homepage">
+        <md-icon ng-md-icon icon="home"></md-icon>
       </md-button>
       <md-button
         ng-show="signinCtrl.isAuthorized"
         ng-click="signinCtrl.updateUser($event, true)"
-        class="md-primary md-raised" layout layout-align="center center">
-        <span>update user details</span>
+        class="md-fab md-mini" aria-label="edit user details">
+        <md-icon ng-md-icon icon="create"></md-icon>
       </md-button>
       <md-button
         ng-show="signinCtrl.isAuthorized"
         ng-click="signinCtrl.deleteUser()"
-        class="md-primary md-raised" layout layout-align="center center">
-        <span>delete account</span>
+        class="md-fab md-mini" aria-label="delete user">
+        <md-icon ng-md-icon icon="delete"></md-icon>
       </md-button>
     </md-dialog-actions>
 

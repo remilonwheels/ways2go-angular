@@ -74,7 +74,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
     $mdDialog.show(Object.assign(editWayComponent, dialogConfig));
   };
 
-  this.viewProfile = function($event, bindFlag, profile) {
+  this.viewProfile = function($event, profile) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,

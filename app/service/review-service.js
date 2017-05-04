@@ -13,9 +13,11 @@ function reviewService($q, $log, $http, Upload, profileService, wayService, auth
   service.createReview = function(profile, way, review) {
     $log.debug('reviewService.createReview');
 
+    review.wayID = way._id;
+    
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/wayerz/58f28a808907e600110fdb73/review` //eslint-disable-line
+      let url = `${__API_URL__}/api/wayerz/${profile._id}/review` //eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',

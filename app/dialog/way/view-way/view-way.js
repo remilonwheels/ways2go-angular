@@ -53,7 +53,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
       this.hour = this.way.hour;
       this.ampm = 'am';
     }
-    this.minutes = this.way.minutes;
+    this.showMinutes = this.way.minutes < 10 ? `0${this.way.minutes}` : this.way.minutes;
   }
 
   this.dayArray = dayArray;

@@ -40,14 +40,7 @@
         <md-button aria-label="LinkedIn" class="md-fab md-raised md-mini" ng-click="viewOneProfileCtrl.linkedIn(viewOneProfileCtrl.profile.socialMedia.linkedIn)">
           <md-icon ng-md-icon icon="linkedin-box" aria-label="LinkedIn"></md-icon>
         </md-button>
-    </md-card-actions>
-  </md-card>
+      </md-card-actions>
+    </md-card>
   </md-dialog-content>
-
-  <md-dialog-actions>
-    <md-button ng-click="viewOneProfileCtrl.joinSubmit()" class="md-primary md-raised" layout layout-align="center center">
-      <span ng-show="!viewOneProfileCtrl.isLoading">Request to Join</span>
-      <md-progress-circular md-mode="indeterminate" ng-show="viewOneProfileCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1 float-left"></md-progress-circular>
-    </md-button>
-  </md-dialog-actions>
 </md-dialog>

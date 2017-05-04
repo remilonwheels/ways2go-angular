@@ -18,6 +18,13 @@ function appStyleConfig($mdThemingProvider) {
       warnPalette: 'grey',
       backgroundPalette: 'grey'
     },
+    swag: {
+      themeName: 'swag',
+      primaryPalette: 'blue',
+      accentPalette: 'lime',
+      warnPalette: 'blue-grey',
+      backgroundPalette: 'grey'
+    },
   };
 
   for (let theme in themes) {
@@ -30,9 +37,9 @@ function appStyleConfig($mdThemingProvider) {
   }
 
   // $mdThemingProvider.setDefaultTheme('traffic1');
-  $mdThemingProvider.theme('default')
+  $mdThemingProvider.theme('swag')
     .dark();
-  $mdThemingProvider.setDefaultTheme('default');
+  $mdThemingProvider.setDefaultTheme('swag');
   // $mdThemingProvider.setDefaultTheme('blueGreyPrmCyanAcc');
 
 }

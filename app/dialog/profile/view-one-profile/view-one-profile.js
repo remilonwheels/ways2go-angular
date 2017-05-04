@@ -45,7 +45,7 @@ function ViewOneProfileController($log, $mdDialog, $mdMedia, $mdToast, wayServic
     $log.log(this.way);
   };
 
-  this.sendMessage = function($event, bindFlag, toProfile) {
+  this.sendMessage = function($event, bindFlag, toProfile, fromProfile) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-xs'),
       targetEvent: $event,
@@ -53,8 +53,10 @@ function ViewOneProfileController($log, $mdDialog, $mdMedia, $mdToast, wayServic
       resolve: {
         toProfile: function() {
           return toProfile;
+        },
+        fromProfile: function() {
+          return fromProfile;
         }
-      }
       }
     };
 

@@ -9,6 +9,8 @@ function messageService($q, $log, $http, Upload, authService) {
 
   service.createMessage = function(message) {
     $log.debug('messageService.createMessage');
+
+    $log.debug('message service message', message);
     return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/profile/${message.toProfileID}/message`
@@ -20,7 +22,7 @@ function messageService($q, $log, $http, Upload, authService) {
         }
       };
 
-      return $http.post(url, message,config);
+      return $http.post(url, message, config);
     })
     .then( res => {
       $log.log('message sending success');

@@ -2,7 +2,7 @@
 
 require('./_view-one-profile.scss');
 
-const createMessageDialog = require('../../message/create-message/create-message.js');
+const createMessageDialog = require('../../message/profile-message/profile-message.js');
 
 module.exports = {
   template: require('./view-one-profile.html'),
@@ -45,17 +45,13 @@ function ViewOneProfileController($log, $mdDialog, $mdMedia, $mdToast, wayServic
     $log.log(this.way);
   };
 
-  this.sendMessage = function($event, bindFlag, toProfile, fromProfile) {
+  this.sendMessage = function($event, bindFlag, msgRecipient) {
     const dialogConfig = {
-      fullscreen: !$mdMedia('gt-xs'),
+      fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,
-      scope: $scope.$new(bindFlag),
       resolve: {
-        toProfile: function() {
-          return toProfile;
-        },
-        fromProfile: function() {
-          return fromProfile;
+        msgRecipient: function() {
+          return msgRecipient;
         }
       }
     };

@@ -3,18 +3,20 @@
   .map-controls {
     position: fixed;
     z-index: 10;
-    width: 100%;
+    width: 96%;
   }
 
   .google-search {
     // top: 56px;
-    width: 100%;
-    margin: 0;
+    // width: 50%;
+    // margin: 0;
     padding-left: 10px;
+    border-radius: 10px;
   }
 
   .way-control-btn {
     // bottom: 30px;
+    // margin-left: 0;
   }
 
 }

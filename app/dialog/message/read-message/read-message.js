@@ -14,6 +14,8 @@ function ReadMessageController($q, $log, $mdDialog, $mdToast,  messageService, $
 
   this.message = message;
 
+  console.log('this up in read message', this);
+
   this.readMessageSubmit = function() {
     this.isLoading = true;
     $timeout(2000, () => {

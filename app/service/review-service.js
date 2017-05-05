@@ -14,7 +14,7 @@ function reviewService($q, $log, $http, Upload, profileService, wayService, auth
     $log.debug('reviewService.createReview');
 
     review.wayID = way._id;
-    
+
     return authService.getToken()
     .then( token => {
       let url = `${__API_URL__}/api/wayerz/${profile._id}/review` //eslint-disable-line

@@ -6,6 +6,8 @@ const viewOneProfileComponent = require('../../../dialog/profile/view-one-profil
 
 const editWayComponent = require('../../../dialog/way/edit-way/edit-way.js');
 
+const createReviewComponent = require('../../../dialog/review/create-review/create-review.js');
+
 module.exports = {
   template: require('./view-way.html'),
   controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', 'profileService', '$mdMedia', ViewWayController],
@@ -21,6 +23,9 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   profileService.fetchProfile()
   .then( profile => {
     this.profile = profile;
+    this.isInWay = this.way.wayerz.filter(function(ele) {
+      return ele._id === profile._id;
+    }).length > 0;
   });
 
   this.name = this.way.name || 'Way';
@@ -29,7 +34,6 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   this.endLocation = displayLocation(way.endLocation);
 
   console.log('wayer 0', this.way.wayerz[0]);
-
   // this.isPM = true;
   const dayMap = { '0': 'Monday', '1':'Tuesday', '2':'Wednesday', '3': 'Thursday', '4': 'Friday', '5': 'Saturday', '6': 'Sunday'};
 
@@ -82,15 +86,30 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
         profile: function() {
           return profile;
         }
-      },
+      }
     };
     $mdDialog.show(Object.assign(viewOneProfileComponent, dialogConfig));
   };
 
+  this.leaveReview = function($event, profile, way) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      resolve: {
+        profile: function() {
+          return profile;
+        },
+        way: function() {
+          return way;
+        }
+      }
+    };
+
+    $mdDialog.show(Object.assign(createReviewComponent, dialogConfig));
+  };
+
   this.joinSubmit = function() {
     this.isLoading = true;
-
-    console.log(this.way);
 
     const joinMessage = {
       subject: `${this.profile.displayName} wants to join your way!`,
@@ -100,7 +119,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
 
 
     messageService.createMessage(joinMessage)
-    .then( res => {
+    .then( () => {
       $mdToast.showSimple('Request to Join Sent Successfully!');
       this.isLoading = false;
 

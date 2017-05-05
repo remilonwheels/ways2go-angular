@@ -2,7 +2,7 @@
   <md-card>
     <md-subheader class="md-no-sticky">My Ways</md-subheader>
 
-    <md-list-item class="secondary-button-padding" layout-margin layout-padding ng-repeat="way in waythumbnailCtrl.myWays | limitTo: 3">
+    <md-list-item class="secondary-button-padding" layout-margin layout-padding ng-repeat="way in waythumbnailCtrl.ways | limitTo: 3">
       <span class="md-title md-truncate">{{ way.name }}</span>
       <div layout="column">
         <span class="md-subhead md-truncate">Start: {{ way.startLocation.street}} {{ way.startLocation.city}} {{ way.startLocation.state}} </span>

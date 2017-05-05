@@ -1,3 +1,4 @@
+/* global __API_URL__ */
 'use strict';
 
 module.exports = ['$q', '$log', '$http', '$window', '$location', '$mdToast', '$rootScope', authService];
@@ -46,7 +47,7 @@ function authService($q, $log, $http, $window, $location, $mdToast, $rootScope) 
   service.signup = function(user) {
     $log.debug('authService.signup');
 
-    let url = `${__API_URL__}/api/signup`; //eslint-disable-line
+    let url = `${__API_URL__}/api/signup`;
     $log.log('url', url);
     let config = {
       headers: {
@@ -69,7 +70,7 @@ function authService($q, $log, $http, $window, $location, $mdToast, $rootScope) 
   service.login = function(user) {
     $log.debug('authService.login');
 
-    let url = `${__API_URL__}/api/signin` //eslint-disable-line
+    let url = `${__API_URL__}/api/signin`;
     let base64 = $window.btoa(`${user.username}:${user.password}`);
     let config = {
       headers: {
@@ -94,7 +95,7 @@ function authService($q, $log, $http, $window, $location, $mdToast, $rootScope) 
 
     return service.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/user` //eslint-disable-line
+      let url = `${__API_URL__}/api/user`;
       let config = {
         headers: {
           Accept: 'application/json',
@@ -120,7 +121,7 @@ function authService($q, $log, $http, $window, $location, $mdToast, $rootScope) 
 
     return service.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/user`; //eslint-disable-line
+      let url = `${__API_URL__}/api/user`;
       let config = {
         headers: {
           Authorization: `Bearer ${token}`

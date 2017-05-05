@@ -23,7 +23,8 @@ function DisplayProfileController($log, $mdToast, $mdSidenav, $rootScope, $scope
   };
   $log.debug('$$$display this$$$', this);
   this.calcAvgReview = function(profile) {
-    $log.debug('DisplayProfileController.avgReview');    return reviewService.fetchReviews(profile)
+    $log.debug('DisplayProfileController.avgReview');
+    return reviewService.fetchReviews(profile)
     .then( reviews => {
       let sum = reviews.reduce((acc, ele) => {
         $log.debug('reduce acc', acc);

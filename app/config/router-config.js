@@ -16,6 +16,18 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       controller: 'HomeController',
       controllerAs: 'homeCtrl',
       resolve: {
+        profileService: 'profileService',
+        wayService: 'wayService',
+        profile: function(profileService) {
+          if (profileService.fetchProfileFlag) return;
+
+          return profileService.fetchProfile()
+          .then( profile => profile);
+        },
+        ways: function(wayService) {
+          return wayService.fetchWays()
+          .then( ways => ways);
+        },
         isAuthorized
       }
     },

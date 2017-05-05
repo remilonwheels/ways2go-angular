@@ -20,7 +20,7 @@ require('angular-material');
 require('angular-material-icons');
 require('angular-jk-rating-stars');
 
-const ways2go = angular.module('ways2go', [ngAnimate, uiRouter, ngFileUpload, 'ngMaterial', 'ngMdIcons', ngMap, 'jkAngularRatingStars']);
+const ways2go = angular.module('ways2go', [ngAnimate, uiRouter, ngFileUpload, 'ngMaterial', 'ngMdIcons', 'jkAngularRatingStars', ngMap]);
 
 let context = require.context('./service/', true, /\.js$/);
 context.keys().forEach( key => {

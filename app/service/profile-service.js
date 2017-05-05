@@ -1,17 +1,15 @@
 /* global angular __API_URL__ */
 'use strict';
 
-module.exports = ['$q', '$log', '$http', '$mdSidenav', 'Upload', 'authService', profileService];
+module.exports = ['$q', '$log', '$http', '$mdSidenav', 'Upload', 'authService', '$rootScope', profileService];
 
-function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
+function profileService($q, $log, $http, $mdSidenav, Upload, authService, $rootScope) {
   $log.debug('profileService');
 
   let service = {};
   service.profile = {};
   service.messageProfile = {};
   service.allProfiles = [];
-  $log.debug('service profile', service.profile);
-  $log.debug('all profiles', service.allProfiles);
 
   service.toggleProfile = function() {
     $mdSidenav('left').toggle();
@@ -83,7 +81,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profile`; //eslint-disable-line
+      let url = `${__API_URL__}/api/profile`;
       $log.debug('update profile', profile);
       let headers = {
         Authorization: `Bearer ${token}`
@@ -216,23 +214,12 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
     });
   };
 
-  // profileRouter.get('/api/profile', bearerAuth, function(req, res, next) {
-  // debug('GET: /api/profile');
-  //
-  // Profile.find({})
-  // .then( profiles => {
-  //   if (!profiles) return next(createError(404, 'no profiles available'));
-  //   res.json(profiles);
-  // })
-  // .catch(next);
-  // });
-
   service.fetchAllProfiles = function(){
     $log.debug('profileService.fetchAllProfiles');
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profile`; //eslint-disable-line
+      let url = `${__API_URL__}/api/profile`;
 
       let config = {
         headers: {
@@ -254,6 +241,12 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
       return $q.reject(err);
     });
   };
+
+  $rootScope.$on('logout', function() {
+    service.profile = {};
+    service.messageProfile = {};
+    service.allProfiles = [];
+  });
 
   return service;
 }

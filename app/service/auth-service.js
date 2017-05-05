@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', '$window', '$location', '$mdToast', authService];
+module.exports = ['$q', '$log', '$http', '$window', '$location', '$mdToast', '$rootScope', authService];
 
-function authService($q, $log, $http, $window, $location, $mdToast) {
+function authService($q, $log, $http, $window, $location, $mdToast, $rootScope) {
   $log.debug('authService');
 
   let service = {};
@@ -10,17 +10,14 @@ function authService($q, $log, $http, $window, $location, $mdToast) {
   service.isAuthorized = false;
 
   service.authorize = function() {
-    console.log('in authorize', service.isAuthorized);
     if (service.isAuthorized) return $q.resolve();
 
     $mdToast.showSimple('Please login');
     $location.url('/');
-    console.log('hit');
     return $q.reject();
   };
 
   const setToken = (_token) => {
-  // function setToken(_token) {
     $log.debug('authService.setToken');
 
     if (!_token) {
@@ -148,6 +145,7 @@ function authService($q, $log, $http, $window, $location, $mdToast) {
     $window.localStorage.removeItem('token');
     service.isAuthorized = false;
     token = null;
+    $rootScope.$broadcast('logout');
     return $q.resolve();
   };
 

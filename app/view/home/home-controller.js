@@ -8,10 +8,9 @@ function HomeController($log, $rootScope, $mdToast, profileService, wayService, 
   $log.debug('HomeContoller');
 
   this.profile = profile;
-  // this.$onInit = () => {
-  //   this.fetchProfile();
-  //   wayService.fetchWays();
-  // };
+  this.$onInit = () => {
+    wayService.fetchWays();
+  };
   // this.profile = {};
   // wayService.fetchWays()
   // .then( ways => {
@@ -28,7 +27,4 @@ function HomeController($log, $rootScope, $mdToast, profileService, wayService, 
     .catch( err => $mdToast.showSimple(err.data));
   };
   $log.debug('++home this++', this);
-  // this.fetchProfile();
-  // $rootScope.$on('$locationChangeSuccess', () => {
-  // });
 }

@@ -1,0 +1,14 @@
+<md-dialog aria-label="Create a Review" layout="column">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Leave a review for {{createReviewCtrl.profile.displayName}}</h2>
+      <md-button class="md-icon-button">
+        <md-icon ng-md-icon icon="highlight_off"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content>
+    <jk-rating-stars></jk-rating-stars>
+  </md-dialog-content>
+</md-dialog>

@@ -84,9 +84,23 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
         profile: function() {
           return profile;
         }
-      },
+      }
     };
     $mdDialog.show(Object.assign(viewOneProfileComponent, dialogConfig));
+  };
+
+  this.leaveReview = function($event, profile) {
+    const dialogConfig = {
+      fullscreen: !$mdMedia('gt-sm'),
+      targetEvent: $event,
+      resolve: {
+        profile: function() {
+          return profile;
+        }
+      }
+    };
+
+    $mdDialog.snow(Object.assign(leaveReviewProfileComponent, dialogConfig));
   };
 
   this.joinSubmit = function() {

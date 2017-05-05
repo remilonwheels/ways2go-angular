@@ -16,6 +16,7 @@ function SigninController($log, $window, $location, $mdDialog, $mdToast, $scope,
   this.isLoading = false;
   this.isAuthorized = false;
   this.user = {};
+  this.rating = 3;
 
   if ($window.token) {
     authService.getToken()

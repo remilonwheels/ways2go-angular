@@ -37,8 +37,8 @@
 
   <div style="visibility: hidden">
       <div class="md-dialog-container" id="wayControl">
-        <md-dialog layout-margin layout-padding>
-          <h2 class="md-title">Radius</h2>
+        <md-dialog layout-margin layout-padding layout="column">
+          <div class="md-title">Radius</h2>
           <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="2" min="0" max="20" aria-label="search-radius" ng-change="wayCtrl.createDistanceWays()">
           </md-slider>
 

@@ -146,10 +146,11 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           console.log('map init this.prof', this);
 
           drawWays();
-          var marker = new google.maps.Marker({
+          var homeMarker = new google.maps.Marker({
             position: new google.maps.LatLng(Number(this.profile.address[0].lat), Number(this.profile.address[0].lng)),
             map: this.map,
-            label: 'home'
+            label: 'home',
+            animation: google.maps.Animation.DROP
           });
         });
       };

@@ -75,14 +75,16 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
 
     this.createDistanceWays();
-    var marker = new google.maps.Marker({
+
+    var newLocationMarker = new google.maps.Marker({
       position: new google.maps.LatLng( lat(), lng() ),
       map: this.map,
-      label: 'spot'
+      label: 'spot',
+      animation: google.maps.Animation.DROP
     });
 
-    console.log('maaaarker', marker);
-    this.placeHolder.push(marker);
+    console.log('maaaarker', newLocationMarker);
+    this.placeHolder.push(newLocationMarker);
     // $scope.$broadcast('searchChange');
   };
 

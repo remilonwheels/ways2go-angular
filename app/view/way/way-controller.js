@@ -17,7 +17,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.searchLocation = myProfile.address[0];
   this.searchRadius = 10;
   this.placeHolder = [];
-  // this.isShowMyWays = false;
+  this.isShowMyWays = false;
   NgMap.getMap()
   .then( map => this.map = map);
 
@@ -28,11 +28,11 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     const meterToMile = 0.000621371;
     this.distanceWays = this.ways
       .map( way => Object.assign(way, {distance: this.computeWayDistance(way) * meterToMile}))
-      .filter( way => way.distance <= this.searchRadius);
-      // .filter( way => {
-      //   if (this.isShowMyWays) return way.profileID === this.profile._id;
-      //   else return true;
-      // });
+        .filter( way => way.distance <= this.searchRadius)
+        .filter( way => {
+          if (this.isShowMyWays) return way.profileID === myProfile._id;
+          else return true;
+        });
 
     console.log('distance ways after calc', this.distanceWays);
     $scope.$broadcast('wayChange');

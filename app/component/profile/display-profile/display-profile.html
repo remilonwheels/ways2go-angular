@@ -10,10 +10,10 @@
           <md-truncate>{{ displayProfileCtrl.profile.fullName }}</md-truncate>
 
           <span flex></span>
-          <md-button class="md-fab md-mini" aria-label="Edit Profile" ng-click="displayProfileCtrl.editProfile(true)">
+          <md-button class="md-icon-button" aria-label="Edit Profile" ng-click="displayProfileCtrl.editProfile(true)">
             <md-icon ng-md-icon icon="create"></md-icon>
           </md-button>
-          <md-button class="md-fab md-mini" aria-label="Delete Profile" ng-click="displayProfileCtrl.deleteProfile()">
+          <md-button class="md-icon-button" aria-label="Delete Profile" ng-click="displayProfileCtrl.deleteProfile()">
             <md-icon ng-md-icon icon="delete"></md-icon>
           </md-button>
         </div>
@@ -29,6 +29,9 @@
           </md-card-title-text>
         </md-card-title>
         <md-card-content layout="column" layout-align="space-between">
+          <jk-rating-stars read-only="true"
+          rating="displayProfileCtrl.avgReview">
+          </jk-rating-stars>
           <p>{{ displayProfileCtrl.profile.bio }}</p>
         </md-card-content>
       <md-content>

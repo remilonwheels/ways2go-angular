@@ -6,15 +6,39 @@ const editProfileComponent = require('../../../dialog/profile/edit-profile/edit-
 
 module.exports = {
   template: require('./display-profile.html'),
-  controller: ['$log', '$mdToast', '$mdSidenav', '$rootScope', '$scope', '$mdMedia', '$mdDialog', '$location', '$window', 'profileService', DisplayProfileController],
+  controller: ['$log', '$mdToast', '$mdSidenav', '$rootScope', '$scope', '$mdMedia', '$mdDialog', '$location', '$window', 'profileService', 'reviewService', DisplayProfileController],
   controllerAs: 'displayProfileCtrl',
   bindings: {
     profile: '<'
   }
 };
 
-function DisplayProfileController($log, $mdToast, $mdSidenav, $rootScope, $scope, $mdMedia, $mdDialog, $location, $window, profileService) {
+function DisplayProfileController($log, $mdToast, $mdSidenav, $rootScope, $scope, $mdMedia, $mdDialog, $location, $window, profileService, reviewService) {
   $log.debug('DisplayProfileController');
+
+  this.$onInit = () => {
+    this.profile = profileService.getProfile();
+    this.calcAvgReview(this.profile);
+  };
+  $log.debug('$$$display this$$$', this);
+  this.calcAvgReview = function(profile) {
+    $log.debug('DisplayProfileController.avgReview');    return reviewService.fetchReviews(profile)
+    .then( reviews => {
+      let sum = reviews.reduce((acc, ele) => {
+        $log.debug('reduce acc', acc);
+        $log.debug('reduce ele', ele);
+        return acc + ele['rating'];
+      }, 0);
+      $log.debug('sum', sum);
+      $log.debug('reviews', reviews);
+      let avg = sum / reviews.length;
+      $log.debug('avg', avg);
+      this.avgReview = avg;
+    })
+    .catch( err => {
+      $mdToast.showSimple(err.data);
+    });
+  };
 
   this.editProfile = function(bindFlag) {
     const dialogConfig = {

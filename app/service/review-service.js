@@ -65,5 +65,32 @@ function reviewService($q, $log, $http, Upload, profileService, wayService, auth
     });
   };
 
+  service.fetchReviews = function(profile) {
+    $log.debug('reviewService.fetchReviews');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/wayerz/${profile._id}/review`; //eslint-disable-line
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      return $http.get(url, config);
+    })
+    .then( res => {
+      $log.log('review retrieved');
+      service.reviews = res.data;
+      return service.reviews;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
   return service;
 }

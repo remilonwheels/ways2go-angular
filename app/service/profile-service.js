@@ -1,3 +1,4 @@
+/* global angular __API_URL__ */
 'use strict';
 
 module.exports = ['$q', '$log', '$http', '$mdSidenav', 'Upload', 'authService', profileService];
@@ -7,10 +8,17 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
 
   let service = {};
   service.profile = {};
+  service.messageProfile = {};
   service.allProfiles = [];
+  $log.debug('service profile', service.profile);
+  $log.debug('all profiles', service.allProfiles);
 
   service.toggleProfile = function() {
     $mdSidenav('left').toggle();
+  };
+
+  service.getProfile = function() {
+    return service.profile;
   };
 
   service.createProfile = function(profile) {
@@ -18,7 +26,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profile` //eslint-disable-line
+      let url = `${__API_URL__}/api/profile`;
       let headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -61,7 +69,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
     })
     .then( res => {
       $log.log('profile creation success');
-      service.profile = res.data;
+      angular.copy(res.data, service.profile);
       return service.profile;
     })
     .catch( err => {
@@ -117,7 +125,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
     })
     .then( res => {
       $log.log('profile updated successfully');
-      service.profile = res.data;
+      angular.copy(res.data, service.profile);
       return service.profile;
     })
     .catch( err => {
@@ -131,7 +139,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profile/user`; //eslint-disable-line
+      let url = `${__API_URL__}/api/profile/user`;
 
       let config = {
         headers: {
@@ -145,7 +153,8 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
     })
     .then( res => {
       $log.log('profile retrieved');
-      service.profile = res.data;
+      service.fetchProfileFlag = true;
+      angular.copy(res.data, service.profile);
       return service.profile;
     })
     .catch( err => {
@@ -159,8 +168,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profile/${profileID}`; //eslint-disable-line
-
+      let url = `${__API_URL__}/api/profile/${profileID}`;
       let headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -172,9 +180,8 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
     })
     .then( res => {
       $log.log('profile retrieved');
-      service.profile = res.data;
-      $log.log('service.profile', service.profile);
-      return service.profile;
+      angular.copy(res.data, service.messageProfile);
+      return res.data;
     })
     .catch( err => {
       $log.error(err.message);
@@ -187,8 +194,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/profile`; //eslint-disable-line
-
+      let url = `${__API_URL__}/api/profile`;
       let config = {
         headers: {
           Authorization: `Bearer ${token}`

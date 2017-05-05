@@ -190,7 +190,6 @@ function wayService($q, $log, $http, authService) {
       return res.data;
     })
     .catch( err => {
-      console.log(err);
       return $q.reject(err);
     });
   };

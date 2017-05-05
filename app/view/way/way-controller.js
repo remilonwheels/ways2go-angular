@@ -17,19 +17,22 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.searchLocation = myProfile.address[0];
   this.searchRadius = 10;
   this.placeHolder = [];
+  this.showMyWays = 'show';
   NgMap.getMap()
   .then( map => this.map = map);
 
   this.createDistanceWays = function createDistanceWays() {
     $log.debug('WayDetailController createDistanceWays()');
-    console.log('WayDetailController createDistanceWays()');
 
     const meterToMile = 0.000621371;
     this.distanceWays = this.ways
       .map( way => Object.assign(way, {distance: this.computeWayDistance(way) * meterToMile}))
-      .filter( way => way.distance <= this.searchRadius);
+        .filter( way => way.distance <= this.searchRadius)
+        .filter( way => {
+          if (this.showMyWays !== 'show') return way.profileID === myProfile._id;
+          else return true;
+        });
 
-    console.log('distance ways after calc', this.distanceWays);
     $scope.$broadcast('wayChange');
   };
 
@@ -55,7 +58,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     if (this.placeHolder.length === 1) {
       this.placeHolder[0].setMap(null);
       this.placeHolder = [];
-    };
+    }
 
     this.place = place;
 
@@ -75,15 +78,15 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
 
     this.createDistanceWays();
-    var marker = new google.maps.Marker({
+
+    var newLocationMarker = new google.maps.Marker({
       position: new google.maps.LatLng( lat(), lng() ),
       map: this.map,
-      label: 'spot'
+      label: 'spot',
+      animation: google.maps.Animation.DROP
     });
 
-    console.log('maaaarker', marker);
-    this.placeHolder.push(marker);
-    // $scope.$broadcast('searchChange');
+    this.placeHolder.push(newLocationMarker);
   };
 
   this.createWay = function ($event, bindFlag) {
@@ -138,13 +141,22 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
   };
 
+  $scope.$watch('wayCtrl.showMyWays', (newValue, oldValue, scope) => {
+    this.createDistanceWays();
+    $scope.$broadcast('wayChange');
+  });
+
+  $scope.$watch('wayCtrl.searchRadius', (newValue, oldValue, scope) => {
+    this.createDistanceWays();
+    $scope.$broadcast('wayChange');
+  });
+
   $scope.$watch('wayCtrl.ways', (newValue, oldValue, scope) => {
     this.createDistanceWays();
     $scope.$broadcast('wayChange');
   }, true);
 
   $scope.$on('wayModify', () => {
-    console.log('waymodify detected');
     this.createDistanceWays();
     $scope.$broadcast('wayChange');
   });

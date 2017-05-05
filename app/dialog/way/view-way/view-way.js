@@ -15,10 +15,7 @@ module.exports = {
 };
 
 function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService, $mdMedia) {
-  console.log('this.way on view way ctrl before', this.way);
   this.way = wayService.getOneWay(way._id);
-
-  console.log('this.way on view way ctrl after', this.way);
 
   profileService.fetchProfile()
   .then( profile => {
@@ -33,8 +30,6 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   this.startLocation = displayLocation(way.startLocation);
   this.endLocation = displayLocation(way.endLocation);
 
-  console.log('wayer 0', this.way.wayerz[0]);
-  // this.isPM = true;
   const dayMap = { '0': 'Monday', '1':'Tuesday', '2':'Wednesday', '3': 'Thursday', '4': 'Friday', '5': 'Saturday', '6': 'Sunday'};
 
   let dayArray = [];
@@ -66,7 +61,6 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
 
   this.editWay = function ($event, bindFlag, way) {
     const dialogConfig = {
-      // scope: $scope.$new(true),
       fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,
       resolve: {

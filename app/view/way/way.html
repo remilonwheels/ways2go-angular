@@ -13,10 +13,10 @@
         md-colors="{color:'grey-10'}"/>
     </md-input-container> -->
     <input
-      md-whiteframe="24"
+      md-whiteframe="4"
       flex
       class="google-search fixed-control"
-      md-colors="{background: 'grey-800'}"
+      md-colors="{background: 'white'}"
       places-auto-complete
       ng-model="wayCtrl.address"
       component-restrictions="{country:'us'}"
@@ -37,10 +37,21 @@
 
   <div style="visibility: hidden">
       <div class="md-dialog-container" id="wayControl">
-        <md-dialog layout-margin layout-padding>
-          <h2 class="md-title">Radius</h2>
-          <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="2" min="0" max="20" aria-label="search-radius" ng-change="wayCtrl.createDistanceWays()">
-          </md-slider>
+        <md-dialog layout-margin layout-padding layout="column">
+          <md-slider-container>
+            <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="2" min="0" max="20" aria-label="search-radius"></md-slider>
+            <h3 class="">Radius</h3>
+          </md-slider-container>
+
+          <div>
+            <md-checkbox
+              ng-model="wayCtrl.showMyWays"
+              ng-true-value="'notshow'"
+              ng-false-value="'show'"
+              aria-label="Show My Ways">
+              Only My Ways
+            </md-checkbox>
+          </div>
 
           <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
 

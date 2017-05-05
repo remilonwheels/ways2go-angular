@@ -18,8 +18,6 @@ module.exports = {
 function WayDetailController($log, $http, $interval, NgMap, wayService, $mdMedia, $scope, $mdDialog, profileService) {
   $log.debug('WayDetailController');
 
-  console.log('WayDetailController this', this);
-
   profileService.fetchProfile()
   .then( profile => {
     this.profile = profile;

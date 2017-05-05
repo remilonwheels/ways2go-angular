@@ -23,7 +23,6 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
   this.createDistanceWays = function createDistanceWays() {
     $log.debug('WayDetailController createDistanceWays()');
-    console.log('WayDetailController createDistanceWays()');
 
     const meterToMile = 0.000621371;
     this.distanceWays = this.ways
@@ -34,7 +33,6 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
           else return true;
         });
 
-    console.log('distance ways after calc', this.distanceWays);
     $scope.$broadcast('wayChange');
   };
 
@@ -60,7 +58,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
     if (this.placeHolder.length === 1) {
       this.placeHolder[0].setMap(null);
       this.placeHolder = [];
-    };
+    }
 
     this.place = place;
 
@@ -88,9 +86,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
       animation: google.maps.Animation.DROP
     });
 
-    console.log('maaaarker', newLocationMarker);
     this.placeHolder.push(newLocationMarker);
-    // $scope.$broadcast('searchChange');
   };
 
   this.createWay = function ($event, bindFlag) {
@@ -146,15 +142,11 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   };
 
   $scope.$watch('wayCtrl.showMyWays', (newValue, oldValue, scope) => {
-    console.log('new', newValue);
-    console.log('old', oldValue);
     this.createDistanceWays();
     $scope.$broadcast('wayChange');
   });
 
   $scope.$watch('wayCtrl.searchRadius', (newValue, oldValue, scope) => {
-    console.log('new', newValue);
-    console.log('old', oldValue);
     this.createDistanceWays();
     $scope.$broadcast('wayChange');
   });
@@ -165,7 +157,6 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   }, true);
 
   $scope.$on('wayModify', () => {
-    console.log('waymodify detected');
     this.createDistanceWays();
     $scope.$broadcast('wayChange');
   });

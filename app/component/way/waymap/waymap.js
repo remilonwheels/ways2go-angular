@@ -18,11 +18,9 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   $log.debug('WayMapController');
 
   this.$onInit = () => {
-    console.log('waymap oninit ways', this.ways);
     profileService.fetchProfile()
     .then( profile => {
       this.profile = profile;
-      console.log(this.profile);
 
       this.centerOnLoad = [ Number(this.profile.address[0].lat), Number(this.profile.address[0].lng)];
 
@@ -33,7 +31,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
 
       const drawWays = () => {
-        console.log('this in draw ways', this);
         NgMap.getMap().then( map => {
 
           this.startMarkers.forEach( marker => marker.setMap(null));
@@ -42,8 +39,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           this.startMarkers = [];
           this.endMarkers = [];
           this.googlePaths = [];
-
-          console.log('draw ways this.ways', this.ways);
 
           this.ways.forEach( way => {
 
@@ -143,8 +138,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           this.isMapInitialized = true;
           this.map = map;
 
-          console.log('map init this.prof', this);
-
           drawWays();
           var homeMarker = new google.maps.Marker({
             position: new google.maps.LatLng(Number(this.profile.address[0].lat), Number(this.profile.address[0].lng)),
@@ -170,7 +163,6 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
       $scope.$on('wayChange', () => {
         $log.debug('waychange broadcast');
-        console.log('waychange broadcast');
 
         drawWays();
       });

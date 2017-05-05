@@ -41,9 +41,16 @@
           <h3 class="">Radius</h3>
           <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="2" min="0" max="20" aria-label="search-radius"></md-slider>
 
-          <md-checkbox ng-model="wayCtrl.isShowMyWays" aria-label="Show My Ways" ng-change="wayCtrl.createDistanceWays()">
+          <md-checkbox
+            ng-model="wayCtrl.showMyWays"
+            ng-true-value="'notshow'"
+            ng-false-value="'show'"
+            aria-label="Show My Ways">
           Only My Ways
           </md-checkbox>
+          <!-- <md-checkbox ng-model="wayCtrl.isShowMyWays" aria-label="Show My Ways" ng-change="wayCtrl.createDistanceWays()">
+          Only My Ways
+          </md-checkbox> -->
 
           <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
 

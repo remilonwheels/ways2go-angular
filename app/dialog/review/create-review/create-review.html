@@ -2,6 +2,7 @@
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h2>Leave a review for {{createReviewCtrl.profile.displayName}}</h2>
+      <span flex></span>
       <md-button class="md-icon-button">
         <md-icon ng-md-icon icon="highlight_off"></md-icon>
       </md-button>
@@ -9,6 +10,9 @@
   </md-toolbar>
 
   <md-dialog-content>
+    <jk-rating-stars
+    rating="createReviewCtrl.review.rating">
+    </jk-rating-stars>
     <md-input-container class="md-icon-float md-block">
       <md-icon ng-md-icon icon="create"></md-icon>
       <textarea placeholder="how was the ride?"
@@ -16,11 +20,7 @@
         ng-model="createReviewCtrl.review.comment"
         rows="3"></textarea>
     </md-input-container>
-    <jk-rating-stars
-      rating="createReviewCtrl.review.rating">
-    </jk-rating-stars>
   </md-dialog-content>
-
   <md-dialog-actions>
     <md-button ng-click="createReviewCtrl.submitReview()"
       class="md-primary md-raised">

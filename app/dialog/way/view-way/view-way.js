@@ -91,13 +91,16 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
     $mdDialog.show(Object.assign(viewOneProfileComponent, dialogConfig));
   };
 
-  this.leaveReview = function($event, profile) {
+  this.leaveReview = function($event, profile, way) {
     const dialogConfig = {
       fullscreen: !$mdMedia('gt-sm'),
       targetEvent: $event,
       resolve: {
         profile: function() {
           return profile;
+        },
+        way: function() {
+          return way;
         }
       }
     };

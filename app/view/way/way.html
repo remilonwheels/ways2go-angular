@@ -38,16 +38,16 @@
   <div style="visibility: hidden">
       <div class="md-dialog-container" id="wayControl">
         <md-dialog layout-margin layout-padding layout="column">
-          <div class="md-title">Radius</div>
-            <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="2" min="0" max="20" aria-label="search-radius" ng-change="wayCtrl.createDistanceWays()"></md-slider>
+          <h3 class="">Radius</h3>
+          <md-slider flex md-discrete ng-model="wayCtrl.searchRadius" step="2" min="0" max="20" aria-label="search-radius"></md-slider>
 
-            <md-checkbox ng-model="wayCtrl.isShowMyWays" aria-label="Show My Ways" ng-change="wayCtrl.createDistanceWays()">
-            Only My Ways
-            </md-checkbox>
+          <md-checkbox ng-model="wayCtrl.isShowMyWays" aria-label="Show My Ways" ng-change="wayCtrl.createDistanceWays()">
+          Only My Ways
+          </md-checkbox>
 
-            <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
+          <md-button ng-click="wayCtrl.createWay($event, true)" class="md-raised md-warn md-hue-2">Create Way</md-button>
 
-            <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>
+          <md-button ng-click="wayCtrl.toggleView()" class="md-raised md-warn md-hue-2">Toggle View</md-button>
         </md-dialog>
       </div>
   </div>

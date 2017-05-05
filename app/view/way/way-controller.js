@@ -145,6 +145,13 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
   };
 
+  $scope.$watch('wayCtrl.searchRadius', (newValue, oldValue, scope) => {
+    console.log('new', newValue);
+    console.log('old', oldValue);
+    this.createDistanceWays();
+    $scope.$broadcast('wayChange');
+  });
+
   $scope.$watch('wayCtrl.ways', (newValue, oldValue, scope) => {
     this.createDistanceWays();
     $scope.$broadcast('wayChange');

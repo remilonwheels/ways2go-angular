@@ -21,6 +21,9 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   profileService.fetchProfile()
   .then( profile => {
     this.profile = profile;
+    $log.debug('wayerz.includes', this.way.wayerz.filter(function(ele) {
+      return ele._id === profile._id;
+    }).length > 0);
   });
 
   this.name = this.way.name || 'Way';
@@ -29,7 +32,6 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   this.endLocation = displayLocation(way.endLocation);
 
   console.log('wayer 0', this.way.wayerz[0]);
-
   // this.isPM = true;
   const dayMap = { '0': 'Monday', '1':'Tuesday', '2':'Wednesday', '3': 'Thursday', '4': 'Friday', '5': 'Saturday', '6': 'Sunday'};
 
@@ -90,8 +92,6 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   this.joinSubmit = function() {
     this.isLoading = true;
 
-    console.log(this.way);
-
     const joinMessage = {
       subject: `${this.profile.displayName} wants to join your way!`,
       text: `Please add me to your ${this.way.name ? this.way.name : '' } Way: ${this.way._id}`,
@@ -100,7 +100,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
 
 
     messageService.createMessage(joinMessage)
-    .then( res => {
+    .then( () => {
       $mdToast.showSimple('Request to Join Sent Successfully!');
       this.isLoading = false;
 

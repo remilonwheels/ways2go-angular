@@ -21,9 +21,9 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
   profileService.fetchProfile()
   .then( profile => {
     this.profile = profile;
-    $log.debug('wayerz.includes', this.way.wayerz.filter(function(ele) {
+    this.isInWay = this.way.wayerz.filter(function(ele) {
       return ele._id === profile._id;
-    }).length > 0);
+    }).length > 0;
   });
 
   this.name = this.way.name || 'Way';

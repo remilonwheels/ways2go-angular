@@ -6,6 +6,8 @@ const viewOneProfileComponent = require('../../../dialog/profile/view-one-profil
 
 const editWayComponent = require('../../../dialog/way/edit-way/edit-way.js');
 
+const createReviewComponent = require('../../../dialog/review/create-review/create-review.js');
+
 module.exports = {
   template: require('./view-way.html'),
   controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', 'profileService', '$mdMedia', ViewWayController],
@@ -100,7 +102,7 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
       }
     };
 
-    $mdDialog.snow(Object.assign(leaveReviewProfileComponent, dialogConfig));
+    $mdDialog.show(Object.assign(createReviewComponent, dialogConfig));
   };
 
   this.joinSubmit = function() {

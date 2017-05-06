@@ -17,7 +17,10 @@ function DisplayProfileController($log, $mdToast, $mdSidenav, $rootScope, $scope
   $log.debug('DisplayProfileController');
 
   this.$onInit = () => {
-    this.profile = profileService.getProfile();
+    profileService.getProfile()
+    .then( profile => {
+      this.profile = profile;
+    });
     this.calcAvgReview(this.profile);
   };
 

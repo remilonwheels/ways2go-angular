@@ -1,4 +1,4 @@
-/* global __API_URL__ */
+/* global angular __API_URL__ */
 'use strict';
 
 module.exports = ['$q', '$log', '$http', 'Upload', 'profileService', 'wayService', 'authService', '$rootScope', reviewService];
@@ -35,7 +35,7 @@ function reviewService($q, $log, $http, Upload, profileService, wayService, auth
     .then( res => {
       $log.log('review creation success');
       let review = res.data;
-      service.reviews.unshift(review);
+      // service.reviews.unshift(review);
       return review;
     })
     .catch( err => {
@@ -88,8 +88,8 @@ function reviewService($q, $log, $http, Upload, profileService, wayService, auth
     })
     .then( res => {
       $log.log('review retrieved');
-      service.reviews = res.data;
-      return service.reviews;
+      angular.copy(res.data, service.reviews);
+      return res.data;
     })
     .catch( err => {
       $log.error(err.message);

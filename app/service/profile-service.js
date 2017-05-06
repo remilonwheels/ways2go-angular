@@ -16,7 +16,7 @@ function profileService($q, $log, $http, $mdSidenav, Upload, authService, $rootS
   };
 
   service.getProfile = function() {
-    return service.profile;
+    return $q.resolve(service.profile);
   };
 
   service.createProfile = function(profile) {

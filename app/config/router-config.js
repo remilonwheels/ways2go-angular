@@ -18,9 +18,8 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       resolve: {
         profileService: 'profileService',
         wayService: 'wayService',
+        reviewService: 'reviewService',
         profile: function(profileService) {
-          if (profileService.fetchProfileFlag) return;
-
           return profileService.fetchProfile()
           .then( profile => profile);
         },

@@ -6,14 +6,18 @@ const createMessageDialog = require('../../message/profile-message/profile-messa
 
 module.exports = {
   template: require('./view-one-profile.html'),
-  controller: ['$log', '$mdDialog', '$mdMedia', '$mdToast','wayService', '$scope', '$window', 'messageService', 'profileService', 'profile',  ViewOneProfileController],
+  controller: ['$log', '$mdDialog', '$mdMedia', '$window', 'reviewService', 'profile',  ViewOneProfileController],
   controllerAs: 'viewOneProfileCtrl'
 };
 
-function ViewOneProfileController($log, $mdDialog, $mdMedia, $mdToast, wayService, $scope, $window, messageService, profileService, profile) {
+function ViewOneProfileController($log, $mdDialog, $mdMedia, $window, reviewService, profile) {
 
   this.profile = profile;
   this.isLoading = false;
+
+  this.$onInit = () => {
+    this.setAvgRating();
+  };
 
   this.sendMessage = function($event, bindFlag, msgRecipient) {
     $log.debug('viewOneProfileCtrl.sendMessage');
@@ -29,6 +33,22 @@ function ViewOneProfileController($log, $mdDialog, $mdMedia, $mdToast, wayServic
     };
 
     $mdDialog.show(Object.assign(createMessageDialog, dialogConfig));
+  };
+
+  this.setAvgRating = function() {
+    $log.debug('ViewOneProfileController.setAvgRating');
+
+    return reviewService.fetchReviews(profile)
+    .then( reviews => {
+      let sum = reviews.reduce((acc, ele) => {
+        return acc + ele['rating'];
+      }, 0);
+      let avg = sum / reviews.length;
+      this.avgReview = avg;
+    })
+    .catch( err => {
+      console.error(err.data);
+    });
   };
 
   this.linkMediaSite = function(site, user) {

@@ -46,12 +46,12 @@
 
             <md-subheader class="md-no-sticky">Wayerz</md-subheader>
             <md-list-item layout="row"
-              ng-repeat="wayer in viewWayCtrl.way.wayerz" md-colors="{{ viewWayCtrl.way.profileID === wayer._id ? {backgroundColor: 'default-accent-100'} : '' }}">
+              ng-repeat="wayer in viewWayCtrl.way.wayerz" md-colors="{{ viewWayCtrl.way.profileID === wayer._id ? {backgroundColor: 'default-accent-100'} : '' }}" ng-click="viewWayCtrl.viewProfile($event, wayer)">
               <h2>{{wayer.displayName}}</h2>
               <span flex></span>
-              <md-button ng-click="viewWayCtrl.viewProfile($event, wayer)" class="md-icon-button md-warn">
+              <!-- <md-button ng-click="viewWayCtrl.viewProfile($event, wayer)" class="md-icon-button md-warn">
                 <md-icon ng-md-icon icon="account_circle"></md-icon>
-              </md-button>
+              </md-button> -->
               <md-button
               ng-show="viewWayCtrl.isInWay"
               ng-click="viewWayCtrl.leaveReview($event, wayer, viewWayCtrl.way)" class="md-icon-button md-warn">

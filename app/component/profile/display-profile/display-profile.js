@@ -18,23 +18,18 @@ function DisplayProfileController($log, $mdToast, $mdSidenav, $rootScope, $scope
 
   this.$onInit = () => {
     this.profile = profileService.getProfile();
-    $log.debug('this.profile', this.profile);
     this.calcAvgReview(this.profile);
   };
-  $log.debug('$$$display this$$$', this);
+
   this.calcAvgReview = function(profile) {
     $log.debug('DisplayProfileController.avgReview');
+
     return reviewService.fetchReviews(profile)
     .then( reviews => {
       let sum = reviews.reduce((acc, ele) => {
-        $log.debug('reduce acc', acc);
-        $log.debug('reduce ele', ele);
         return acc + ele['rating'];
       }, 0);
-      $log.debug('sum', sum);
-      $log.debug('reviews', reviews);
       let avg = sum / reviews.length;
-      $log.debug('avg', avg);
       this.avgReview = avg;
     })
     .catch( err => {

@@ -10,11 +10,11 @@ const createReviewComponent = require('../../../dialog/review/create-review/crea
 
 module.exports = {
   template: require('./view-way.html'),
-  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', 'profileService', '$mdMedia', ViewWayController],
+  controller: ['$log', '$mdDialog', '$mdToast','wayService', 'way', '$scope', 'messageService', 'profileService', 'reviewService', '$mdMedia', ViewWayController],
   controllerAs: 'viewWayCtrl'
 };
 
-function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService, $mdMedia) {
+function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, messageService, profileService, reviewService, $mdMedia) {
   this.way = wayService.getOneWay(way._id);
 
   profileService.fetchProfile()
@@ -79,6 +79,12 @@ function ViewWayController($log, $mdDialog, $mdToast, wayService, way, $scope, m
       resolve: {
         profile: function() {
           return profile;
+        },
+        reviews: function(reviewService) {
+          return reviewService.fetchReviews(profile)
+          .then( reviews => {
+            return reviews;
+          });
         }
       }
     };

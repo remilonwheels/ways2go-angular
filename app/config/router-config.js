@@ -84,9 +84,9 @@ function routerConfig($stateProvider, $urlRouterProvider) {
         testresolve: function() {
           return 'ayo';
         },
-        myprofile: function(profileService, $q, $location, $mdToast) {
-          return;
-        },
+        // myprofile: function(profileService) {
+        //   return;
+        // },
       },
     }
   ];

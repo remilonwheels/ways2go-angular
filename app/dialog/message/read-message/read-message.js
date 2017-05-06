@@ -16,8 +16,6 @@ function ReadMessageController($q, $log, $mdDialog, $mdToast,  messageService, $
   this.message = message;
   this.isAddMessage = this.message.subject.includes('wants to join your way');
 
-  console.log('this up in read message', this);
-
   this.readMessageSubmit = function() {
     this.isLoadingWayer = true;
     $timeout(2000, () => {
@@ -42,10 +40,8 @@ function ReadMessageController($q, $log, $mdDialog, $mdToast,  messageService, $
 
     let wayToAddID = this.message.text.slice(this.message.text.lastIndexOf(':') + 2);
 
-    console.log('wayToAddID:',wayToAddID);
-
     wayService.addWayer(wayToAddID, this.message.fromProfileID)
-    .then( wayer => {
+    .then( () => {
       $mdToast.showSimple('Added Wayer Successfully');
       this.isLoadingWayer = false;
       $scope.$emit('wayModify');

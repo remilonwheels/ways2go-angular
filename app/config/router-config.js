@@ -74,16 +74,6 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       }
     },
     {
-      name: 'test',
-      url: '/test',
-      template: require('../view/test/test.html'),
-      controller: 'TestController',
-      controllerAs: 'testCtrl',
-      resolve: {
-        isAuthorized
-      },
-    },
-    {
       name: 'resolve',
       url: '/resolve',
       template: require('../view/resolve/resolve.html'),

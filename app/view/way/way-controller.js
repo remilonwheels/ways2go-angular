@@ -23,6 +23,8 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
 
   this.createDistanceWays = function createDistanceWays() {
     $log.debug('WayDetailController createDistanceWays()');
+    console.log('up in create ways');
+
 
     const meterToMile = 0.000621371;
     this.distanceWays = this.ways
@@ -33,6 +35,8 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
           else return true;
         });
 
+    console.log('distance ways up in create', this.distanceWays);
+    console.log('map up in distance ways', this.map);
     $scope.$broadcast('wayChange');
   };
 

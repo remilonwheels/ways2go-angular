@@ -18,6 +18,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   $log.debug('WayMapController');
 
   this.$onInit = () => {
+    console.log('waymap this', this);
     profileService.fetchProfile()
     .then( profile => {
       this.profile = profile;
@@ -28,9 +29,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
       this.endMarkers = [];
       this.googlePaths = [];
 
-
-
       const drawWays = () => {
+        console.log('up in draw ways');
         NgMap.getMap().then( map => {
 
           this.startMarkers.forEach( marker => marker.setMap(null));

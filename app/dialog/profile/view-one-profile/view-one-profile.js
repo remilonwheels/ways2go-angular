@@ -6,14 +6,18 @@ const createMessageDialog = require('../../message/profile-message/profile-messa
 
 module.exports = {
   template: require('./view-one-profile.html'),
-  controller: ['$log', '$mdDialog', '$mdMedia', '$mdToast','wayService', '$scope', '$window', 'messageService', 'profileService', 'profile',  ViewOneProfileController],
+  controller: ['$log', '$mdDialog', '$mdMedia', '$window', 'reviewService', 'profile',  'reviews', ViewOneProfileController],
   controllerAs: 'viewOneProfileCtrl'
 };
 
-function ViewOneProfileController($log, $mdDialog, $mdMedia, $mdToast, wayService, $scope, $window, messageService, profileService, profile) {
+function ViewOneProfileController($log, $mdDialog, $mdMedia, $window, reviewService, profile, reviews) {
 
   this.profile = profile;
+  this.reviews = reviews;
   this.isLoading = false;
+  this.avgReview = this.reviews.reduce((acc, ele) => {
+    return acc + ele['rating'];
+  }, 0) / this.reviews.length;
 
   this.sendMessage = function($event, bindFlag, msgRecipient) {
     $log.debug('viewOneProfileCtrl.sendMessage');

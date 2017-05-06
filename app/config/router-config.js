@@ -18,9 +18,8 @@ function routerConfig($stateProvider, $urlRouterProvider) {
       resolve: {
         profileService: 'profileService',
         wayService: 'wayService',
+        reviewService: 'reviewService',
         profile: function(profileService) {
-          if (profileService.fetchProfileFlag) return;
-
           return profileService.fetchProfile()
           .then( profile => profile);
         },
@@ -72,16 +71,6 @@ function routerConfig($stateProvider, $urlRouterProvider) {
         myProfile,
         isAuthorized
       }
-    },
-    {
-      name: 'test',
-      url: '/test',
-      template: require('../view/test/test.html'),
-      controller: 'TestController',
-      controllerAs: 'testCtrl',
-      resolve: {
-        isAuthorized
-      },
     },
     {
       name: 'resolve',

@@ -14,10 +14,13 @@
       <img ng-src="{{ viewOneProfileCtrl.profile.photo }}"
       alt="photo of {{ viewOneProfileCtrl.profile.displayName }}"
       class="md-card-image">
-      <md-card-title>
+      <md-card-title layout="column">
         <md-card-title-text>
           <span class="md-headline">{{viewOneProfileCtrl.profile.displayName}}</span>
         </md-card-title-text>
+        <jk-rating-stars read-only="true"
+          rating="viewOneProfileCtrl.avgReview">
+        </jk-rating-stars>
       </md-card-title>
       <md-card-content layout-align="space-around">
         <p>{{ viewOneProfileCtrl.profile.bio }}</p>

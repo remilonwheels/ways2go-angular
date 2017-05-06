@@ -30,6 +30,7 @@
     </md-button>
   </div>
 
+  <way-detail ways="wayCtrl.distanceWays" ng-show="!wayCtrl.mapView"></way-detail>
 
   <waymap ways="wayCtrl.distanceWays" ng-show="wayCtrl.mapView"></waymap>
   <!-- <waymap layout-fill ways="wayCtrl.distanceWays" ng-show="wayCtrl.mapView"></waymap> -->
@@ -59,6 +60,5 @@
       </div>
   </div>
 
-  <way-detail ways="wayCtrl.distanceWays" ng-show="!wayCtrl.mapView"></way-detail>
 
 </section>

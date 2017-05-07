@@ -4,7 +4,7 @@
       <md-card-header-text>
         <div layout="row">
           <span class="md-title" flex>{{ way.name || 'Way' }}</span>
-          <span class="md-subhead" flex="none" md-colors="{{ way.wayerz[0]._id === wayDetailCtrl.profile._id ? {color: 'grey-900'} : '' }}">{{ way.distance | number:1 }} mi</span>
+          <span class="md-subhead" flex="none" md-colors="{{ way.wayerz[0]._id === wayDetailCtrl.profile._id ? {color: 'grey-900'} : '' }}">{{ way.distance > 0.1 ? ( way.distance | number:1 ) + ' mi' : 'current' }}</span>
         </div>
       </md-card-header-text>
       <!-- <md-card-avatar>

@@ -45,17 +45,41 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
             let startPos = new google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng));
             let endPos = new google.maps.LatLng(Number(way.endLocation.lat), Number(way.endLocation.lng));
 
+            let triangleMarker,
+                startFill,
+                startStroke,
+                endFill,
+                endStroke;
+
+            startFill = 'blue';
+
+            triangleMarker = `data:image/svg+xml;utf-8, \
+            <svg width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"> \
+            <path fill="green" stroke="blue" stroke-width="2" d="M0 0L16 30L30 0z" ></path> \
+            </svg>`;
+
+
+
             let startMarker = new google.maps.Marker({
               map: map,
               position: startPos,
+              icon:{
+                url: triangleMarker,
+              },
+              label: 'S',
               wayID: way._id
             });
 
             let endMarker = new google.maps.Marker({
               map: map,
               position: endPos,
+              icon:{
+                url: triangleMarker,
+              },
+              label: 'E',
               wayID: way._id
             });
+
 
             let waypath = [
               {

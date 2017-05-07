@@ -1,5 +1,5 @@
-<md-list flex>
-  <md-list-item class="md-2-line" ng-repeat="review in reviewthumbnailCtrl.reviews">
+<md-list flex="auto" flex layout="row" style="overflow: scroll;">
+  <md-list-item class="md-2-line" ng-repeat="review in reviewthumbnailCtrl.reviews" flex="grow">
     <md-icon ng-md-icon icon="people"></md-icon>
     <div class="md-list-item-text" layout="column">
       <p class="md-truncate">{{review.comment}}</p>

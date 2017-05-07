@@ -159,8 +159,6 @@ function EditWayController($log, $mdDialog, $mdToast, wayService, way, profileSe
       list.push(dayMap[item]);
     }
   };
-
-
 }
 
 function displayLocation({number, street, city, state}) {

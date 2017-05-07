@@ -45,17 +45,38 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
             let startPos = new google.maps.LatLng(Number(way.startLocation.lat), Number(way.startLocation.lng));
             let endPos = new google.maps.LatLng(Number(way.endLocation.lat), Number(way.endLocation.lng));
 
+            let startMarkerSVG = `data:image/svg+xml;utf-8, \
+            <svg width="24" height="24" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg"> \
+            <circle cx="12" cy="12" r="11" fill="green" stroke="black" stroke-width="2"/>\
+            </svg>`;
+
+            let endMarkerSVG = `data:image/svg+xml;utf-8, \
+            <svg width="24" height="24" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg"> \
+            <path fill="red" stroke="white" stroke-width="2" d="M0 8L0 16L8 24L16 24L24 16L24 8L16 0L8 0z" ></path> \
+            </svg>`;
+
+
+
             let startMarker = new google.maps.Marker({
               map: map,
               position: startPos,
+              icon:{
+                anchor: new google.maps.Point(12, 12),
+                url: startMarkerSVG,
+              },
               wayID: way._id
             });
 
             let endMarker = new google.maps.Marker({
               map: map,
               position: endPos,
+              icon:{
+                anchor: new google.maps.Point(12, 12),
+                url: endMarkerSVG,
+              },
               wayID: way._id
             });
+
 
             let waypath = [
               {
@@ -71,7 +92,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
             let dash = {
               path: 'M -1,1 0,-1 1,1',
               strokeOpacity: 1,
-              scale: 3.5
+              scale: 3
             };
 
             let color = '';

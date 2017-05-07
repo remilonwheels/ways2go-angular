@@ -64,7 +64,9 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
                 anchor: new google.maps.Point(12, 12),
                 url: startMarkerSVG,
               },
-              wayID: way._id
+              wayID: way._id,
+              zIndex: 1
+
             });
 
             let endMarker = new google.maps.Marker({
@@ -74,7 +76,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
                 anchor: new google.maps.Point(12, 12),
                 url: endMarkerSVG,
               },
-              wayID: way._id
+              wayID: way._id,
+              zIndex: 1
             });
 
 
@@ -97,7 +100,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
             let color = '';
             if (way.profileID === this.profile._id) {
-              color = '#3f51b5';
+              color = '#0D47A1';
             } else color = '#757575';
 
             let googlePath = new google.maps.Polyline({
@@ -171,7 +174,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
               anchor: new google.maps.Point(12, 12),
               url: homeMarkerSVG,
             },
-            animation: google.maps.Animation.DROP
+            animation: google.maps.Animation.DROP,
+            zIndex: 10
           });
         });
       };

@@ -109,7 +109,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
               icons: [{
                 icon: dash,
                 offset: '0',
-                repeat: '20px'
+                repeat: '15px'
               }],
               wayID: way._id
             });
@@ -160,10 +160,17 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
           this.map = map;
 
           drawWays();
+          let homeMarkerSVG = `data:image/svg+xml;utf-8, \
+          <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> \
+          <path fill="#CDDC39" stroke="#2196F3" stroke-width="2px" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path> \
+          </svg>`;
           var homeMarker = new google.maps.Marker({
-            position: new google.maps.LatLng(Number(this.profile.address[0].lat), Number(this.profile.address[0].lng)),
             map: this.map,
-            label: 'home',
+            position: new google.maps.LatLng(Number(this.profile.address[0].lat), Number(this.profile.address[0].lng)),
+            icon:{
+              anchor: new google.maps.Point(12, 12),
+              url: homeMarkerSVG,
+            },
             animation: google.maps.Animation.DROP
           });
         });

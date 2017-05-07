@@ -53,9 +53,14 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
             startFill = 'blue';
 
-            triangleMarker = `data:image/svg+xml;utf-8, \
-            <svg width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"> \
-            <path fill="green" stroke="blue" stroke-width="2" d="M0 0L16 30L30 0z" ></path> \
+            startMarker = `data:image/svg+xml;utf-8, \
+            <svg width="24" height="24" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg"> \
+            <circle cx="12" cy="12" r="11" fill="green" stroke="black" stroke-width="2"/>\
+            </svg>`;
+
+            endMarker = `data:image/svg+xml;utf-8, \
+            <svg width="24" height="24" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg"> \
+            <path fill="red" stroke="white" stroke-width="2" d="M0 8L0 16L8 24L16 24L24 16L24 8L16 0L8 0z" ></path> \
             </svg>`;
 
 
@@ -64,9 +69,9 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
               map: map,
               position: startPos,
               icon:{
-                url: triangleMarker,
+                anchor: new google.maps.Point(12, 12),
+                url: startMarker,
               },
-              label: 'S',
               wayID: way._id
             });
 
@@ -74,9 +79,9 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
               map: map,
               position: endPos,
               icon:{
-                url: triangleMarker,
+                anchor: new google.maps.Point(12, 12),
+                url: endMarker,
               },
-              label: 'E',
               wayID: way._id
             });
 
@@ -95,7 +100,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
             let dash = {
               path: 'M -1,1 0,-1 1,1',
               strokeOpacity: 1,
-              scale: 3.5
+              scale: 3
             };
 
             let color = '';

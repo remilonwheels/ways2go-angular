@@ -1,4 +1,4 @@
-/* global angular __API_URL__ */
+/*   global angular __API_URL__ */
 'use strict';
 
 module.exports = ['$q', '$log', '$http', '$mdSidenav', 'Upload', 'authService', '$rootScope', profileService];

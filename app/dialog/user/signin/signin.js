@@ -35,7 +35,13 @@ function SigninController($log, $window, $location, $mdDialog, $mdToast, $scope,
       this.isAuthorized = true;
     })
     .catch( err => {
-      $mdToast.showSimple(err.data);
+      let message = err.data.split('##')[1].toUpperCase();
+      $mdToast.show($mdToast.simple()
+        .action('close')
+        .highlightAction(true)
+        .highlightClass('md-accent')
+        .textContent(message)
+        .capsule(true));
       this.isLoading = false;
     });
   };

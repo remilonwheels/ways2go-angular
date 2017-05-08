@@ -22,7 +22,7 @@ function appStyleConfig($mdThemingProvider) {
       themeName: 'swag',
       primaryPalette: 'blue',
       accentPalette: 'green',
-      warnPalette: 'blue-grey',
+      warnPalette: 'red',
       backgroundPalette: 'grey'
     },
   };

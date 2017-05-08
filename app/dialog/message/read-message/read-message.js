@@ -15,6 +15,7 @@ function ReadMessageController($q, $log, $mdDialog, $mdToast,  messageService, $
 
   this.message = message;
   this.isAddMessage = this.message.subject.includes('wants to join your way');
+  this.showMessage = this.message.text.slice(0, this.message.text.lastIndexOf(':'));
 
   console.log('this up in read message', this);
 

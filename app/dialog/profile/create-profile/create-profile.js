@@ -14,16 +14,22 @@ function CreateProfileController($log, $window, $location, $mdDialog, $mdToast, 
   this.isLoading = false;
   this.profile = {};
 
+  $log.debug('isLoading outside createProfile', this.isLoading);
+  $log.debug('this outside', this);
   this.createProfile = function() {
     $log.debug('CreateProfileController.createProfile');
 
     this.isLoading = true;
-    
+    $log.debug('isLoading in createProfile', this.isLoading);
+    $log.debug('this inside', this);
+
     profileService.createProfile(this.profile)
     .then( () => {
       $mdToast.showSimple('Thanks for creating your profile!')
       .then( () => {
+
         this.isLoading = false;
+        $log.debug('isLoading in toast then', this.isLoading);
         $location.url('/home');
         $mdDialog.hide();
       });

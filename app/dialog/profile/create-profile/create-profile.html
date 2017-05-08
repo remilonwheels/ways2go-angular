@@ -98,9 +98,10 @@
 
     <md-dialog-actions>
       <md-button ng-click="createProfileCtrl.createProfile()"
-      class="md-primary md-raised" layout>
-      <span ng-show="!createProfileCtrl.isLoading">create my profile</span>
-      <md-progress-circular md-mode="indeterminate" ng-show="createProfileCtrl.isLoading" md-diameter="20" class="md-accent md-hue-1"></md-progress-circular>
+      class="md-primary md-raised" layout layout-align="center center">
+      <!-- <span ng-show="!createProfileCtrl.isLoading">create my profile</span> -->
+      <md-progress-circular>
+      </md-progress-circular>
       </md-button>
     </md-dialog-actions>
 

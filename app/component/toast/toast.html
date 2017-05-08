@@ -1,0 +1,9 @@
+<md-toast ng-show="toastCtrl.errorInstance">
+  <span class="md-toast-text" flex>{{toastCtrl.message}}</span>
+  <md-button class="md-highlight" ng-click="openMoreInfo($event)">
+    More info
+  </md-button>
+  <md-button ng-click="closeToast()">
+    Close
+  </md-button>
+</md-toast>

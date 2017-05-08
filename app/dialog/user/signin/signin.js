@@ -35,7 +35,7 @@ function SigninController($log, $window, $location, $mdDialog, $mdToast, $scope,
       this.isAuthorized = true;
     })
     .catch( err => {
-      $mdToast.showSimple(err.data);
+      // $mdToast.showSimple(err.data);
       this.isLoading = false;
     });
   };

@@ -2,7 +2,7 @@
   <md-list-item class="md-3-line" ng-repeat="way in waythumbnailCtrl.ways | limitTo: 3"
     ng-click="waythumbnailCtrl.showWay(way._id)" flex>
     <md-button class="md-fab-mini">
-      <img ng-show="way.wayerz[0].photo" src="{{way.wayerz[0].photo}}" class="md-avatar">
+      <img ng-if="way.wayerz[0].photo" src="{{way.wayerz[0].photo}}" class="md-avatar">
       <md-icon ng-show="!way.wayerz[0].photo" ng-md-icon icon="directions_car"></md-icon>
     </md-button>
     <div class="md-list-item-text" layout="column">

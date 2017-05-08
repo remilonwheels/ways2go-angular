@@ -25,9 +25,17 @@ function appStyleConfig($mdThemingProvider) {
       warnPalette: 'blue-grey',
       backgroundPalette: 'grey'
     },
+    error: {
+      themeName: 'error',
+      primaryPalette: 'yellow',
+      accentPalette: 'lime',
+      warnPalette: 'blue',
+      backgroundPalette: 'red'
+    }
   };
 
   for (let theme in themes) {
+
     $mdThemingProvider
     .theme(theme)
     .primaryPalette(themes[theme].primaryPalette)
@@ -40,6 +48,7 @@ function appStyleConfig($mdThemingProvider) {
   $mdThemingProvider.theme('swag')
     .dark();
   $mdThemingProvider.setDefaultTheme('swag');
+  $mdThemingProvider.registerStyles('.request-error { color: red; }');
   // $mdThemingProvider.setDefaultTheme('blueGreyPrmCyanAcc');
 
 }

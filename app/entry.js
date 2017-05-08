@@ -22,19 +22,17 @@ require('angular-jk-rating-stars');
 
 const ways2go = angular.module('ways2go', [ngAnimate, uiRouter, ngFileUpload, 'ngMaterial', 'ngMdIcons', 'jkAngularRatingStars', ngMap]);
 
-let context = require.context('./service/', true, /\.js$/);
+let context = require.context('./config/', true, /\.js$/);
+context.keys().forEach( key => {
+  ways2go.config(context(key));
+});
+
+context = require.context('./service/', true, /\.js$/);
 context.keys().forEach( key => {
   let name = camelcase(path.basename(key, '.js'));
   let module = context(key);
   ways2go.service(name, module);
 });
-
-context = require.context('./config/', true, /\.js$/);
-context.keys().forEach( key => {
-  ways2go.config(context(key));
-});
-
-
 
 context = require.context('./view/', true, /\.js$/);
 context.keys().forEach( key => {
@@ -63,4 +61,9 @@ context.keys().forEach( key => {
   let name = camelcase(path.basename(key, '.js'));
   let module = context(key);
   ways2go.directive(name, module);
+});
+
+context = require.context('./run/', true, /\.js$/);
+context.keys().forEach( key => {
+  ways2go.run(context(key));
 });

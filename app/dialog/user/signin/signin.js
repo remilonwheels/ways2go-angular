@@ -49,24 +49,6 @@ function SigninController($log, $window, $location, $mdDialog, $mdToast, $scope,
     $mdDialog.show(Object.assign(updateUserComponent, dialogConfig));
   };
 
-  this.deleteUser = function() {
-    $log.debug('SigninController.deleteUser');
-
-    this.isLoading = true;
-
-    authService.deleteUser()
-    .then( () => {
-      $mdToast.showSimple('user account info removed')
-      .then( () => {
-        $location.url('/join');
-        $mdDialog.hide();
-      });
-    })
-    .catch( err => {
-      $mdToast.showSimple(err.data);
-    });
-  };
-
   this.goHome = function() {
     $location.url('/home');
   };

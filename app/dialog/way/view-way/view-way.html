@@ -47,7 +47,7 @@
             <md-subheader class="md-no-sticky">Wayerz</md-subheader>
             <md-list-item layout="row"
               ng-repeat="wayer in viewWayCtrl.way.wayerz" md-colors="{{ viewWayCtrl.way.profileID === wayer._id ? {backgroundColor: 'swag-accent-300'} : '' }}" ng-click="viewWayCtrl.viewProfile($event, wayer)">
-              <h3>{{wayer.displayName}}</h3>
+              <h3>{{ viewWayCtrl.profile._id === wayer._id ? 'ME' : wayer.displayName}}</h3>
               <span flex></span>
               <md-button
               ng-show="viewWayCtrl.isInWay && viewWayCtrl.profile._id !== wayer._id"

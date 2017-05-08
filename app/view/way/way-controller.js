@@ -17,7 +17,7 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   this.searchLocation = myProfile.address[0];
   this.searchRadius = 10;
   if (this.placeHolder) {
-    this.placeHolder[0].setMap(null);
+    this.placeHolder.forEach( place =>  place.setMap(null));
     this.placeHolder = [];
   } else this.placeHolder = [];
   this.showMyWays = 'show';
@@ -64,7 +64,8 @@ function WayController($log, $rootScope, $mdDialog, wayService, $http, $interval
   };
   const setPlaceChange = (place) => {
     if (this.placeHolder.length >= 1) {
-      this.placeHolder[0].setMap(null);
+      // this.placeHolder[0].setMap(null);
+      this.placeHolder.forEach( place =>  place.setMap(null));
       this.placeHolder = [];
     }
 

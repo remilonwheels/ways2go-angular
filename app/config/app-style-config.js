@@ -21,7 +21,7 @@ function appStyleConfig($mdThemingProvider) {
     swag: {
       themeName: 'swag',
       primaryPalette: 'blue',
-      accentPalette: 'lime',
+      accentPalette: 'green',
       warnPalette: 'blue-grey',
       backgroundPalette: 'grey'
     },
@@ -37,8 +37,8 @@ function appStyleConfig($mdThemingProvider) {
   }
 
   // $mdThemingProvider.setDefaultTheme('traffic1');
-  $mdThemingProvider.theme('swag')
-    .dark();
+  // $mdThemingProvider.theme('swag')
+  //   .dark();
   $mdThemingProvider.setDefaultTheme('swag');
   // $mdThemingProvider.setDefaultTheme('blueGreyPrmCyanAcc');
 

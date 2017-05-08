@@ -18,7 +18,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
   $log.debug('WayMapController');
 
   this.$onInit = () => {
-    console.log('waymap this', this);
+    console.log('waymap oninit this', this);
     profileService.fetchProfile()
     .then( profile => {
       this.profile = profile;
@@ -158,6 +158,7 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
 
       //map data
       this.mapInit = () => {
+        console.log('reg mapinit this', this);
         NgMap.getMap().then( map => {
           this.isMapInitialized = true;
           this.map = map;

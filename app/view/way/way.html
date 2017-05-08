@@ -1,23 +1,10 @@
 <section class="view-way" layout-fill>
   <div layout="row" class="map-controls" layout-margin>
-    <!-- <md-input-container
-      flex
-      class="md-block google-search fixed-control"
-      md-colors="{background: 'grey-800-.6'}">
-      <input
-        places-auto-complete
-        ng-model="wayCtrl.address"
-        component-restrictions="{country:'us'}"
-        type="{{wayCtrl.type}}"
-        on-place-changed="wayCtrl.placeChanged()"
-        md-colors="{color:'grey-10'}"/>
-    </md-input-container> -->
     <input
+      places-auto-complete
       md-whiteframe="4"
       flex
-      class="google-search fixed-control"
-      md-colors="{background: 'grey-50'}"
-      places-auto-complete
+      class="google-search"
       component-restrictions="{country:'us'}"
       type="{{wayCtrl.type}}"
       on-place-changed="wayCtrl.placeChanged()"/>
@@ -25,7 +12,7 @@
     <md-button
       md-whiteframe="24"
       flex="none"
-      class="md-fab md-primary way-control-btn fixed-control" ng-click="wayCtrl.showWayControl($event, true)" aria-label="Way Control">
+      class="md-fab md-primary way-control-btn" ng-click="wayCtrl.showWayControl($event, true)" aria-label="Way Control">
       <md-icon ng-md-icon icon="settings"></md-icon>
     </md-button>
   </div>

@@ -48,7 +48,7 @@ function appStyleConfig($mdThemingProvider) {
   $mdThemingProvider.theme('swag')
     .dark();
   $mdThemingProvider.setDefaultTheme('swag');
-  $mdThemingProvider.registerStyles('.request-error { color: red; }');
+  $mdThemingProvider.registerStyles('.request-error { background: red; }');
   // $mdThemingProvider.setDefaultTheme('blueGreyPrmCyanAcc');
 
 }

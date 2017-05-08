@@ -49,24 +49,6 @@ function DisplayProfileController($log, $mdToast, $mdSidenav, $rootScope, $scope
     $mdDialog.show(Object.assign(editProfileComponent, dialogConfig));
   };
 
-  this.deleteProfile = function() {
-    $log.debug('DisplayProfileController.deleteProfile');
-
-    this.isLoading = true;
-
-    profileService.deleteProfile()
-    .then( () => {
-      $mdToast.showSimple('profile deleted')
-      .then( () => {
-        $location.url('/join');
-        $mdDialog.hide();
-      });
-    })
-    .catch( err => {
-      $mdToast.showSimple(err.data);
-    });
-  };
-
   this.closeProfile = function() {
     $mdSidenav('left').close();
   };

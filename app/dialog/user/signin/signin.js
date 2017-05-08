@@ -35,7 +35,13 @@ function SigninController($log, $window, $location, $mdDialog, $mdToast, $scope,
       this.isAuthorized = true;
     })
     .catch( err => {
-      $mdToast.showSimple(err.data);
+      let message = err.data.split('##')[1].toUpperCase();
+      $mdToast.show($mdToast.simple()
+        .action('close')
+        .highlightAction(true)
+        .highlightClass('md-accent')
+        .textContent(message)
+        .capsule(true));
       this.isLoading = false;
     });
   };
@@ -47,24 +53,6 @@ function SigninController($log, $window, $location, $mdDialog, $mdToast, $scope,
       scope: $scope.$new(bindFlag)
     };
     $mdDialog.show(Object.assign(updateUserComponent, dialogConfig));
-  };
-
-  this.deleteUser = function() {
-    $log.debug('SigninController.deleteUser');
-
-    this.isLoading = true;
-
-    authService.deleteUser()
-    .then( () => {
-      $mdToast.showSimple('user account info removed')
-      .then( () => {
-        $location.url('/join');
-        $mdDialog.hide();
-      });
-    })
-    .catch( err => {
-      $mdToast.showSimple(err.data);
-    });
   };
 
   this.goHome = function() {

@@ -30,7 +30,11 @@ function SigninController($log, $window, $location, $mdDialog, $mdToast, $scope,
     this.isLoading = true;
     authService.login(this.user)
     .then( () => {
-      $mdToast.showSimple(`Welcome back ${this.user.username}`);
+      $mdToast.show($mdToast.simple()
+      .textContent(`Welcome back, ${this.user.username}`)
+      .action('close')
+      .highlightAction(true)
+      .highlightClass('md-accent'));
       this.isLoading = false;
       this.isAuthorized = true;
     })
@@ -39,9 +43,8 @@ function SigninController($log, $window, $location, $mdDialog, $mdToast, $scope,
       $mdToast.show($mdToast.simple()
         .action('close')
         .highlightAction(true)
-        .highlightClass('md-accent')
-        .textContent(message)
-        .capsule(true));
+        .highlightClass('md-warn')
+        .textContent(message));
       this.isLoading = false;
     });
   };

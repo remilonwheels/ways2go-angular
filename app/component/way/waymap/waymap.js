@@ -178,6 +178,8 @@ function WayMapController($log, $http, $interval, NgMap, wayService, $mdMedia, $
             animation: google.maps.Animation.DROP,
             zIndex: 10
           });
+
+          this.map.setCenter(new google.maps.LatLng(Number(this.profile.address[0].lat), Number(this.profile.address[0].lng)));
         });
       };
 

@@ -16,7 +16,7 @@ function CreateMessageController($log, $mdDialog, $mdToast,  messageService,  $t
   this.loadAllProfiles = function() {
     profileService.fetchAllProfiles()
     .then( profiles => {
-      this.allProfiles = profiles.sort( (a, b) => a - b);
+      this.allProfiles = profiles;
     })
     .catch( err => $log.debug(err));
   };
